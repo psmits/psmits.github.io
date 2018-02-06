@@ -1,0 +1,80 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                            % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{green}                              % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Peter D.}{Smits, Ph.D.}
+%\title{Resumé title}                               % optional, remove / comment the line if not wanted
+\address{1606 E Hyde Park Blvd Apt 4E}{Chicago, IL 60616}{}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+\phone[mobile]{+1~(609)~933~7042}                   % optional, remove / comment the line if not wanted
+%\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\email{peterdavidsmits@gmail.com}                               % optional, remove / comment the line if not wanted
+\homepage{https://psmits.github.io/}                         % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%-----       letter       ---------------------------------------------------------
+% recipient data
+\recipient{Wizards of the Coast}{P.O. Box 707\\Renton, WA 98057}
+\date{July 8, 2017}
+\opening{Dear Sir or Madam,}
+\closing{Sincerely,}
+\enclosure[Attached]{resume}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+\makelettertitle
+
+My name is Peter D. Smits and I am applying for the position of Senior Data Analyst. I completed my doctorate in Evolutionary Biology at the University of Chicago where I trained as a paleontologist. My dissertation focused on analyzing fossil occurrence patterns using using multilevel Bayesian statistical models. I am interested applying my data analyst/scientist training in the domain of one of my passions: games.
+
+I love developing creative solutions to data analysis problems. Analysis begins with imprecisely phrased questions and ideas. I enjoy working with collaborators to develop and grow these initial ideas into precise, tractable questions. My role as the scientist/analyst is to then translate these precise questions into exact, interpretable statistical statements.
+
+Interesting and useful statistical questions are nuanced, complicated, and require large amounts of data in order to get useful answers. Large data are inherently "messy" and require complex modeling considerations. Large models that take into account all of vagaries of the data (e.g. missing data, measurement error, multilevel covariates, etc.) are necessary for predictive analysis. Developing multilevel/hierarchical Bayesian models for complex analytical questions is my specialty, as it was the principal analytical approach I used for my Ph.D.
+
+I've been passionate about games most of my life. I played Magic: the Gathering and the Shadowfist CCG from middle school through early college; I still check in on the new sets of Magic and watch tournament videos. I've also played Dungeons and Dragons and other roleplaying games since I was 12 years old and it is a major part of my life. I love strategy games and the "meta" element to games; the idea that you can be interacting with the game without actually playing it. 
+
+I have found that games and gaming have contributed to my analytical skill set by fostering creative thinking and clear communication. Years of running Dungeons and Dragons games have really helped build my voice and confidence for teaching and public speaking, and the on-the-ground thinking and creative solutions required by strategy games like Magic: The Gathering and miniature war games have helped me overcome many analytical hurdles.
+
+I would enjoy the opportunity to learn more about this position. Thank you for your consideration.
+
+
+\makeletterclosing
+
+\end{document}
+
+
+%% end of file `template.tex'.
+

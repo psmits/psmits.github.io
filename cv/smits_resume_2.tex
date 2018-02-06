@@ -1,0 +1,208 @@
+% resume.tex
+%
+% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
+% (c) 2003 David J. Grant <dgrant@ieee.org> http://www.davidgrant.ca
+% (c) 2007 Todd C. Miller <Todd.Miller@courtesan.com> http://www.courtesan.com/todd
+% (c) 2009-2012 Derek R. Hildreth <derek@derekhildreth.com> http://www.derekhildreth.com 
+% (c) 2017 Peter D. Smits <peterdavidsmits@gmail.com> https://psmits.github.io/
+%This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/1.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+
+% GENERAL NOTE:  There may be some notes specific to myself.  If you're only interested in my LaTeX source or it doesn't make sense, please disregard it.
+
+\documentclass[letterpaper,11pt]{article}
+
+%-----------------------------------------------------------
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black 
+    %urlcolor=mygreylink     % can put red here to better visualize the links
+}
+\urlstyle{same}
+\definecolor{mygrey}{gray}{.85}
+\definecolor{mygreylink}{gray}{.40}
+\textheight=9.0in
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{0.375in}
+\addtolength{\textwidth}{0.5in}
+\addtolength{\topmargin}{-.375in}
+\addtolength{\textheight}{0.75in}
+
+%-----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{{\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}}
+\newcommand{\ressubheading}[4]{
+\begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+		\textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+
+\newcommand{\ressubsubheading}[2]{
+\begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
+		\textit{#1} & \textit{#2} \\
+\end{tabular*}\vspace{-6pt}}
+%-----------------------------------------------------------
+
+%-----------------------------------------------------------
+%General Resume Tips
+%   No periods!  Technically, nothing in this document is a full sentence.
+%   Use parallelism by ending key words with the same thing,  i.e. "Coordinated; Designed; Communicated".
+%   More tips on bottom of this LaTeX document.
+%-----------------------------------------------------------
+
+\begin{document}
+
+\newcommand{\mywebheader}{
+\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
+	\textbf{\href{https://psmits.github.io/}{\LARGE Peter David Smits}} & \href{mailto:peterdavidsmits@gmail.com}{peterdavidsmits@gmail.com}\\
+    {\footnotesize \texttt{ph: 609-933-7042; add: 1606 E Hyde Park Blvd Apt 4E, Chicago, IL 60615 }} & \href{https://psmits.github.io/}{https://psmits.github.io/} \\
+	\end{tabular*}
+\\
+\vspace{0.1in}}
+
+% CHANGE HEADER SOURCE HERE
+\mywebheader
+
+%\resheading{Summary}
+%  \begin{itemize}
+%    \item Paleobiologist and data scientist with 8+ years research experience in evolution, ecology, and geology; works cited over 180 times
+%    \item Bayesian data analysis and multilevel/hierarchical models across multiple applications (e.g. survival, longitudinal, and discrete time-series data; hidden Markov models)
+%%    \item Six publications in peer-reviewed journals, cited 189 times
+%%    \item International collaborator analyzing biomechanical, phylogenetic, and time-series count data and with applying machine learning techniques for prediction
+%  \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Experience}
+	\begin{itemize}
+		\item 
+			\ressubheading{University of Chicago}{Chicago, IL}{Doctoral Researcher}{Sept 2012 -- June 2017}
+				{ \footnotesize
+				\begin{itemize}
+            \resitem{Analyzed datasets of fossil occurrence information covering 65-250 million years of geologic time in both terrestrial and marine settings }
+            \resitem{Developed new hierarchical Bayesian models using Stan for describing species extinction risk and regional species ecological composition which resulted in 2 publications and 6 presentations }
+            \resitem{Mentored graduate and undergraduate students in statistics, Bayesian modeling, Stan, and R }
+				\end{itemize}
+				}
+		\item 
+			\ressubheading{Monash University}{Melbourne, AUS}{Postgraduate Researcher}{Sept 2010 -- Aug 2012}
+				{ \footnotesize
+				\begin{itemize}
+            \resitem{Collected and analyzed three-dimensional scans of mammals tooth kinematics using R, resulted in one paper }
+            \resitem{Analyzed crocodile feeding biomechanical data in R, resulted in one paper }
+            %\resitem{Mentored undergraduate students in quantitative analysis }
+				\end{itemize}
+				}
+		\item 
+			\ressubheading{Macquarie University}{Sydney, AUS}{Paleobiology Database Intensive Workshop in Quantitative Paleobiology}{July 2011 -- Aug 2011}
+				{ \footnotesize
+				\begin{itemize}
+            \resitem{5 week intensive workshop on statistical and analytical methods and their applications in paleobiology}
+            \resitem{Trained in using R for birth-death modelling, basic Gaussian processes, exploratory multivariate data analysis, phylogentic comparative methods, and geometric morphometrics}
+				\end{itemize}
+				}
+%    \item 
+%      \ressubheading{Burke Museum of Natural History}{Seattle, WA}{Collections Assistant in Paleontology}{June 2010 -- Aug 2010}
+%        { \footnotesize
+%        \begin{itemize}
+%            \resitem{Catalogued specimens in the collections which appeared in publication}
+%            \resitem{Managed specimen database growth and annotation}
+%        \end{itemize}
+%        }
+    \item 
+      \ressubheading{American Museum of Natural History}{New York, NY}{NSF Research Experience for Undergraduates Internship}{June 2009 -- Aug 2009}
+        { \footnotesize
+        \begin{itemize}
+            %\resitem{Collected data describing bat tooth shapes }
+            \resitem{Analyzed similarities in bat tooth shape in a phylogenetic context, resulted in one publication }
+        \end{itemize}
+        }
+    \item 
+      \ressubheading{University of Washington}{Seattle, WA}{Undergraduate Research Assistant}{Jan 2008 -- June 2010}
+        { \footnotesize
+        \begin{itemize}
+            \resitem{Analyzed relationship between mammal tooth size and body size using linear regression in order to predict body sizes of extinct mammals, resulted in one publication }
+            %\resitem{Assisted with field collection of fossils from the Hell Creek Formation (Latest Cretaceous) in Montana }
+        \end{itemize}
+        }
+%    \item 
+%      \ressubheading{Burke Museum of Natural History}{Seattle, WA}{Field and Lab Assistant in Mammalogy}{Oct 2006 -- Aug 2008}
+%        { \footnotesize
+%        \begin{itemize}
+%            \resitem{Assisted with museum specimen preparation, taxidermy, and curation}
+%            \resitem{Assisted with wild specimen collection and preparation}
+%        \end{itemize}
+%        }
+	\end{itemize}  % End Experience list
+
+%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Education}
+	\begin{itemize}
+		\item
+      \ressubheading{University of Chicago}{Chicago, IL}{Ph.D. in Evolutionary Biology}{Sept 2012 -- June 2017}
+		\item
+      \ressubheading{Monash University}{Melbourne, AUS}{M.Sc. in Biological Sciences}{Sept 2010 -- Aug 2012}
+      \begin{itemize}
+        \item Vice-Chancellor's Commendation for Master's Thesis Excellence
+      \end{itemize}
+		\item
+      \ressubheading{University of Washington}{Seattle, WA}{B.S. in Evolutionary and Ecological Biology}{Sept 2006 -- June 2010}
+	\end{itemize} % End Education list
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\resheading{Projects}
+%
+%\begin{description}
+  %  \item[:] { }
+%\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.25in}
+\resheading{Technical Skills}
+	\begin{description}
+    \item[Statistical/Analytical:] { \footnotesize Bayesian data analysis, multilevel/hierarchical/mixed-effects models, generalized linear models, time-series analysis, survival analysis, longitudinal and cross-sectional data, discrete-time hidden Markov models, network analysis/graph theory, exploratory multivariate data analysis, clustering, machine learning techniques (e.g. random forests), measurement error/missing data modeling, model and variable selection }
+    \item[Technologies:] { \footnotesize R (ggplot2, knitr, parallel, caret, igraph), Stan, JAGS, \LaTeX, git, Linux command line }
+    \item[Other:] { \footnotesize near-fluency French, dual US--Australian citizen, radio experience }
+	\end{description} % End Skills list
+\vspace{0.25in}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\resheading{Publications}
+  \begin{description}
+    \item Stewart M Edie, {\bf Peter D Smits}, David Jablonski. Probabilistic models of species discovery and biodiversity comparisons. \emph{Proceedings of the National Academy of Sciences}, 114(14):3666-3671, 2016. {\bf IF 9.423}
+    \item {\bf Peter D Smits}. Expected time-invariant effects of biological traits on mammal species duration. \emph{Proceedings of the National Academy of Sciences}, 112(42):13015–13020, 2015. {\bf IF 9.423}
+    \item Liliana M Davalos, Paul M Velazco, Omar M Warsi, {\bf Peter D Smits}, Nancy B Simmons. Integrating Incomplete Fossils by Isolating Conflicting Signal in Saturated and Non-Independent Morphological Characters. \emph{Systematic Biology}, 63(4):582-600, 2014. {\bf IF 14.387}
+    \item Christopher W Walmsley, {\bf Peter D Smits}, Michelle R Quayle, Matthew R Mc-Curry, Heather S Richard, Christopher C Oldfield, Stephen Wroe, Phillip D Clausen, and Colin R McHenry. Why the fong face? The mechanics of mandibular symphysis proportions in crocodiles. \emph{PLoS ONE}, 8(1):e53873, 2013. {\bf IF 3.234}
+    \item {\bf Peter D Smits}, Alistair R Evans. Functional constraints on tooth morphology in carnivorous mammals. \emph{BMC Evolutionary Biology}, 12(1):146, 2012. {\bf IF 3.407}
+    \item Gregory P Wilson, Alistair R Evans, Ian J Corfe, {\bf Peter D Smits}, Mikael Fortelius, and Jukka Jernvall. Adaptive radiation of multituberculate mammals before the extinction of dinosaurs. \emph{Nature}, 483:457-460, 2012. {\bf IF 39.138}
+  \end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\resheading{Selected Conference Presentations (last 3 years)}
+  \begin{description}
+    \item {\bf Speaker} Geological Society of America Annual Meeting, "Taxon occurrence as a function of both biological traits and environmental context: the changing North American species pool," Denver, CO, Sept 2016
+    \item {\bf Speaker} Evolution Meetings, "How macroecology affects macroevolution: the interplay between extinction intensity and trait-dependent extinction in brachiopods," Austin, TX, June 2016
+    \item {\bf Speaker} Geological Society of America Annual Meeting, "How do biological traits affect brachiopod taxonomic survival? A hierarchical Bayesian approach," Baltimore, MD, Nov 2015
+    \item {\bf Speaker} Evolution Meetings, "Death and taxa: time-invariant differences in mammal species duration," Guaruja, Brazil, June 2015
+    \item {\bf Speaker} Geological Society of America Annual Meeting, "Gambling with Australian brachiopods," Vancouver, BC, Oct 2016
+    \item {\bf Speaker} Evolution Meetings, "Cenozoic mammals and the biology of extinction," Raleigh, NC, June 2014
+  \end{description}
+
+
+\end{document}

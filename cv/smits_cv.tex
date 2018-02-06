@@ -1,0 +1,506 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+%\usepackage{times}
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{comment}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em} %1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+   \newenvironment{bibsection}%
+        {\begin{enumerate}{}{%
+              %        {\begin{list}{}{%
+              \setlength{\leftmargin}{\bibhang}%
+            \setlength{\itemindent}{-\leftmargin}%
+            \setlength{\itemsep}{\bibsep}%
+              \setlength{\parsep}{\z@}%
+                \setlength{\partopsep}{0pt}%
+                \setlength{\topsep}{0pt}}}
+              {\end{enumerate}\vspace{-.6\baselineskip}}
+              %        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+%includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+            %% Use these lines for A4-sized paper
+            %\usepackage[paper=a4paper,
+            %            %includefoot, % Uncomment to put page number above margin
+            %            marginparwidth=30.5mm,    % Length of section titles
+            %            marginparsep=1.5mm,       % Space between titles and text
+            %            margin=25mm,              % 25mm margins
+            %            includemp]{geometry}
+
+            %% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+                    %                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+                    % Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+            %%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+            %%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+            % The title (name) with a horizontal rule under it
+            % (optional argument typesets an object right-justified across from name
+            %  as well)
+            %
+            % Usage: \makeheading{name}
+            %        OR
+            %        \makeheading[right_object]{name}
+            %
+            % Place at top of document. It should be the first thing.
+            % If ``right_object'' is provided in the square-braced optional
+            % argument, it will be right justified on the same line as ``name'' at
+            % the top of the CV. For example:
+            %
+            %       \makeheading[\emph{Curriculum vitae}]{Your Name}
+            %
+            % will put an emphasized ``Curriculum vitae'' at the top of the document
+            % as a title. Likewise, a picture could be included:
+            %
+            %   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+            %
+            % the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+           {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+         % The section headings
+         %
+         % Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \hyphenpenalty=10000%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+    % An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
+            \vspace{-.6\baselineskip}}
+
+            % An environment IDENTICAL to outerlist that has better pre-list spacing
+            % when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\begin{list}{#1}{%
+            \setlength{\partopsep}{0pt}%
+          \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+        % An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}}
+
+        % An environment IDENTICAL to innerlist that has better pre-list spacing
+        % when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}\vspace{-.6\baselineskip}}
+
+        % To add some paragraph space between lines.
+        % This also tells LaTeX to preferably break a page on one of these gaps
+        % if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+\providecommand*\url[1]{\href{#1}{#1}}
+% Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+\renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Peter David Smits}
+
+\section{Contact Information}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.4in}%
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+  %\href{http://www.cse.osu.edu/}%
+  %     {Department of Computer Science and Engineering} & \\
+  %\href{http://www.osu.edu/}{The Ohio State University}
+  Hinds Laboratory for Physical Sciences, Office 289   & 609-933-7042 \\
+  Chicago, IL  60637     & \email{psmits@uchicago.edu}\\
+\end{tabular}
+
+%\section{Objective}
+
+%Insert text here if you want to
+%\begin{innerlist}
+%\item More information and auxiliary documents can be found at\\\url{http://www.tedpavlic.com/facjobsearch/}
+%\end{innerlist}
+
+\section{Research Interests}
+
+Macroevolution, macroecology, paleobiology, Bayesian modeling, extinction, mammals, brachiopods, survival analysis, time-series analysis, longitudinal and cross-sectional data analysis
+
+\section{Education}
+
+\textbf{University of Chicago}, Chicago, IL
+\begin{outerlist}
+\item[] Ph.D., Committee on Evolutionary Biology, June 2017
+  \begin{innerlist}
+  \item Thesis Topic: \emph{ }
+  \item Advisors: Michael Foote and Kenneth Angielcyzk
+  \end{innerlist}
+\end{outerlist}
+\vspace{.1in}
+\textbf{Monash University}, Melbourne, AUS 
+\begin{outerlist}
+\item[] M.S., Biological Sciences, Aug 2012
+  \begin{innerlist}
+  \item \emph{First Class Honours}
+  \item Topic: \emph{ }
+  \item Advisor: Alistair Evans
+  \end{innerlist}
+\end{outerlist}
+\vspace{.1in}
+\textbf{University of Washington}, Seattle, WA
+\begin{outerlist}
+\item[] B.S., Biology: Ecology and Evolution, June 2010
+\end{outerlist}
+
+%\section{Research Experience}
+%
+%\textbf{Research Assistant} \hfill {May 2011 to present}
+%\begin{innerlist}
+%
+%\item[] Division of Biostatistics,\\
+%  University of Minnesota\\
+%        Supervisor: Bradley P. Carlin, Ph.D
+%\end{innerlist}
+%\textbf{Research Assistant} \hfill {June 2010 to May 2011}
+%\begin{innerlist}
+%
+%\item[] Division of Epidemiology,\\
+%  University of Minnesota\\
+%        Supervisors: Traci L. Toomey, Ph.D and Bradley P. Carlin, Ph.D
+%\end{innerlist}
+%\textbf{Research Assistant} \hfill {Sept 2008 to Aug 2010}
+%\begin{innerlist}
+%
+%\item[] Division of Biostatistics,\\
+%  University of Minnesota\\
+%        Supervisors: Katherine Huppler-Hullsiek, Ph.D and Jason V. Baker, M.D., M.S.
+%\end{innerlist}
+
+\section{Publications}
+\vspace{-.1275in}
+\begin{bibsection}
+\item Stewart M Edie, {\bf Peter D Smits}, David Jablonski. Probabilistic models of species discovery and biodiversity comparisons. \emph{Proceedings of the National Academy of Sciences}, 114(14):3666-3671, 2016.
+\item {\bf Peter D Smits}. Expected time-invariant effects of biological traits on mammal species duration. \emph{Proceedings of the National Academy of Sciences}, 112(42):13015–13020, 2015.
+\item Liliana M Davalos, Paul M Velazco, Omar M Warsi, {\bf Peter D Smits}, Nancy B Simmons. Integrating Incomplete Fossils by Isolating Conflicting Signal in Saturated and Non-Independent Morphological Characters. \emph{Systematic Biology}, 63(4):582-600, 2014.
+\item Christopher W Walmsley, {\bf Peter D Smits}, Michelle R Quayle, Matthew R Mc-Curry, Heather S Richard, Christopher C Oldfield, Stephen Wroe, Phillip D Clausen, and Colin R McHenry. Why the fong face? The mechanics of mandibular symphysis proportions in crocodiles. \emph{PLoS ONE}, 8(1):e53873, 2013.
+\item {\bf Peter D Smits}, Alistair R Evans. Functional constraints on tooth morphology in carnivorous mammals. \emph{BMC Evolutionary Biology}, 12(1):146, 2012.
+\item Gregory P Wilson, Alistair R Evans, Ian J Corfe, {\bf Peter D Smits}, Mikael Fortelius, and Jukka Jernvall. Adaptive radiation of multituberculate mammals before the extinction of dinosaurs. \emph{Nature}, 483:457-460, 2012.
+\end{bibsection}
+
+%\section{Submitted Journal Publications}
+%\vspace{-.125in}
+%\begin{bibsection}
+%\item Toomey, T.L., Erickson, D.J., Carlin, B.P., Lenk, K.M., {\bf Quick, H.S.}, and Harwood, E.M. ``Do neighborhood attributes moderate the relationship between alcohol establishment density and crime?" 2012. Submitted to \emph{Prevention Science}.
+%\end{bibsection}
+
+% Add a little space to nudge next ``Conference Publications'' marginpar
+% down to make room for tall ``Submitted Journal Publications''
+% marginpar. If there are enough submitted journal publications, this
+% space will not be needed (and should be removed).
+%\vspace{0.1in}
+
+\section{Papers in Preparation}
+\vspace{-.1in}
+\begin{bibsection}
+\item {\bf Peter D Smits}. How macroecology affects macroevolution: the interplay between extinction intensity and trait-dependent extinction in brachiopods.
+\item {\bf Peter D Smits}, Kenneth D Angielczyk, James F Parham, Bryan Stuart. Supervised learning approaches to classifying morphological variation: assessing taxonomic hypotheses for the Pacific Pond Turtle (Emys marmorata).
+\end{bibsection}
+
+\section{Awards}
+Student Awards --- University of Chicago
+\begin{innerlist}
+\item Hinds Fund Grant
+  \begin{innerlist}
+  \item The Hinds Fund Grant's purpose to is help early graduate students fund their initial research in order to develop pilot projects, and obtain preliminary results for their dissertation.
+  \end{innerlist}
+\end{innerlist}
+
+\halfblankline
+
+Student Awards --- Monash University
+\begin{innerlist}
+\item Vice-Chancellor's Commendation for Master's Thesis Excellence, 2012.
+  \begin{innerlist}
+  \item The Vice-Chancellor's Commendation is give out to the best thesis submitted that year across all divisions at the university; between 0 and 5 are awarded per year.
+  \end{innerlist}
+\end{innerlist}
+
+\halfblankline
+
+Student Awards --- University of Washington, Department of Biology
+\begin{innerlist}
+\item Casey Award for Research, 2008.
+\end{innerlist}
+
+\halfblankline
+
+Travel Awards
+\begin{innerlist}
+\item Summer Travel Award, Committee on Evolutionary Biology, 2013, 2014, 2015, 2016.
+\item Student Travel Stipend, Society for the Study of Evolutionary Biology, 2015.
+\item Faculty of Science Travel Grant, Monash University, 2011.
+\end{innerlist}
+
+
+\section{Presentations}
+Professional Meetings (last 5 years)
+\begin{innerlist}
+\item Geological Society of America Annual Meeting, Denver, CO \hfill Sept 2016
+\item Evolution Meetings, Austin, TX \hfill June 2016
+\item Geological Society of America Annual Meeting, Baltimore, MD \hfill Nov 2015
+\item Evolution Meetings, Guaruja, Brazil \hfill June 2015
+\item Geological Society of America Annual Meeting, Vancouver, BC \hfill Oct 2016
+\item Evolution Meetings, Raleigh, NC \hfill June 2014
+\item Society for Vertebrate Paleontology, Los Angeles, LA \hfill Oct 2013
+\item Evolution Meetings, Snowbird, UT \hfill June 2013
+\end{innerlist}
+
+
+
+\section{Teaching Experience}
+
+%\textbf{Teaching Assistant} \hfill {Springs 2011--12}
+Co-instructor \hfill {Falls 2015--16}
+\begin{innerlist}
+\item[] BSDG 5000 - Teaching Assistant Training\\
+  with Alicja Santos \\
+        Division of Biological Sciences,\\
+        University of Chicago 
+\end{innerlist}
+
+Teaching Assistant \hfill {Spring 2016}
+\begin{innerlist}
+\item[] BIOS 20151 - Introduction to Quantitative Modeling in Biology\\
+  Instructor: Dmitry Kondrashov\\
+        Division of Biological Sciences,\\
+        University of Chicago  
+\end{innerlist}
+
+Teaching Assistant \hfill {Winter 2015}
+\begin{innerlist}
+\item[] BIOS 13107 - Environmental Ecology \\
+  Instructor: Trevor Price\\
+        Division of Biological Sciences,\\
+        University of Chicago  
+\end{innerlist}
+
+Teaching Assistant \hfill {Spring 2012}
+\begin{innerlist}
+\item[] BIO2011 - Research Methods \\
+  Instructor: Ross Thompson, Patrick Baker\\
+        School of Biological Sciences,\\
+        Monash University
+\end{innerlist}
+
+Peer Teaching Assistant \hfill {Fall 2009}
+\begin{innerlist}
+\item[] Biol 443 - Evolution of Mammals and their Ancestors \\
+  Instructor: Gregory Wilson\\
+        Department of Biology \\
+        University of Washington
+\end{innerlist}
+
+%\section{Service}
+%Recruiting Committee, Division of Biostatistics \hfill {May 2010 -- Present}
+%\begin{innerlist}
+%\item Assist with planning of annual Division of Biostatistics Open House and Admitted Student Visit Days
+%\item Meet with prospective and admitted students %; answer questions from a student's perspective
+%\end{innerlist}
+%
+%\halfblankline
+%
+%Student Member of Search Committee for the \hfill {June 2010 -- Aug 2010}\\
+%SPH Coordinator of Recruitment and Student Leadership
+%\begin{innerlist}
+%\item Assisted in job search for the SPH Coordinator of Recruitment and Student Leadership
+%\item Reviewed applications, conducted interviews
+%\end{innerlist}
+
+\section{References}
+
+Michael Foote 
+\begin{innerlist}
+\item[] Professor \hfill {Phone: 773-702-4320}\\
+  Department of Geophysical Sciences \hfill{E-mail: mfoote@uchicago.edu}\\
+  University of Chicago
+\end{innerlist}
+
+\halfblankline
+
+Kenneth Angielczyk
+\begin{innerlist}
+\item[] Associate Curator \hfill {Phone: 312-665-7639}\\
+  Integrative Research Center \hfill{E-mail: kangeilczyk@fieldmuseum.org}\\
+  Field Museum of Natural History
+\end{innerlist}
+
+\halfblankline
+
+P.\ David Polly
+\begin{innerlist}
+\item[] Professor \hfill {Phone: 612-626-9070}\\
+  Department of Earth and Atmospheric Sciences \hfill{E-mail: pdpolly@indiana.edu}\\
+  Indiana University
+\end{innerlist}
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%

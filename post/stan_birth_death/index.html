@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.36" />
+  <meta name="author" content="Peter D Smits">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Capture-mark-recapture (CMR) models come up in ecology and paleobiology when attempting to estimate species richness, birth rates, death rates, and sampling rates from occurrence history data. I use Stan to write all my statistical models, and I found implementing a CMR model a bit of a bear because Stan&rsquo;s gradient-based samplers cannot estimate discrete parameters. Instead, as described in the Stan manual, I needed to marginalize over all possible occurrence histories for each subject.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psmits.github.io/post/stan_birth_death/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+      
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+      
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+
+  
+  <link rel="alternate" href="https://psmits.github.io/index.xml" type="application/rss+xml" title="Peter D Smits">
+  <link rel="feed" href="https://psmits.github.io/index.xml" type="application/rss+xml" title="Peter D Smits">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://psmits.github.io/post/stan_birth_death/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@https://twitter.com/PeterDSmits">
+  <meta property="twitter:creator" content="@https://twitter.com/PeterDSmits">
+  
+  <meta property="og:site_name" content="Peter D Smits">
+  <meta property="og:url" content="https://psmits.github.io/post/stan_birth_death/">
+  <meta property="og:title" content="An attempt at a basic capture-mark-recapture model in Stan | Peter D Smits">
+  <meta property="og:description" content="Capture-mark-recapture (CMR) models come up in ecology and paleobiology when attempting to estimate species richness, birth rates, death rates, and sampling rates from occurrence history data. I use Stan to write all my statistical models, and I found implementing a CMR model a bit of a bear because Stan&rsquo;s gradient-based samplers cannot estimate discrete parameters. Instead, as described in the Stan manual, I needed to marginalize over all possible occurrence histories for each subject.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2017-05-10T13:24:42-05:00">
+  
+  <meta property="article:modified_time" content="2017-05-10T13:24:42-05:00">
+  
+
+  
+
+  <title>An attempt at a basic capture-mark-recapture model in Stan | Peter D Smits</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Peter D Smits</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#teaching">
+            
+            <span>Teaching</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">An attempt at a basic capture-mark-recapture model in Stan</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2017-05-10 13:24:42 -0500 -0500" itemprop="datePublished dateModified">
+      May 10, 2017
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Peter D Smits">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    5 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="https://psmits.github.io/post/stan_birth_death/#disqus_thread"></a>
+  
+
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=An%20attempt%20at%20a%20basic%20capture-mark-recapture%20model%20in%20Stan&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fstan_birth_death%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fpsmits.github.io%2fpost%2fstan_birth_death%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fstan_birth_death%2f&amp;title=An%20attempt%20at%20a%20basic%20capture-mark-recapture%20model%20in%20Stan"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fpsmits.github.io%2fpost%2fstan_birth_death%2f&amp;title=An%20attempt%20at%20a%20basic%20capture-mark-recapture%20model%20in%20Stan"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=An%20attempt%20at%20a%20basic%20capture-mark-recapture%20model%20in%20Stan&amp;body=https%3a%2f%2fpsmits.github.io%2fpost%2fstan_birth_death%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <p>Capture-mark-recapture (CMR) models come up in ecology and paleobiology when attempting to estimate species richness, birth rates, death rates, and sampling rates from occurrence history data. I use <a href="http://mc-stan.org/" target="_blank">Stan</a> to write all my statistical models, and I found implementing a CMR model a bit of a bear because Stan&rsquo;s gradient-based samplers cannot estimate discrete parameters. Instead, as described in the Stan manual, I needed to marginalize over all possible occurrence histories for each subject. Lucky for me, there are only two possible states (0 and 1) at each time point and they follow relatively simple rules. Sadly, the number of potential occurrence histories can grow dramatically as the number of subjects and time points increase. Here&rsquo;s my solution as implemented in Stan. Oh, and in case it wasn&rsquo;t obvious, this is a Bayesian model.</p>
+
+<p>I&rsquo;m going to focus on the Jolly-Seber (JS) model as presented in <a href="https://www.amazon.com/Hierarchical-Modeling-Inference-Ecology-Metapopulations/dp/0123740975" target="_blank">Royle and Dorazio</a>. At its core, this model is a discrete-time hidden Markov model with an absorbing state (&ldquo;death&rdquo;).</p>
+
+<p>The type of data suited for a JS model is where multiple subjects (e.g. species, individuals) are sampled at multiple discrete times (e.g. days, geologic stages). If a subject is observed, it gets a 1 for that time point; if the subject is not observed at that time point, it gets a 0.</p>
+
+<p>The recorded absences are very important for filling in the missing &ldquo;true&rdquo; occurrence histories. While all non-observations are recorded as a 0, species are expected to range-through all time points between their first and last occurrences (i.e. observation history 101 implies occurrence history of 111). Additionally, as is certainly the case with paleontological data, the <strong>observed</strong> first occurrence is not necessarily the <strong>true</strong> first occurrence; same for last occurrence. Another important detail is that once a subject leaves the system, they&rsquo;ve left it permanently (i.e. extinction, death).</p>
+
+<p>The JS model over comes this by estimating the probability of observing a subject if it is present. The JS model expressed hierarchically involves two statements, one for the probability of observing a subject and one for the probability that the subject is present. In the first statement, $y$ is the matrix of observations, $p$ is the probability of observing a subject if present, and $z$ is the &ldquo;true&rdquo; occurrence matrix.</p>
+
+<p>$$y_{i,t} \sim \text{Bernoulli}(p z_{i,t})$$</p>
+
+<p>The second statement is effectively a prior on $z$, and it is more involved because the birth and death probabilities need to be included. Also, because death is an absorbing state I need to insure that the probability of a subject returning after death is 0. Here $\phi$ is the probability of a subject surviving from one time point to the next and $\lambda$ is the probability of subject originating at time $t$. While these models are called birth-death, we are actually estimating birth and survival. The product term in the equation ensures no &ldquo;zombies&rdquo; or de-extinctions.</p>
+
+<p>$$z_{i,t} \sim \text{Bernoulli}\left(\phi z_{i, t - 1} + \lambda \left(\prod_{n=1}^{t}(1 - z_{i, n})\right)\right)$$</p>
+
+<p>Priors then need to be given for $p$, $phi$, and $\lambda$. Covariates can be
+incorporated into these priors as you would with a logistic regression.<sup class="footnote-ref" id="fnref:1"><a rel="footnote" href="#fn:1">1</a></sup></p>
+
+<p>As you might be able to guess, the big issue is the matrix $z$ of which almost every value must be estimated. To implement the above in Stan, I need to write a function to marginalize over all possible values of $z$. Using that function I can then estimate the log posterior. There are other helped functions to smooth everything along; you might recognize them from the Stan manual. I owe a lot of thanks to <a href="http://bob-carpenter.github.io/" target="_blank">Bob Carpenter</a> and the extremely helpful <a href="https://groups.google.com/forum/?fromgroups#!forum/stan-users" target="_blank">Stan mailing list</a> for helping me figure out this solution!</p>
+
+<pre><code class="language-stan">functions {
+  int first_capture(int[] y_i) {
+    for (k in 1:size(y_i))
+      if (y_i[k])
+        return k;
+    return 0;
+  }
+  int last_capture(int[] y_i) {
+    for (k_rev in 0:(size(y_i) - 1)) {
+      int k;
+      k = size(y_i) - k_rev;
+      if (y_i[k])
+        return k;
+    }
+    return 0;
+  }
+  real state_space_lp(int[] y, real origin, real stay, real p) {
+    int ft;
+    int lt;
+    int S;
+    int i;
+    int prod_term;
+    int lp_size;
+
+    S = size(y);
+    i = 1;
+    ft = first_capture(y);
+    lt = last_capture(y);
+    lp_size = ft * (S - lt + 1); // how many possible combinations
+
+    // have to go through all possible event histories for each species
+    {
+      // vector of log probabilities for all possible valid z-s
+      vector[lp_size] lp;  
+
+      for(t_first_alive in 1:ft) {
+        for (t_last_alive in lt:S) {
+          real sl;
+          int z[S];
+
+          for(j in 1:S) {
+            z[j] = 0;
+          }
+          // fill in the range through knowledge
+          for(a in t_first_alive:t_last_alive) {
+            z[a] = 1;
+          }
+          // notice how z is never actually estimated 
+          // instead, log probability of every possible history is calculated
+
+          // first time point only allows birth
+          sl = bernoulli_lpmf(z[1] | origin);
+          prod_term = 1 - z[1];
+
+          {
+            vector[S - 1] gg;
+            for(j in 2:S) {
+              prod_term = prod_term * (1 - z[j - 1]); // calculate if extinct
+              gg[j - 1] = bernoulli_lpmf(z[j] | (z[j - 1] * stay) + 
+                  prod_term * origin);
+            }
+            sl = sl + sum(gg);
+          }
+
+          // finally, y as function of z and p
+          {
+            vector[S] hh;
+            for(k in 1:S) {
+              hh[k] = bernoulli_lpmf(y[k] | z[k] * p);
+            }
+            sl = sl + sum(hh);
+          }
+
+          lp[i] = sl;
+          i = i + 1;
+        }
+      }
+      return log_sum_exp(lp);
+    }
+  }
+}
+data {
+  int N;  // number of species
+  int T;  // number of temporal units
+  int sight[N, T];  // observed presences
+}
+parameters {
+  real&lt;lower=0,upper=1&gt; origin; // birth
+  real&lt;lower=0,upper=1&gt; stay; // survival
+  real&lt;lower=0,upper=1&gt; p;
+}
+model {
+  // priors are kinda arbitrary but not flat
+  origin ~ beta(2, 2);
+  stay ~ beta(2, 2);
+  p ~ beta(2, 2);
+  
+  // the typing of the function doesn't allow for vectorizing, but ok
+  for(n in 1:N) {
+    target += state_space_lp(sight[n], origin, stay, p);
+  }
+}
+</code></pre>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">see <a href="https://www.amazon.com/Bayesian-Analysis-Chapman-Statistical-Science/dp/1439840954/" target="_blank">BDA3</a>, <a href="https://www.amazon.com/Analysis-Regression-Multilevel-Hierarchical-Models/dp/052168689X/" target="_blank">ARM</a>, or <a href="https://www.amazon.com/Statistical-Rethinking-Bayesian-Examples-Chapman/dp/1482253445/" target="_blank">Statistical Rethinking</a>.
+ <a class="footnote-return" href="#fnref:1"><sup>^</sup></a></li>
+</ol>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/academic">academic</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/stan">stan</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/dissertation_talk/">Slides from my dissertation defense</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "peterdavidsmits" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2018 Peter D Smits &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    <script id="dsq-count-scr" src="//peterdavidsmits.disqus.com/count.js" async></script>
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
+    
+    
+
+  </body>
+</html>
+
