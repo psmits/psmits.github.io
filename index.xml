@@ -11,6 +11,18 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Modeling changes to the functional composition of the North American mammal diveristy: multi-level dynamics of a regional species pool</title>
+      <link>https://psmits.github.io/talk/gsa_2017/</link>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/gsa_2017/</guid>
+      <description>&lt;p&gt;The functional composition of regional diversity reflects the possible ecological interactions observable in any given community. The relative fitness of species functional roles leads do differences in origination and extinction, which in turns leads to changes to functional composition and a new set of observable interactions. Changes to the relative diversity of functional groups over time can indicate the loss or gain of critical habitat or environmental interactions. Understanding when functional groups are enriched or depleted relative to the long-term average is critical for understanding relative conservation importance; a low diversity group that is currently enriched relative to its historical diversity is most likely at less risk than a high diversity group which has less-than-average standing diversity. I develop a multi-level Bayesian model of species occurrence where observation, origination, and extinction are modeled as functions of functional group, global temperature, and North American plant community phase. Mammal functional group is considered the interaction between species dietary and locomotor categories. I find that digitigrade and unguligrade herbivores experience an increase in relative diversity over the Cenozoic; fossorial functional groups experience a similar but much smaller relative increase. In contrast, all arboreal func- tional groups decline in relative diversity and in some cases become absent from the species pool. Additionally, I find the environmental covarites such as temperature have no effect on instantaneous extinction probability, and instead are only associated with differences in origination probability.&lt;/p&gt;
+
+&lt;script async class=&#39;speakerdeck-embed&#39; data-id=&#39;ff02e046b9ef4ef58f7437551c1a717f&#39; data-ratio=&#39;1.33333333333333&#39; src=&#39;//speakerdeck.com/assets/embed.js&#39;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
       <title>My talk at GSA 2017</title>
       <link>https://psmits.github.io/post/gsa_2017_talk/</link>
       <pubDate>Sun, 22 Oct 2017 11:36:14 -0700</pubDate>
@@ -66,6 +78,16 @@
 &lt;/ol&gt;
 
 &lt;p&gt;The optional third point is a switch for increasing or decreasing the granularity of action and the possibility coordinated actions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The changing functional composition of the North American species pool: modeling species origination-extinction as a function of functional group and environmental context</title>
+      <link>https://psmits.github.io/talk/evolution_2017/</link>
+      <pubDate>Fri, 23 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/evolution_2017/</guid>
+      <description>&lt;script async class=&#39;speakerdeck-embed&#39; data-id=&#39;775b65c779554d4bbef34831fa7bc362&#39; data-ratio=&#39;1.33333333333333&#39; src=&#39;//speakerdeck.com/assets/embed.js&#39;&gt;&lt;/script&gt;
 </description>
     </item>
     
@@ -379,24 +401,6 @@ looping back through the speakers.&lt;/li&gt;
       <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/publication/numbivspp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Expected time-invariant effects of biological traits on mammal species duration</title>
-      <link>https://psmits.github.io/publication/smits_2015_pnas/</link>
-      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/publication/smits_2015_pnas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Integrating incomplete fossils by isolating conflicting signal in saturated and non-independent morphological characters</title>
-      <link>https://psmits.github.io/publication/davalos_etal_2014_systbiol/</link>
-      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/publication/davalos_etal_2014_systbiol/</guid>
       <description></description>
     </item>
     

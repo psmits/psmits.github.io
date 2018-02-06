@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Talks on Peter D Smits</title>
+    <link>https://psmits.github.io/talk/</link>
+    <description>Recent content in Talks on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Mon, 23 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/talk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Modeling changes to the functional composition of the North American mammal diveristy: multi-level dynamics of a regional species pool</title>
+      <link>https://psmits.github.io/talk/gsa_2017/</link>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/gsa_2017/</guid>
+      <description>The functional composition of regional diversity reflects the possible ecological interactions observable in any given community. The relative fitness of species functional roles leads do differences in origination and extinction, which in turns leads to changes to functional composition and a new set of observable interactions. Changes to the relative diversity of functional groups over time can indicate the loss or gain of critical habitat or environmental interactions. Understanding when functional groups are enriched or depleted relative to the long-term average is critical for understanding relative conservation importance; a low diversity group that is currently enriched relative to its historical diversity is most likely at less risk than a high diversity group which has less-than-average standing diversity.</description>
+    </item>
+    
+    <item>
+      <title>The changing functional composition of the North American species pool: modeling species origination-extinction as a function of functional group and environmental context</title>
+      <link>https://psmits.github.io/talk/evolution_2017/</link>
+      <pubDate>Fri, 23 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/evolution_2017/</guid>
+      <description> </description>
+    </item>
+    
+    <item>
+      <title>Taxon occurrence as a function of both biological traits and environmental context: the changing North American species pool</title>
+      <link>https://psmits.github.io/talk/gsa_2016/</link>
+      <pubDate>Sun, 25 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/gsa_2016/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How macroecology affects macroevolution: the interplay between extinction intensity and trait-dependent extinction in brachiopods</title>
+      <link>https://psmits.github.io/talk/evolution_2016/</link>
+      <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/evolution_2016/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How do biological traits affect brachiopod taxonomic survival? A hierarchical Bayesian approach</title>
+      <link>https://psmits.github.io/talk/gsa_2015/</link>
+      <pubDate>Sun, 01 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/gsa_2015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Death and taxa: time-invariant differences in mammal species duration</title>
+      <link>https://psmits.github.io/talk/evolution_2015/</link>
+      <pubDate>Fri, 26 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/evolution_2015/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gambling with Australian brachiopods</title>
+      <link>https://psmits.github.io/talk/gsa_2014/</link>
+      <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/gsa_2014/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cenozoic mammals and the biology of extinction</title>
+      <link>https://psmits.github.io/talk/evolution_2014/</link>
+      <pubDate>Fri, 20 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/evolution_2014/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

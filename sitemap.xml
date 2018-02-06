@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>https://psmits.github.io/talk/gsa_2017/</loc>
+      <lastmod>2017-10-23T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://psmits.github.io/post/gsa_2017_talk/</loc>
       <lastmod>2017-10-22T11:36:14-07:00</lastmod>
     </url>
@@ -25,6 +34,15 @@
     
       <loc>https://psmits.github.io/post/initiative_0717/</loc>
       <lastmod>2017-07-24T17:13:29-05:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://psmits.github.io/talk/evolution_2017/</loc>
+      <lastmod>2017-06-23T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -140,6 +158,33 @@
     
     <url>
     
+      <loc>https://psmits.github.io/talk/gsa_2016/</loc>
+      <lastmod>2016-09-25T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://psmits.github.io/talk/evolution_2016/</loc>
+      <lastmod>2016-06-17T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://psmits.github.io/talk/gsa_2015/</loc>
+      <lastmod>2015-11-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://psmits.github.io/publication/smits_2015_pnas/</loc>
       <lastmod>2015-10-20T00:00:00+00:00</lastmod>
     </url>
@@ -149,8 +194,35 @@
     
     <url>
     
+      <loc>https://psmits.github.io/talk/evolution_2015/</loc>
+      <lastmod>2015-06-26T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://psmits.github.io/talk/gsa_2014/</loc>
+      <lastmod>2014-10-19T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>https://psmits.github.io/publication/davalos_etal_2014_systbiol/</loc>
       <lastmod>2014-07-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://psmits.github.io/talk/evolution_2014/</loc>
+      <lastmod>2014-06-20T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -266,6 +338,16 @@
     
       <loc>https://psmits.github.io/tags/</loc>
       <lastmod>2017-10-22T11:36:14-07:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>https://psmits.github.io/talk/</loc>
+      <lastmod>2017-10-23T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
