@@ -11,6 +11,54 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Downloading unit data from Macrostrat and looking at it</title>
+      <link>https://psmits.github.io/post/macrostrat/</link>
+      <pubDate>Tue, 06 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/macrostrat_logo.png&#34; alt=&#34;macrostrat&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://macrostrat.org/&#34; target=&#34;_blank&#34;&gt;Macrostrat&lt;/a&gt; is a geology resources created by &lt;a href=&#34;http://strata.geology.wisc.edu/&#34; target=&#34;_blank&#34;&gt;Shanan Peters&lt;/a&gt;, who currently maintains it and the &lt;a href=&#34;https://paleobiodb.org/&#34; target=&#34;_blank&#34;&gt;Paleobiology Database/PBDB&lt;/a&gt; with a small group of developers. Macrostrat is a database of geologic units from North America representing almost all of time. One of the coolest aspect of this database is that geologic units are recorded regardless of if they bear fossils or not, which is very useful when you&amp;rsquo;re trying to analyze the conditions under which fossils are both preserved and found. In addition to basic information like the temporal and geographic location and duration of each geologic units, there are many important pieces of metadata associated with each unit such as coordinates of the unit&amp;rsquo;s top and bottom, thickness, if continuous sequence above/below, what PBDB collections are present in that unit, a lithological description of that unit, and a lot of other interesting information. For more information either visit the &lt;a href=&#34;https://macrostrat.org&#34; target=&#34;_blank&#34;&gt;macrostrat website&lt;/a&gt; or check out this &lt;a href=&#34;https://eartharxiv.org/ynaxw&#34; target=&#34;_blank&#34;&gt;new pre-print describing a lot of the more advanced/colorful features and tools assocaited with the project&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;While geologic units in Macrostrat can be summarized in different ways (e.g. column), I am going to focus on downloading and processing geologic units and then visualizing their temporal structure. All of this is going to be done using R and the code snippet to produce all the figures etc. will be available at the &lt;a href=&#34;https://gist.github.com/psmits/aaa912dd7c14bfa710d58b03cc8e0b8f&#34; target=&#34;_blank&#34;&gt;end&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Macrostrat data is served through a &lt;a href=&#34;https://macrostrat.org/api/v2&#34; target=&#34;_blank&#34;&gt;no-frills API&lt;/a&gt; that allows for simple html calls to return CSV or JSON data for as many geologic units as desired. For this example, I want information all geologic units that have Permian sediments; to accomplish this, the simple html call is &lt;a href=&#34;https://macrostrat.org/api/v2/units?interval_name=Permian&#34; target=&#34;_blank&#34;&gt;https://macrostrat.org/api/v2/units?interval_name=Permian&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The data resulting from this simple call, however, is missing a lot of interesting metadata and is currently in json format. To receive the extra metadata and have the call returned in csv format, the html call is updated to &lt;a href=&#34;http://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&#34; target=&#34;_blank&#34;&gt;http://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&lt;/a&gt;. The response paramater has two values (short, long), while the format parameter controls the output being in a JSON variant or plan csv. While changing the output format from json to csv isn&amp;rsquo;t strictly necessary, it simplifies a few downstream operations and makes my life easier.&lt;/p&gt;
+
+&lt;p&gt;Ok, so no we have a large data frame in memory; as of writing this entry, there are 1165 geologic units that have any part of their range in the Permian. From here we can extract useful information: &amp;ldquo;how long are the geologic units?&amp;rdquo;; &amp;ldquo;are fossil bearing units longer in duration than those that do not bear fossils?&amp;rdquo;; &amp;ldquo;is there a gap where no fossil bearing units are found?&amp;rdquo;; and so on.&lt;/p&gt;
+
+&lt;p&gt;First things first, we should plot attempt to visualize our data. A basic way to visualize geologic units is to plot units as horizontal lines from their start point till end point, ordered based on start times. Macrostrat units have variables called b_age and t_age which are the bottom and to ages of the geologic unit, respectively. These values are based on the underlying continuous age model which attempts to sort the order of geologic units more finely than their initial age estimates; by relying on these age estimates we are assuming that the continuous time model is accurate; this might bother some people because scientists are so adverse to assumptions but happily use statistical tools, all of which are just statements of assumptions, but that&amp;rsquo;s an argument for another time.&lt;/p&gt;
+
+&lt;p&gt;Anyway, here is a plot all the geologic units that have some element of their duration in the Permian:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/units_basic.png&#34; alt=&#34;all units&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This simple visualization reveals some interesting features of our data: 1) there are some really long geologic units that begin well before the Permian and end well after the Permian, 2) many geologic units have similar &amp;ldquo;onset&amp;rdquo; times not necessarily similar end times. Because some of these units span a lot of time outside of the Permian, zooming in on just the Permian interval (298.9-251.9 Mya) might help more clearly visualize the data. Here is a that figure with horizontal lines indicating the beginning and end of the Permian.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/units_zoom.png&#34; alt=&#34;zoom in on units&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This updated figure helps visualize how many of the geologic units range into or out of the Permian. It also helps us appreciate the change rate of geologic unit onset, with a rather continuous addition of units from 295-285 Mya transitioning into a possibly punctuated pattern of many units have contemporaneous onsets with only a handful of units beginning outside these moments of contemporaneous unit onset.&lt;/p&gt;
+
+&lt;p&gt;The next modification I want to make to this plot is indicating which units bear fossils or not. There are two Macrostrat geologic unit variables which answer this question: pbdb_collections, and pbdb_occurrences. These variables describe how many PBDB collections and how many fossil specimens in the PBDB are associated with that unit. Because I&amp;rsquo;m not currently interested in the actual identity of those fossils, just if they are present or not, this activity is pretty simple. There is a good chance I&amp;rsquo;ll discuss linking Macrostrat and the PBDB in a future post, so stay tuned.&lt;/p&gt;
+
+&lt;p&gt;Using a simple &lt;strong&gt;ifelse&lt;/strong&gt; statement, I can quickly get a factor describing if there are more than 0 collections associated with a unit. When that is mapped onto our plot, this pattern emerges:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/units_color.png&#34; alt=&#34;color units by fossils&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first thing that pops out when looking at this figure is that there are a lot more geologic units that do not bear fossils than those that do, and that those to do bear fossils may have a shorter duration than those that do but it is hard to tell.&lt;/p&gt;
+
+&lt;p&gt;Given these interesting observations, lets plot a comparison of unit duration for fossil bearing and non-fossil bearing units. I&amp;rsquo;m going to plot duration on a log scale so that comparisons are in terms of magnitude, not absolute value.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/units_duration.png&#34; alt=&#34;unit durations&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From visual inspection, it appears my hunch is probably wrong; fossil bearing and non-fossil bearing units have very similar distributions and I&amp;rsquo;d guess they have indistinguishable means.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I&amp;rsquo;ll probably be demonstrating more ways to poke around at Macrostrat data in the future. &lt;a href=&#34;https://gist.github.com/psmits/aaa912dd7c14bfa710d58b03cc8e0b8f&#34; target=&#34;_blank&#34;&gt;Here&amp;rsquo;s a gist of the code necessary to produce all of the above plots.&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Modeling changes to the functional composition of the North American mammal diveristy: multi-level dynamics of a regional species pool</title>
       <link>https://psmits.github.io/talk/gsa_2017/</link>
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
@@ -393,15 +441,6 @@ looping back through the speakers.&lt;/li&gt;
 
 &lt;script async class=&#39;speakerdeck-embed&#39; data-id=&#39;09b2d067fc104fc1a2cca7a8f4cde9f5&#39; data-ratio=&#39;1.33333333333333&#39; src=&#39;//speakerdeck.com/assets/embed.js&#39;&gt;&lt;/script&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Probabilistic models of species discovery and biodiversity comparisons</title>
-      <link>https://psmits.github.io/publication/numbivspp/</link>
-      <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/publication/numbivspp/</guid>
-      <description></description>
     </item>
     
   </channel>

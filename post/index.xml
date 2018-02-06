@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Downloading unit data from Macrostrat and looking at it</title>
+      <link>https://psmits.github.io/post/macrostrat/</link>
+      <pubDate>Tue, 06 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat/</guid>
+      <description>Macrostrat is a geology resources created by Shanan Peters, who currently maintains it and the Paleobiology Database/PBDB with a small group of developers. Macrostrat is a database of geologic units from North America representing almost all of time. One of the coolest aspect of this database is that geologic units are recorded regardless of if they bear fossils or not, which is very useful when you&amp;rsquo;re trying to analyze the conditions under which fossils are both preserved and found.</description>
+    </item>
+    
+    <item>
       <title>My talk at GSA 2017</title>
       <link>https://psmits.github.io/post/gsa_2017_talk/</link>
       <pubDate>Sun, 22 Oct 2017 11:36:14 -0700</pubDate>
