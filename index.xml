@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Peter D Smits on Peter D Smits</title>
+    <link>https://psmits.github.io/</link>
+    <description>Recent content in Peter D Smits on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Mon, 05 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>My talk at GSA 2017</title>
+      <link>https://psmits.github.io/post/gsa_2017_talk/</link>
+      <pubDate>Sun, 22 Oct 2017 11:36:14 -0700</pubDate>
+      
+      <guid>https://psmits.github.io/post/gsa_2017_talk/</guid>
+      <description>&lt;p&gt;This GSA, I will be &lt;a href=&#34;https://psmits.github.io/post/pre_evol_2017/&#34; target=&#34;_blank&#34;&gt;continuing&lt;/a&gt; to speak on my research about the functional diversity of the North American species pool over the Cenozoic. I&amp;rsquo;m asking questions about changes to the relative diversity of mammal functional groups in response to climate covariates. In addition, my model takes into account the effects of species mass and taxonomic order on origination and survival. Finally, observation of a fossil species is a function of functional group and species mass. The goal of including all these covariates is to get as complete a picture of the factors structing mammal functional diversity though time.&lt;/p&gt;
+
+&lt;p&gt;Since my last talk there have been a number of changes to the model at the center of this study. I&amp;rsquo;ve increased the complexity of the model of observation, added the effect of taxonomic order or origination and survival, and I&amp;rsquo;ve added a random-walk prior on observation, origination, and survival. This prior choice allows me to better constrain how functional diversity has changed overtime while smoothing random temporal variation. This prior choice has also served to control for correlations between the functional groups.&lt;/p&gt;
+
+&lt;p&gt;After my talk is given I will be posting my slides on speakerdeck and have them linked here and in my talks section. Hopefully see you there!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/paleo_fourth_corner.jpg&#34; alt=&#34;p4c&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What I&#39;m running at GenCon</title>
+      <link>https://psmits.github.io/post/gencon_2017/</link>
+      <pubDate>Thu, 27 Jul 2017 21:18:08 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/gencon_2017/</guid>
+      <description>&lt;p&gt;Like last year, I&amp;rsquo;m going to be running games through &lt;a href=&#34;http://www.indiegamesondemand.org/&#34; target=&#34;_blank&#34;&gt;Games on Demand&lt;/a&gt;! I&amp;rsquo;ve submitted one 2-hour game and two 4-hour games. For the 2-hour slots I&amp;rsquo;ll be running &lt;a href=&#34;http://www.atlas-games.com/fengshui/&#34; target=&#34;_blank&#34;&gt;Feng Shui 2&lt;/a&gt;, and for the 4-hour slots I&amp;rsquo;m providing the option of FS2 or &lt;a href=&#34;http://soogagames.blogspot.com/&#34; target=&#34;_blank&#34;&gt;Into the Odd&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/fs_2.jpg&#34; alt=&#34;FS2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The 2-hour FS2 game is set in Modern Hong Kong where the players are members of the Dragons helping secure an important artifact that the Lotus are trying to steal.&lt;/p&gt;
+
+&lt;p&gt;The 4-hour FS2 game is set in Past Canton where the players are members of the Dragons sent to find an old Dragon hero who is attuned to a very powerful feng shui site. Too bad the Ascended and the Guiding Hand have other ideas.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/into_the_odd.png&#34; alt=&#34;ito&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The 4-hour Into the Odd game is actually &lt;a href=&#34;http://www.lotfp.com/store/index.php?route=product/product&amp;amp;product_id=233&#34; target=&#34;_blank&#34;&gt;The Cursed Chateau&lt;/a&gt; by James Maliszewki. The hook is that the artist and anarchist &lt;a href=&#34;http://www.drivethrurpg.com/product/105951/The-Magnificent-Joop-van-Ooms&#34; target=&#34;_blank&#34;&gt;Joop van Ooms&lt;/a&gt; has hired to the players to recover one of his earliest plays that should never see the light of day let alone be performed. When he was younger, Ooms lent the only copy to Lord Joudain who never returned it. Ooms has warned the players that Lord Joudain is/was a depraved noble man who trafficed in strange and profane Arcanum.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll hopefully be running games Thursday, Friday, and Saturday. Hope to see you there!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My current initiative system</title>
+      <link>https://psmits.github.io/post/initiative_0717/</link>
+      <pubDate>Mon, 24 Jul 2017 17:13:29 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/initiative_0717/</guid>
+      <description>&lt;p&gt;I really prefer &amp;ldquo;group&amp;rdquo; or &amp;ldquo;side&amp;rdquo; initiative as implemented in AD&amp;amp;D 2e and (optionally) in D&amp;amp;D 5e. In group initiative systems, each &amp;ldquo;side&amp;rdquo; of the combat (i.e. PCs, NPCs) rolls for initiative together; each side then takes turns acting in initiative order. During each turn, the PCs or NPCs can act in any order. At the end of the round, initiative is re-rolled (my favorite part) and the whole things starts all over again. I&amp;rsquo;ve used this system for the last 5 years to great effect; it forces the combat to become a conversation instead of slowing going around the room taking turns.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m currently running a few session crawl through the &lt;a href=&#34;https://en.wikipedia.org/wiki/The_Forge_of_Fury&#34; target=&#34;_blank&#34;&gt;&amp;ldquo;Forge of Fury&amp;rdquo;&lt;/a&gt; and I&amp;rsquo;ve decided to use miniatures and a grid for combat to enhance the feel. I wanted to match the increase of granularity with movement and areas of effect with a slightly more grainy initiative system. Taking a small cue from the Fantasy Flight Games Star Wars system, I am now using a hybrid individual-group initiative system and it systems to be working out great. Here it is:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;PCs roll individual initiative (d20 + initiative mod), while NPCs roll a single initiative die (d20 + avg Dex mod).&lt;/li&gt;
+&lt;li&gt;All PCs that roll above the NPCs&amp;rsquo; initiative act before the NPCs. All PCs that roll below the NPCs&amp;rsquo; initiative act after the NPCs.&lt;/li&gt;
+&lt;li&gt;(Optional) PCs/NPCs must complete all actions before the next PC/NPC may act.&lt;/li&gt;
+&lt;li&gt;Re-roll initiative every round.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The optional third point is a switch for increasing or decreasing the granularity of action and the possibility coordinated actions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting into Bayesian data analysis</title>
+      <link>https://psmits.github.io/post/into_bayes/</link>
+      <pubDate>Fri, 02 Jun 2017 19:59:21 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/into_bayes/</guid>
+      <description>&lt;p&gt;None of my degrees are in statistics and I would hesitate to truly call myself a &amp;ldquo;statistician,&amp;rdquo; but all my work involves tons of statistical modeling. I learned how to do statistical analysis, and Bayesian analysis in particular, through a hodge podge of means: biology classes, blogs, a 5-week training workshop, and reading multiple textbooks. I began my journey into Bayes knowing the basics of linear regression, covariance/correlation, model selection/AIC, and multivariate data analysis methods like PCA and NMDS; and I&amp;rsquo;d only heard of MCMC and Bayes solely in the context of phylogenetic inference.&lt;/p&gt;
+
+&lt;p&gt;My interest in Bayes was started after programming in R for a couple years. I had just read a &amp;ldquo;teach yourself survival analysis&amp;rdquo; book and knew I wanted to write parametric survival models. I&amp;rsquo;d heard of BUGS/JAGS and was interested using something similar for designing my own models from the ground up. Stan had just come out at the start of my Ph.D., so I decided to get in on the ground floor. I knew I needed this kind of tool to really do the kind of analysis I craved; I just didn&amp;rsquo;t know what exactly that meant. It was time to buckle down and dig into some textbooks.&lt;/p&gt;
+
+&lt;p&gt;There are two books that form the center of my statistical education: &lt;a href=&#34;https://www.amazon.com/Bayesian-Analysis-Chapman-Statistical-Science/dp/1439840954&#34; target=&#34;_blank&#34;&gt;Bayesian Data Analysis&lt;/a&gt;, and &lt;a href=&#34;https://www.amazon.com/Analysis-Regression-Multilevel-Hierarchical-Models/dp/052168689X/&#34; target=&#34;_blank&#34;&gt;ARM&lt;/a&gt;. The former is more &amp;ldquo;higher-level&amp;rdquo; and a great deal more complicated than the latter and I recommend reading ARM before BDA; though I ended up reading the textbooks in reverse. A year or two after those two books, I read through &lt;a href=&#34;https://www.amazon.com/Statistical-Rethinking-Bayesian-Examples-Chapman/dp/1482253445&#34; target=&#34;_blank&#34;&gt;Statistical Rethinking&lt;/a&gt;, which would probably be the one I&amp;rsquo;d pick to serve as the main textbook for any class on Bayesian modeling I would teach.&lt;/p&gt;
+
+&lt;p&gt;From these core books it is possible to read an incredible amount of statistics literature, and intuit the similarities between different &amp;ldquo;types&amp;rdquo; of models (e.g. GLMMs, survival analysis, logistic regression, Markov models). I had tried reading books like Bayesian Survival Analysis and I couldn&amp;rsquo;t penetrate the math; for some reason the notation never made any sense to me. The way models are presented in BDA, ARM, and Statistical Rethinking is extremely clear and unifies all analyses in terms of probability and not subfield specific or assumed notation; it gets the math wankry out of data analysis. Now, when I approach a text I just concentrate on the PDFs and quickly jot out the model along the side.&lt;/p&gt;
+
+&lt;p&gt;For teaching and communication resources, the way models are presented in &lt;a href=&#34;https://www.amazon.com/Doing-Bayesian-Data-Analysis-Second/dp/0124058884/&#34; target=&#34;_blank&#34;&gt;Doing Bayesian Data Analysis&lt;/a&gt; has proved invaluable to explaining how Bayesian models &amp;ldquo;work;&amp;rdquo; it is also way less abstract and complicated than &lt;a href=&#34;https://en.wikipedia.org/wiki/Plate_notation&#34; target=&#34;_blank&#34;&gt;plate notation&lt;/a&gt;. I&amp;rsquo;ve not actually read that textbook but I read through the section on drawing models. &lt;a href=&#34;http://www.sumsar.net/blog/2013/10/diy-kruschke-style-diagrams/&#34; target=&#34;_blank&#34;&gt;Rasmus Baathhas produced some templates for drawing your own &amp;ldquo;Krushke diagrams.&amp;rdquo;&lt;/a&gt; I&amp;rsquo;ve used this resource in talks before to great success.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Variant 5E Sorcerer</title>
+      <link>https://psmits.github.io/post/sorc_variant/</link>
+      <pubDate>Wed, 24 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/sorc_variant/</guid>
+      <description>&lt;p&gt;To me the &lt;a href=&#34;http://dnd.wizards.com/&#34; target=&#34;_blank&#34;&gt;D&amp;amp;D 5E&lt;/a&gt; sorcerer is the least interesting implementation of the classes. The spellcasting doesn&amp;rsquo;t read as interesting or unique enough to merit choosing to be a sorcerer over, say, a wizard. The sorcery points seem like a wasted opportunity for real spell flexibility. The subclasses that aren&amp;rsquo;t the wild mage don&amp;rsquo;t really grab me, and that is mostly due to nostalgia as my first run through &lt;a href=&#34;https://en.wikipedia.org/wiki/Baldur%27s_Gate_II:_Shadows_of_Amn&#34; target=&#34;_blank&#34;&gt;Baldur&amp;rsquo;s Gate 2&lt;/a&gt; was as a wild mage.&lt;/p&gt;
+
+&lt;p&gt;Two of my favorite points-based spellcasting implementations were the in the &lt;a href=&#34;https://en.wikipedia.org/wiki/The_Wheel_of_Time_Roleplaying_Game&#34; target=&#34;_blank&#34;&gt;Wheel of Time RPG&lt;/a&gt; and in &lt;a href=&#34;https://en.wikipedia.org/wiki/Iron_Heroes&#34; target=&#34;_blank&#34;&gt;Iron Heroes&lt;/a&gt;. The similarity between these two systems is that they had access to very few spells, but those spells had many forms and functions depending on how many spell points were invested. The spell point system in the 5E sorcerer tries to do that but I think is sadly humstrung by the Vancian spellcasting which clearly fits the wizard class flavor much better. The following suggestions reflect this preference.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The already built-in choose the spell level features of 5E is a great foundation to work from. Replace the Sorcerer&amp;rsquo;s spell slots with the Variant: Spell Points rule from DMG:288. Combine the spell points with the Sorcerer&amp;rsquo;s normal Sorcery Points; treat them as the same pool for everything.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;These suggested changes allow the sorcerer to cast and modify their spells very freely which I think improves the unique aspects of their flavor. These ideas are taken from something I read on a traditional games forum, and I claim no ownership to these ideas. Sadly the original post no longer exists, but to whomever suggested these changes, I thank you. I think I&amp;rsquo;ll be using this bit of homebrew for my (hopefully) upcoming Planescape campaign!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduction to my Evolution2017 talk</title>
+      <link>https://psmits.github.io/post/pre_evol_2017/</link>
+      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/pre_evol_2017/</guid>
+      <description>&lt;p&gt;I will be presenting the analysis and results from the third study from my Ph.D at &lt;a href=&#34;http://www.evolutionmeetings.org/evolution-2017---portland-oregon.html&#34; target=&#34;_blank&#34;&gt;Evolution2017 in Portland, Oregon&lt;/a&gt;. In preparation for and to better contextualize my talk, I have decided to write an extended abstract. My talk is titled &amp;ldquo;The changing functional composition of the North American species pool: modeling species origination-extinction as a function of functional group and environmental context&amp;rdquo; and I&amp;rsquo;m the sole author on the study though all of the data analyzed is available through the &lt;a href=&#34;https://paleobiodb.org/&#34; target=&#34;_blank&#34;&gt;Paleobiological Database&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A species pools change over time as new species enter the system through speciation or immigration and species leave through extinction and extirpation. Changes in the functional composition of a regional species pool are changes that occur across all local communities drawn from that species pool. While a species&amp;rsquo; presence in a local community is due to the availability of the necessary biotic-biotic or biotic-abiotic interactions that enable coexistence, a species&amp;rsquo; presence in a regional species pool just requires that at least one local community has that set of necessary interactions. I am investigating how the interaction of multiple macroecological and macroevolutionary processes acting at multiple levels of organization can lead to specific changes to the functional diversity of the species pool.&lt;/p&gt;
+
+&lt;p&gt;Here, I analyze the diversity history of North American mammals functional groups for most of the Cenozoic (the last 65 million years). The goal of this analysis is to understand when, and possibly for what reasons, mammal functional groups are enriched or depleted relative to their average diversity. Additionally, I frame the historical processes affecting mammal diversity in terms of both their means of interacting with the biotic and abiotic environment (i.e. functional group) as well as their regional and global environmental context (e.g. dominant floral groups, temperature).&lt;/p&gt;
+
+&lt;p&gt;I analyzed the mammal fossil occurrence data using a Bayesian hidden Markov model based off of the Jolly-Seber capture-mark-recapture model. I then modeled the three probability parameters (i.e. sampling, speciation, extinction) as the result three separate hierarchical logistic regressions. The code implementing this model was written using the Stan probabilistic programming language.&lt;/p&gt;
+
+&lt;p&gt;I find that changes to mammal diversity are driven more by changes to speciation rate rather than changes to extinction rate. I also find that the only functional groups which increase in standing diversity over time are digitigrade and unguligrade herbivores, though herbivores in general increase in relative diversity compared to other ecotypes. This increase in diversity is at the possible expense of the arboreal functional groups which became increasingly rare and in many cases disappear entirely from the species pool by the Recent. Additionally, I find that global temperature is only associated with the origination of some mammal ecotypes but, in almost all cases, does not affect the extinction of mammal ecotypes.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Now I just need to revise the dissertation chapter into an actual publication!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Customizing your GM screen</title>
+      <link>https://psmits.github.io/post/gm_screen/</link>
+      <pubDate>Tue, 16 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/gm_screen/</guid>
+      <description>&lt;p&gt;The GM&amp;rsquo;s screen is a major part of my GMing toolkit. The uses are obvious: the GM facing side can have useful information, the player facing side can have art which helps set the mood, and the whole apparatus blocks the GM&amp;rsquo;s notes from easy viewing. My buying the GM screen for a system tends to be a sign that I&amp;rsquo;m serious about running some games with that system/in that setting.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/multi_screen.jpg&#34; alt=&#34;example screens&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As I&amp;rsquo;m sure is pretty common, I&amp;rsquo;ve always been pretty protective of RPG items I buy, which means I try to keep them in decent shape and not written in or similar. I&amp;rsquo;ve also found that GM screens don&amp;rsquo;t necessarily include the information I want to be in front of me, and instead has a lot of information I &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; need. That&amp;rsquo;s a lot of the appeal of customizable GM screens like those produced by &lt;a href=&#34;https://www.peginc.com/store/savage-worlds-customizable-gm-screen/&#34; target=&#34;_blank&#34;&gt;Pinnacle/Savage Worlds&lt;/a&gt; and &lt;a href=&#34;http://hammerdog.com/twgs/&#34; target=&#34;_blank&#34;&gt;Hammerdog/the TWGS&lt;/a&gt;. Up until recently, I&amp;rsquo;d never modified an official GM screen to make it more useful.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been playing D&amp;amp;D 5E since the Starter Set came out and began by using a &lt;a href=&#34;https://psmits.github.io/pdf/mini_screen5e_cut_marks.pdf&#34;&gt;custom GM screen I found online&lt;/a&gt;. This screen is designed for the mini six-panel 4X6 TWGS customizable screen, which I happened to have bought at GenCon 2014. The information on the custom screen is cleanly presented and covers all the major topics, including a well organized skills panel (more on that later). For the outside I just printed out and inserted some old Russ Nicholson art because of nostalgia. I used this screen until the official 5E screen came out.&lt;/p&gt;
+
+&lt;p&gt;When I switched to the official screen I found it a bit lacking. Most of the content was the same but there were a few issues that made me sad. For example, the organization of the Skills section and the lack of Action and Movement types were frustrating. Organizing skills by relevant ability makes much more sense to me than alphabetically, and I found this actually getting in my way of quickly making decisions. So, I decided to give modifying to better suit my needs the screen a shot.&lt;/p&gt;
+
+&lt;p&gt;Almost fortuitously, the 5E GM screen has lots of art space which provides ample space to customize with. While this means that the GM facing art gets covered up, I&amp;rsquo;ve found I&amp;rsquo;ve been able to pack in a ton of information by splicing the two screens together along with a few print outs. I barely have to remember rules minutiae or grab a manual these days!&lt;/p&gt;
+
+&lt;p&gt;Here are some pictures of the ways I&amp;rsquo;ve customized three of the four GM facing panels. I&amp;rsquo;m considering revising the Name Generator section, but I&amp;rsquo;m unsure what I would replace it with.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/screen_1.jpg&#34; alt=&#34;5E custom 1&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/screen_2.jpg&#34; alt=&#34;5E custom 2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/screen_3.jpg&#34; alt=&#34;5E custom 3&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m curious about other improvements that could be made to various official GM screens to make them more useful, or even convert them across systems! Any examples of ways you&amp;rsquo;ve customized your GM screens?&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Functional diversity</title>
+      <link>https://psmits.github.io/project/functional_diversity/</link>
+      <pubDate>Sat, 13 May 2017 14:31:23 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/project/functional_diversity/</guid>
+      <description>&lt;p&gt;A species pool is the collection of all species across multiple communities. The members of the pool are thus the collection of &lt;em&gt;potential&lt;/em&gt; members of any constituent community. A regional species pool defines this collection of communities geographically; for example a community of mammals in North America is part of the North American mammal species pool.&lt;/p&gt;
+
+&lt;p&gt;Understanding if and when a functional group is enriched or depleted in a species pool is a useful conservation tool. An important point worth considering is what enriched or depleted is defined relative to: other contemporaneous communities/species pools, or average relative diversity through time. As a paleontologist I&amp;rsquo;m able to focus on the latter in the context of large scale historical processes such as speciation, &lt;a href=&#34;https://psmits.github.io/project/extinction_risk/&#34; target=&#34;_blank&#34;&gt;extinction&lt;/a&gt;, and migration.&lt;/p&gt;
+
+&lt;p&gt;My research is concerned with understanding how the functional composition of a species pool changes over time. Additionally, I am interested in how changes to environmental context, such as global temperature or dominant plant groups, can affect the historical processes underlying the presence (or absence) of individual functional groups at any time. My research thus far has focused on changes to mammal functional diversity of the North American species pool over the last 65 million years.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Extinction</title>
+      <link>https://psmits.github.io/project/extinction_risk/</link>
+      <pubDate>Fri, 12 May 2017 17:09:33 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/project/extinction_risk/</guid>
+      <description>&lt;p&gt;The ultimate fate of all species is extinction. The rates at which species go extinction varies widely between and within clades. How and why extinction risk varies is vital for understanding the differential diversification of species over time and the processes leading up to the observed diversity composition; why we see the diversity species we do as opposed to some other possible makeup. Extinction is also a distinctly group-level, or emergent, phenomenon as all members of the species need to have died for the species to go extinct.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m interested in how taxon functional traits are associated with differences in taxon extinction risk. Functional traits are those which have important (i.e. known) ecological function; examples include mammal tooth shape, environmental preference, and body size. I enjoy focusing on functional traits because I&amp;rsquo;m able to more clearly, or at least more sensibly, define hypotheses as to why these traits might relate to differences in taxon duration; this is as much for my own clarity as anyone else&amp;rsquo;s.&lt;/p&gt;
+
+&lt;p&gt;The two major theories my research engages with are &lt;a href=&#34;http://ebme.marine.rutgers.edu/HistoryEarthSystems/HistEarthSystems_Fall2010/VanValen%201973%20Evol%20%20Theor%20.pdf&#34; target=&#34;_blank&#34;&gt;Van Valen&amp;rsquo;s Law of Constant Extinction&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/Tempo_and_Mode_in_Evolution&#34; target=&#34;_blank&#34;&gt;Simpson&amp;rsquo;s Survival of the Unspecialized&lt;/a&gt;. I approach these fundamental questions by developing Bayesian statistical models of how species duration is associated with individual-level functional traits as well also group-level factors such as cohort or environmental context, or a taxon&amp;rsquo;s &amp;ldquo;aging.&amp;rdquo;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An attempt at a basic capture-mark-recapture model in Stan</title>
+      <link>https://psmits.github.io/post/stan_birth_death/</link>
+      <pubDate>Wed, 10 May 2017 13:24:42 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/stan_birth_death/</guid>
+      <description>&lt;p&gt;Capture-mark-recapture (CMR) models come up in ecology and paleobiology when attempting to estimate species richness, birth rates, death rates, and sampling rates from occurrence history data. I use &lt;a href=&#34;http://mc-stan.org/&#34; target=&#34;_blank&#34;&gt;Stan&lt;/a&gt; to write all my statistical models, and I found implementing a CMR model a bit of a bear because Stan&amp;rsquo;s gradient-based samplers cannot estimate discrete parameters. Instead, as described in the Stan manual, I needed to marginalize over all possible occurrence histories for each subject. Lucky for me, there are only two possible states (0 and 1) at each time point and they follow relatively simple rules. Sadly, the number of potential occurrence histories can grow dramatically as the number of subjects and time points increase. Here&amp;rsquo;s my solution as implemented in Stan. Oh, and in case it wasn&amp;rsquo;t obvious, this is a Bayesian model.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to focus on the Jolly-Seber (JS) model as presented in &lt;a href=&#34;https://www.amazon.com/Hierarchical-Modeling-Inference-Ecology-Metapopulations/dp/0123740975&#34; target=&#34;_blank&#34;&gt;Royle and Dorazio&lt;/a&gt;. At its core, this model is a discrete-time hidden Markov model with an absorbing state (&amp;ldquo;death&amp;rdquo;).&lt;/p&gt;
+
+&lt;p&gt;The type of data suited for a JS model is where multiple subjects (e.g. species, individuals) are sampled at multiple discrete times (e.g. days, geologic stages). If a subject is observed, it gets a 1 for that time point; if the subject is not observed at that time point, it gets a 0.&lt;/p&gt;
+
+&lt;p&gt;The recorded absences are very important for filling in the missing &amp;ldquo;true&amp;rdquo; occurrence histories. While all non-observations are recorded as a 0, species are expected to range-through all time points between their first and last occurrences (i.e. observation history 101 implies occurrence history of 111). Additionally, as is certainly the case with paleontological data, the &lt;strong&gt;observed&lt;/strong&gt; first occurrence is not necessarily the &lt;strong&gt;true&lt;/strong&gt; first occurrence; same for last occurrence. Another important detail is that once a subject leaves the system, they&amp;rsquo;ve left it permanently (i.e. extinction, death).&lt;/p&gt;
+
+&lt;p&gt;The JS model over comes this by estimating the probability of observing a subject if it is present. The JS model expressed hierarchically involves two statements, one for the probability of observing a subject and one for the probability that the subject is present. In the first statement, $y$ is the matrix of observations, $p$ is the probability of observing a subject if present, and $z$ is the &amp;ldquo;true&amp;rdquo; occurrence matrix.&lt;/p&gt;
+
+&lt;p&gt;$$y_{i,t} \sim \text{Bernoulli}(p z_{i,t})$$&lt;/p&gt;
+
+&lt;p&gt;The second statement is effectively a prior on $z$, and it is more involved because the birth and death probabilities need to be included. Also, because death is an absorbing state I need to insure that the probability of a subject returning after death is 0. Here $\phi$ is the probability of a subject surviving from one time point to the next and $\lambda$ is the probability of subject originating at time $t$. While these models are called birth-death, we are actually estimating birth and survival. The product term in the equation ensures no &amp;ldquo;zombies&amp;rdquo; or de-extinctions.&lt;/p&gt;
+
+&lt;p&gt;$$z_{i,t} \sim \text{Bernoulli}\left(\phi z_{i, t - 1} + \lambda \left(\prod_{n=1}^{t}(1 - z_{i, n})\right)\right)$$&lt;/p&gt;
+
+&lt;p&gt;Priors then need to be given for $p$, $phi$, and $\lambda$. Covariates can be
+incorporated into these priors as you would with a logistic regression.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;As you might be able to guess, the big issue is the matrix $z$ of which almost every value must be estimated. To implement the above in Stan, I need to write a function to marginalize over all possible values of $z$. Using that function I can then estimate the log posterior. There are other helped functions to smooth everything along; you might recognize them from the Stan manual. I owe a lot of thanks to &lt;a href=&#34;http://bob-carpenter.github.io/&#34; target=&#34;_blank&#34;&gt;Bob Carpenter&lt;/a&gt; and the extremely helpful &lt;a href=&#34;https://groups.google.com/forum/?fromgroups#!forum/stan-users&#34; target=&#34;_blank&#34;&gt;Stan mailing list&lt;/a&gt; for helping me figure out this solution!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-stan&#34;&gt;functions {
+  int first_capture(int[] y_i) {
+    for (k in 1:size(y_i))
+      if (y_i[k])
+        return k;
+    return 0;
+  }
+  int last_capture(int[] y_i) {
+    for (k_rev in 0:(size(y_i) - 1)) {
+      int k;
+      k = size(y_i) - k_rev;
+      if (y_i[k])
+        return k;
+    }
+    return 0;
+  }
+  real state_space_lp(int[] y, real origin, real stay, real p) {
+    int ft;
+    int lt;
+    int S;
+    int i;
+    int prod_term;
+    int lp_size;
+
+    S = size(y);
+    i = 1;
+    ft = first_capture(y);
+    lt = last_capture(y);
+    lp_size = ft * (S - lt + 1); // how many possible combinations
+
+    // have to go through all possible event histories for each species
+    {
+      // vector of log probabilities for all possible valid z-s
+      vector[lp_size] lp;  
+
+      for(t_first_alive in 1:ft) {
+        for (t_last_alive in lt:S) {
+          real sl;
+          int z[S];
+
+          for(j in 1:S) {
+            z[j] = 0;
+          }
+          // fill in the range through knowledge
+          for(a in t_first_alive:t_last_alive) {
+            z[a] = 1;
+          }
+          // notice how z is never actually estimated 
+          // instead, log probability of every possible history is calculated
+
+          // first time point only allows birth
+          sl = bernoulli_lpmf(z[1] | origin);
+          prod_term = 1 - z[1];
+
+          {
+            vector[S - 1] gg;
+            for(j in 2:S) {
+              prod_term = prod_term * (1 - z[j - 1]); // calculate if extinct
+              gg[j - 1] = bernoulli_lpmf(z[j] | (z[j - 1] * stay) + 
+                  prod_term * origin);
+            }
+            sl = sl + sum(gg);
+          }
+
+          // finally, y as function of z and p
+          {
+            vector[S] hh;
+            for(k in 1:S) {
+              hh[k] = bernoulli_lpmf(y[k] | z[k] * p);
+            }
+            sl = sl + sum(hh);
+          }
+
+          lp[i] = sl;
+          i = i + 1;
+        }
+      }
+      return log_sum_exp(lp);
+    }
+  }
+}
+data {
+  int N;  // number of species
+  int T;  // number of temporal units
+  int sight[N, T];  // observed presences
+}
+parameters {
+  real&amp;lt;lower=0,upper=1&amp;gt; origin; // birth
+  real&amp;lt;lower=0,upper=1&amp;gt; stay; // survival
+  real&amp;lt;lower=0,upper=1&amp;gt; p;
+}
+model {
+  // priors are kinda arbitrary but not flat
+  origin ~ beta(2, 2);
+  stay ~ beta(2, 2);
+  p ~ beta(2, 2);
+  
+  // the typing of the function doesn&#39;t allow for vectorizing, but ok
+  for(n in 1:N) {
+    target += state_space_lp(sight[n], origin, stay, p);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;see &lt;a href=&#34;https://www.amazon.com/Bayesian-Analysis-Chapman-Statistical-Science/dp/1439840954/&#34; target=&#34;_blank&#34;&gt;BDA3&lt;/a&gt;, &lt;a href=&#34;https://www.amazon.com/Analysis-Regression-Multilevel-Hierarchical-Models/dp/052168689X/&#34; target=&#34;_blank&#34;&gt;ARM&lt;/a&gt;, or &lt;a href=&#34;https://www.amazon.com/Statistical-Rethinking-Bayesian-Examples-Chapman/dp/1482253445/&#34; target=&#34;_blank&#34;&gt;Statistical Rethinking&lt;/a&gt;.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;^&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Recording the audio from online calls on Ubuntu</title>
+      <link>https://psmits.github.io/post/record_self_audio/</link>
+      <pubDate>Tue, 09 May 2017 17:08:35 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/record_self_audio/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve recently started playing role-playing games online over audio/video chat using platforms like Google Hangouts or &lt;a href=&#34;https://appear.in/&#34; target=&#34;_blank&#34;&gt;appear.in&lt;/a&gt;. Inspired by a &lt;a href=&#34;http://www.gnomestew.com/game-mastering/gming-advice/the-listen-back/&#34; target=&#34;_blank&#34;&gt;recent Gnome Stew post&lt;/a&gt;, I&amp;rsquo;ve wanted to start recording those sessions so I can listen to them again, share them, and get better at GMing.&lt;/p&gt;
+
+&lt;p&gt;I have yet to record any RPG sessions using this set up, but if everything goes as planned I should be able to record my next &lt;a href=&#34;http://kotohi.com/ryuutama/&#34; target=&#34;_blank&#34;&gt;Ryuutama&lt;/a&gt; game!&lt;/p&gt;
+
+&lt;p&gt;I found this approach after reading a few different tutorials until I found &lt;a href=&#34;https://sputniza.wordpress.com/2015/01/29/how-to-record-audio-from-a-google-hangout-on-ubuntu/&#34; target=&#34;_blank&#34;&gt;one that worked and made sense&lt;/a&gt;. I&amp;rsquo;ve got to write this kind of procedure down somewhere or I&amp;rsquo;ll forget it, so hopefully this post will help me next time I have to record something.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;install &lt;strong&gt;pavucontrol&lt;/strong&gt; using apt.&lt;/li&gt;
+&lt;li&gt;install &lt;strong&gt;audacity&lt;/strong&gt; using apt.&lt;/li&gt;
+&lt;li&gt;using Audacity&amp;rsquo;s Device Toolbar, set the host to &lt;strong&gt;ALSA&lt;/strong&gt;, output to
+&lt;strong&gt;pulse&lt;/strong&gt;, and input to sound card or whatever (probably the default).&lt;/li&gt;
+&lt;li&gt;currently, this setup is recording everything that comes through the output. What is missing is your voice, which now needs to be looped back through your speakers/output.&lt;/li&gt;
+&lt;li&gt;open a terminal and type &lt;code&gt;pactl load-module module-loopback latency_msec=1&lt;/code&gt; to
+loop your own voice back through output.&lt;/li&gt;
+&lt;li&gt;start call using whatever platform you choose.&lt;/li&gt;
+&lt;li&gt;click record in audacity.&lt;/li&gt;
+&lt;li&gt;open pavucontrol, go to &lt;strong&gt;Recording&lt;/strong&gt; tab, select &lt;strong&gt;Monitor of Built in Analog
+Stereo&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;when done recording, type &lt;code&gt;pactl unload-module module-loopback&lt;/code&gt; to stop your voice
+looping back through the speakers.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Slides from my dissertation defense</title>
+      <link>https://psmits.github.io/post/dissertation_talk/</link>
+      <pubDate>Tue, 09 May 2017 13:26:04 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/dissertation_talk/</guid>
+      <description>&lt;p&gt;I recently defended my dissertation on my approach to modeling macroevolutionary and macroecological patterns as observed in fossil data. While these slides minus the actual talk may provide an incomplete picture of my research, I hope they are at least interesting.&lt;/p&gt;
+
+&lt;script async class=&#39;speakerdeck-embed&#39; data-id=&#39;09b2d067fc104fc1a2cca7a8f4cde9f5&#39; data-ratio=&#39;1.33333333333333&#39; src=&#39;//speakerdeck.com/assets/embed.js&#39;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Probabilistic models of species discovery and biodiversity comparisons</title>
+      <link>https://psmits.github.io/publication/numbivspp/</link>
+      <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/numbivspp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Expected time-invariant effects of biological traits on mammal species duration</title>
+      <link>https://psmits.github.io/publication/smits_2015_pnas/</link>
+      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/smits_2015_pnas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Integrating incomplete fossils by isolating conflicting signal in saturated and non-independent morphological characters</title>
+      <link>https://psmits.github.io/publication/davalos_etal_2014_systbiol/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/davalos_etal_2014_systbiol/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

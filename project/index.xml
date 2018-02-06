@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Peter D Smits</title>
+    <link>https://psmits.github.io/project/</link>
+    <description>Recent content in Projects on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Sat, 13 May 2017 14:31:23 -0500</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Functional diversity</title>
+      <link>https://psmits.github.io/project/functional_diversity/</link>
+      <pubDate>Sat, 13 May 2017 14:31:23 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/project/functional_diversity/</guid>
+      <description>A species pool is the collection of all species across multiple communities. The members of the pool are thus the collection of potential members of any constituent community. A regional species pool defines this collection of communities geographically; for example a community of mammals in North America is part of the North American mammal species pool.
+Understanding if and when a functional group is enriched or depleted in a species pool is a useful conservation tool.</description>
+    </item>
+    
+    <item>
+      <title>Extinction</title>
+      <link>https://psmits.github.io/project/extinction_risk/</link>
+      <pubDate>Fri, 12 May 2017 17:09:33 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/project/extinction_risk/</guid>
+      <description>The ultimate fate of all species is extinction. The rates at which species go extinction varies widely between and within clades. How and why extinction risk varies is vital for understanding the differential diversification of species over time and the processes leading up to the observed diversity composition; why we see the diversity species we do as opposed to some other possible makeup. Extinction is also a distinctly group-level, or emergent, phenomenon as all members of the species need to have died for the species to go extinct.</description>
+    </item>
+    
+  </channel>
+</rss>

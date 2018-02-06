@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Peter D Smits</title>
+    <link>https://psmits.github.io/post/</link>
+    <description>Recent content in Posts on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 -0800</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My talk at GSA 2017</title>
+      <link>https://psmits.github.io/post/gsa_2017_talk/</link>
+      <pubDate>Sun, 22 Oct 2017 11:36:14 -0700</pubDate>
+      
+      <guid>https://psmits.github.io/post/gsa_2017_talk/</guid>
+      <description>This GSA, I will be continuing to speak on my research about the functional diversity of the North American species pool over the Cenozoic. I&amp;rsquo;m asking questions about changes to the relative diversity of mammal functional groups in response to climate covariates. In addition, my model takes into account the effects of species mass and taxonomic order on origination and survival. Finally, observation of a fossil species is a function of functional group and species mass.</description>
+    </item>
+    
+    <item>
+      <title>What I&#39;m running at GenCon</title>
+      <link>https://psmits.github.io/post/gencon_2017/</link>
+      <pubDate>Thu, 27 Jul 2017 21:18:08 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/gencon_2017/</guid>
+      <description>Like last year, I&amp;rsquo;m going to be running games through Games on Demand! I&amp;rsquo;ve submitted one 2-hour game and two 4-hour games. For the 2-hour slots I&amp;rsquo;ll be running Feng Shui 2, and for the 4-hour slots I&amp;rsquo;m providing the option of FS2 or Into the Odd.
+The 2-hour FS2 game is set in Modern Hong Kong where the players are members of the Dragons helping secure an important artifact that the Lotus are trying to steal.</description>
+    </item>
+    
+    <item>
+      <title>My current initiative system</title>
+      <link>https://psmits.github.io/post/initiative_0717/</link>
+      <pubDate>Mon, 24 Jul 2017 17:13:29 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/initiative_0717/</guid>
+      <description>I really prefer &amp;ldquo;group&amp;rdquo; or &amp;ldquo;side&amp;rdquo; initiative as implemented in AD&amp;amp;D 2e and (optionally) in D&amp;amp;D 5e. In group initiative systems, each &amp;ldquo;side&amp;rdquo; of the combat (i.e. PCs, NPCs) rolls for initiative together; each side then takes turns acting in initiative order. During each turn, the PCs or NPCs can act in any order. At the end of the round, initiative is re-rolled (my favorite part) and the whole things starts all over again.</description>
+    </item>
+    
+    <item>
+      <title>Getting into Bayesian data analysis</title>
+      <link>https://psmits.github.io/post/into_bayes/</link>
+      <pubDate>Fri, 02 Jun 2017 19:59:21 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/into_bayes/</guid>
+      <description>None of my degrees are in statistics and I would hesitate to truly call myself a &amp;ldquo;statistician,&amp;rdquo; but all my work involves tons of statistical modeling. I learned how to do statistical analysis, and Bayesian analysis in particular, through a hodge podge of means: biology classes, blogs, a 5-week training workshop, and reading multiple textbooks. I began my journey into Bayes knowing the basics of linear regression, covariance/correlation, model selection/AIC, and multivariate data analysis methods like PCA and NMDS; and I&amp;rsquo;d only heard of MCMC and Bayes solely in the context of phylogenetic inference.</description>
+    </item>
+    
+    <item>
+      <title>Variant 5E Sorcerer</title>
+      <link>https://psmits.github.io/post/sorc_variant/</link>
+      <pubDate>Wed, 24 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/sorc_variant/</guid>
+      <description>To me the D&amp;amp;D 5E sorcerer is the least interesting implementation of the classes. The spellcasting doesn&amp;rsquo;t read as interesting or unique enough to merit choosing to be a sorcerer over, say, a wizard. The sorcery points seem like a wasted opportunity for real spell flexibility. The subclasses that aren&amp;rsquo;t the wild mage don&amp;rsquo;t really grab me, and that is mostly due to nostalgia as my first run through Baldur&amp;rsquo;s Gate 2 was as a wild mage.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to my Evolution2017 talk</title>
+      <link>https://psmits.github.io/post/pre_evol_2017/</link>
+      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/pre_evol_2017/</guid>
+      <description>I will be presenting the analysis and results from the third study from my Ph.D at Evolution2017 in Portland, Oregon. In preparation for and to better contextualize my talk, I have decided to write an extended abstract. My talk is titled &amp;ldquo;The changing functional composition of the North American species pool: modeling species origination-extinction as a function of functional group and environmental context&amp;rdquo; and I&amp;rsquo;m the sole author on the study though all of the data analyzed is available through the Paleobiological Database.</description>
+    </item>
+    
+    <item>
+      <title>Customizing your GM screen</title>
+      <link>https://psmits.github.io/post/gm_screen/</link>
+      <pubDate>Tue, 16 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/gm_screen/</guid>
+      <description>The GM&amp;rsquo;s screen is a major part of my GMing toolkit. The uses are obvious: the GM facing side can have useful information, the player facing side can have art which helps set the mood, and the whole apparatus blocks the GM&amp;rsquo;s notes from easy viewing. My buying the GM screen for a system tends to be a sign that I&amp;rsquo;m serious about running some games with that system/in that setting.</description>
+    </item>
+    
+    <item>
+      <title>An attempt at a basic capture-mark-recapture model in Stan</title>
+      <link>https://psmits.github.io/post/stan_birth_death/</link>
+      <pubDate>Wed, 10 May 2017 13:24:42 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/stan_birth_death/</guid>
+      <description>Capture-mark-recapture (CMR) models come up in ecology and paleobiology when attempting to estimate species richness, birth rates, death rates, and sampling rates from occurrence history data. I use Stan to write all my statistical models, and I found implementing a CMR model a bit of a bear because Stan&amp;rsquo;s gradient-based samplers cannot estimate discrete parameters. Instead, as described in the Stan manual, I needed to marginalize over all possible occurrence histories for each subject.</description>
+    </item>
+    
+    <item>
+      <title>Recording the audio from online calls on Ubuntu</title>
+      <link>https://psmits.github.io/post/record_self_audio/</link>
+      <pubDate>Tue, 09 May 2017 17:08:35 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/record_self_audio/</guid>
+      <description>I&amp;rsquo;ve recently started playing role-playing games online over audio/video chat using platforms like Google Hangouts or appear.in. Inspired by a recent Gnome Stew post, I&amp;rsquo;ve wanted to start recording those sessions so I can listen to them again, share them, and get better at GMing.
+I have yet to record any RPG sessions using this set up, but if everything goes as planned I should be able to record my next Ryuutama game!</description>
+    </item>
+    
+    <item>
+      <title>Slides from my dissertation defense</title>
+      <link>https://psmits.github.io/post/dissertation_talk/</link>
+      <pubDate>Tue, 09 May 2017 13:26:04 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/post/dissertation_talk/</guid>
+      <description>I recently defended my dissertation on my approach to modeling macroevolutionary and macroecological patterns as observed in fossil data. While these slides minus the actual talk may provide an incomplete picture of my research, I hope they are at least interesting.
+ </description>
+    </item>
+    
+  </channel>
+</rss>

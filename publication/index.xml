@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications on Peter D Smits</title>
+    <link>https://psmits.github.io/publication/</link>
+    <description>Recent content in Publications on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Probabilistic models of species discovery and biodiversity comparisons</title>
+      <link>https://psmits.github.io/publication/numbivspp/</link>
+      <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/numbivspp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Expected time-invariant effects of biological traits on mammal species duration</title>
+      <link>https://psmits.github.io/publication/smits_2015_pnas/</link>
+      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/smits_2015_pnas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Integrating incomplete fossils by isolating conflicting signal in saturated and non-independent morphological characters</title>
+      <link>https://psmits.github.io/publication/davalos_etal_2014_systbiol/</link>
+      <pubDate>Tue, 01 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/davalos_etal_2014_systbiol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Why the Long Face? The Mechanics of Mandibular Symphysis Proportions in Crocodiles</title>
+      <link>https://psmits.github.io/publication/walmsley_etal_2013_plosone/</link>
+      <pubDate>Wed, 16 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/walmsley_etal_2013_plosone/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Functional constraints on tooth morphology in carnivorous mammals</title>
+      <link>https://psmits.github.io/publication/smits_evans_2012_bmcevol/</link>
+      <pubDate>Thu, 16 Aug 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/smits_evans_2012_bmcevol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Adaptive radiation of multituberculate mammals before the extinction of dinosaurs</title>
+      <link>https://psmits.github.io/publication/wilson_etal_2012_nature/</link>
+      <pubDate>Thu, 22 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/wilson_etal_2012_nature/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
