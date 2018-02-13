@@ -11,6 +11,66 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Inspecting fossil diveristy in Macrostrat units</title>
+      <link>https://psmits.github.io/post/macrostrat_fossils/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat_fossils/</guid>
+      <description>&lt;p&gt;In this post I&amp;rsquo;m going to dive deeper in to &lt;a href=&#34;https://macrostrat.org&#34; target=&#34;_blank&#34;&gt;Macrostrat&lt;/a&gt; and start looking at genus diversity of geological units; this is the first follow-up on my [previous post][/post/macrostrat/]. Like before, the code used to generate all the figures etc. is available &lt;a href=&#34;https://github.com/psmits/psmits/blob/master/static/code/macro_fossils.r&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our initial data call is exactly the same as my previous post; I&amp;rsquo;m looking for geological units with Permian sediments: &lt;a href=&#34;https://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&#34; target=&#34;_blank&#34;&gt;https://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&lt;/a&gt;. Unfortunately this API call does not return useful information about what fossils are found in the geologic unit, only how many. Fortunately, this is pretty easy to overcome.&lt;/p&gt;
+
+&lt;p&gt;To get the fossil information for each geological unit, I need make another API call. With a tiny bit of code the unit id&amp;rsquo;s are transformed into a comma seperated string that can be used to form the appropriate url&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;strat &amp;lt;- read.csv(&#39;https://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&#39;, 
+                  stringsAsFactors = FALSE)
+furl &amp;lt;- paste0(&#39;https://macrostrat.org/api/v2/fossils?unit_id=&#39;,
+              paste0(strat$unit_id, collapse = &#39;,&#39;),
+                &#39;&amp;amp;response=long&amp;amp;format=csv&#39;)
+fossil &amp;lt;- read.csv(furl, stringsAsFactors = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This new macrostrat information has a lot of useful information about the fossils associated with each of the geological units. The key bit of information I&amp;rsquo;m going to be using here is the Paleobiology Database collection ids. These unique ids correspond to the nebulous unit of &amp;ldquo;collection&amp;rdquo; which may refer to specimens collected together or specimens that are mentioned in the same paper. In any case, these collections are associated with geological units and are our key to getting more taxonomic information.&lt;/p&gt;
+
+&lt;p&gt;Using the unique list of collection ids, I make an API call to the PBDB. First, I make a matrix with the unique combinations of collections and geological units. Second, I make the API call given a unique string of collection ids. Finally, I match the collection id associated with each fossil back to the Macrostrat geological unit id. This should be all the information necessary to make a bunch of useful and interesting visualizations.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cypher &amp;lt;- unique(cbind(fossil$cltn_id, fossil$unit_id))
+
+furl &amp;lt;- paste0(&#39;https://paleobiodb.org/data1.2/occs/list.txt?coll_id=&#39;, 
+               paste0(fossil$cltn_id, collapse = &#39;,&#39;), 
+               &#39;&amp;amp;show=full&#39;)
+taxon &amp;lt;- read.csv(furl, stringsAsFactors = FALSE)
+
+taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that all the data is in memory, we can begin exploring the nature of that data.&lt;/p&gt;
+
+&lt;p&gt;Macrostrat units have lots of data associated with them, including duration and areal extent. So, my initial explorations are checking out unit duration vs unit diversity and unit area vs unit diversity.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/unit_div_logage.png&#34; alt=&#34;log duration vs diversity&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/unit_div_logarea.png&#34; alt=&#34;log area vs diversity&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, there doesn&amp;rsquo;t appear to be a linear relationship between either unit duration or area and unit diversity; perhaps any model of this data should strongly consider possible non-linear effects of covariates on unit diversity. However, there are a lot of units with 0 fossil observed which may be obscuring an actual pattern. Let&amp;rsquo;s try again but this time only with the units that bear fossils (super easy to do in ggplot).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/unit_div_age_gr0.png&#34; alt=&#34;log duration vs diversity, no 0s&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/unit_div_area_gr0.png&#34; alt=&#34;log area vs diversity, no 0s&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That appears to add something to the discussion, and the possibility of a non-linear between these covariates and unit diversity appears definitely worth considering. One new concern is that the measure of diversity is based on ALL genera identified to that unit; this includes everything from bivalves to brachiopods to crinoids and beyond. Perhaps in a future analysis I&amp;rsquo;ll break down these explorations by taxonomic group (stay tuned).&lt;/p&gt;
+
+&lt;p&gt;Finally, I have two more plots before I sign off on this showcase: unit diversity over time. Plotting each geological unit at its midpoint we can get an idea if average unit diversity has any systematic change over time. Additionally, we can see if there are time periods with scrappy records. I&amp;rsquo;ve made the plot both with and without units bearing 0 fossils.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/unit_div_time.png&#34; alt=&#34;time vs diversity&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/unit_div_time_gr0.png&#34; alt=&#34;time vs diversity, no 0s&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for more explorations of Macrostrat. If you&amp;rsquo;re interested in looking at the code used to generate these plots, check &lt;a href=&#34;https://github.com/psmits/psmits/blob/master/static/code/macro_fossils.r&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Downloading unit data from Macrostrat and looking at it</title>
       <link>https://psmits.github.io/post/macrostrat/</link>
       <pubDate>Tue, 06 Feb 2018 00:00:00 -0800</pubDate>
@@ -428,18 +488,6 @@ Stereo&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;when done recording, type &lt;code&gt;pactl unload-module module-loopback&lt;/code&gt; to stop your voice
 looping back through the speakers.&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Slides from my dissertation defense</title>
-      <link>https://psmits.github.io/post/dissertation_talk/</link>
-      <pubDate>Tue, 09 May 2017 13:26:04 -0500</pubDate>
-      
-      <guid>https://psmits.github.io/post/dissertation_talk/</guid>
-      <description>&lt;p&gt;I recently defended my dissertation on my approach to modeling macroevolutionary and macroecological patterns as observed in fossil data. While these slides minus the actual talk may provide an incomplete picture of my research, I hope they are at least interesting.&lt;/p&gt;
-
-&lt;script async class=&#39;speakerdeck-embed&#39; data-id=&#39;09b2d067fc104fc1a2cca7a8f4cde9f5&#39; data-ratio=&#39;1.33333333333333&#39; src=&#39;//speakerdeck.com/assets/embed.js&#39;&gt;&lt;/script&gt;
 </description>
     </item>
     
