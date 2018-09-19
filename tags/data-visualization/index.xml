@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data visualization on Peter D Smits</title>
+    <link>https://psmits.github.io/tags/data-visualization/</link>
+    <description>Recent content in Data visualization on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Mon, 12 Feb 2018 00:00:00 -0800</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Inspecting fossil diveristy in Macrostrat units</title>
+      <link>https://psmits.github.io/post/macrostrat_fossils/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat_fossils/</guid>
+      <description>In this post I&amp;rsquo;m going to dive deeper in to Macrostrat and start looking at genus diversity of geological units; this is the first follow-up on my previous post. Like before, the code used to generate all the figures etc. is available here.
+Our initial data call is exactly the same as my previous post; I&amp;rsquo;m looking for geological units with Permian sediments: https://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv. Unfortunately this API call does not return useful information about what fossils are found in the geologic unit, only how many.</description>
+    </item>
+    
+    <item>
+      <title>Downloading unit data from Macrostrat and looking at it</title>
+      <link>https://psmits.github.io/post/macrostrat/</link>
+      <pubDate>Tue, 06 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat/</guid>
+      <description>Macrostrat is a geology resources created by Shanan Peters, who currently maintains it and the Paleobiology Database/PBDB with a small group of developers. Macrostrat is a database of geologic units from North America representing almost all of time. One of the coolest aspect of this database is that geologic units are recorded regardless of if they bear fossils or not, which is very useful when you&amp;rsquo;re trying to analyze the conditions under which fossils are both preserved and found.</description>
+    </item>
+    
+  </channel>
+</rss>

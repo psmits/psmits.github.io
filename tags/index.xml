@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Peter D Smits</title>
+    <link>https://psmits.github.io/tags/</link>
+    <description>Recent content in Tags on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Mon, 12 Feb 2018 00:00:00 -0800</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Academic</title>
+      <link>https://psmits.github.io/tags/academic/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/tags/academic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data visualization</title>
+      <link>https://psmits.github.io/tags/data-visualization/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/tags/data-visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Macrostrat</title>
+      <link>https://psmits.github.io/tags/macrostrat/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/tags/macrostrat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rpg</title>
+      <link>https://psmits.github.io/tags/rpg/</link>
+      <pubDate>Thu, 27 Jul 2017 21:18:08 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/tags/rpg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stan</title>
+      <link>https://psmits.github.io/tags/stan/</link>
+      <pubDate>Wed, 10 May 2017 13:24:42 -0500</pubDate>
+      
+      <guid>https://psmits.github.io/tags/stan/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
