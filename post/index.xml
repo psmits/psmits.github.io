@@ -13,6 +13,16 @@
     
     
     <item>
+      <title>Extracting Macrostrat polygons</title>
+      <link>https://psmits.github.io/post/macrostrat-polygon/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat-polygon/</guid>
+      <description>Macrostrat is a data service I’ve written [about before]({{&amp;lt; relref “/post/macrostrat.md” &amp;gt;}}). Today I’m going to explaining how to get the fancy geological unit polygons you see when go to their interactive geological maps. This is not covered or documented in the Macrostrat API – I only figured it out through snooping, determination, and careful skimming of the sift source code.
+The goal of this “how-to” is to get the map for at least one geological unit.</description>
+    </item>
+    
+    <item>
       <title>Inspecting fossil diveristy in Macrostrat units</title>
       <link>https://psmits.github.io/post/macrostrat_fossils/</link>
       <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
@@ -120,8 +130,7 @@ I have yet to record any RPG sessions using this set up, but if everything goes 
       <pubDate>Tue, 09 May 2017 13:26:04 -0500</pubDate>
       
       <guid>https://psmits.github.io/post/dissertation_talk/</guid>
-      <description>I recently defended my dissertation on my approach to modeling macroevolutionary and macroecological patterns as observed in fossil data. While these slides minus the actual talk may provide an incomplete picture of my research, I hope they are at least interesting.
-{{&amp;lt; speakerdeck 09b2d067fc104fc1a2cca7a8f4cde9f5 &amp;gt;}}</description>
+      <description>I recently defended my dissertation on my approach to modeling macroevolutionary and macroecological patterns as observed in fossil data. While these slides minus the actual talk may provide an incomplete picture of my research, I hope they are at least interesting.</description>
     </item>
     
   </channel>

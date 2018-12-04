@@ -11,6 +11,142 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Extracting Macrostrat polygons</title>
+      <link>https://psmits.github.io/post/macrostrat-polygon/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat-polygon/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://macrostrat.org/&#34;&gt;Macrostrat&lt;/a&gt; is a data service I’ve written [about before]({{&amp;lt; relref “/post/macrostrat.md” &amp;gt;}}). Today I’m going to explaining how to get the fancy geological unit polygons you see when go to their &lt;a href=&#34;https://macrostrat.org/map/#/z=1.5/x=16/y=23/bedrock/lines/&#34;&gt;interactive&lt;/a&gt; &lt;a href=&#34;https://macrostrat.org/burwell/#3/40.80/-94.10&#34;&gt;geological maps&lt;/a&gt;. This is not covered or documented in the &lt;a href=&#34;https://macrostrat.org/api/v2/&#34;&gt;Macrostrat API&lt;/a&gt; – I only figured it out through snooping, determination, and careful skimming of the &lt;a href=&#34;https://github.com/UW-Macrostrat/sift&#34;&gt;sift&lt;/a&gt; source code.&lt;/p&gt;
+&lt;p&gt;The goal of this “how-to” is to get the map for at least one geological unit. But how do we find this?&lt;/p&gt;
+&lt;p&gt;The Macrostrat API is not very…expansive. This makes interacting with the API frequently difficult.&lt;/p&gt;
+&lt;p&gt;The information we’re looking for are associated with the geologic map units. From the API landing page, we’d expect our map information to be somewhere along the &lt;code&gt;/geologic_units&lt;/code&gt; path. From the landing page there appear to be only three paths forward &lt;code&gt;/geologic_units/gmna&lt;/code&gt;, &lt;code&gt;/geologic_units/gmus/&lt;/code&gt;, and &lt;code&gt;/geologic_units/map&lt;/code&gt;. That last one seems right, right?&lt;/p&gt;
+&lt;p&gt;Navigating to the &lt;a href=&#34;https://macrostrat.org/api/v2/geologic_units/map&#34;&gt;&lt;code&gt;/geologic_units/map&lt;/code&gt; page&lt;/a&gt; gives us some breadcrumbs for our journey.&lt;/p&gt;
+&lt;p&gt;To get a map back from the Macrostrat API we need to provide some information about what geological units we want. There are seven parameter options: scale, map_id, lat, lng, strat_name_id, unit_id, and format. If we use latitude and longitude coordinates when calling for maps, the response includes all geological map units that interset with that point. If we use a &lt;code&gt;map_id&lt;/code&gt; or &lt;code&gt;unit_id&lt;/code&gt;, we’ll get back one or more maps – you can ask for multiple maps using a comma seperated string. Something that is extremely important is the format option – depending on what option you use, you may or may not get the map coordinates. To guarentee map information, I use the &lt;code&gt;geojson&lt;/code&gt; format.&lt;/p&gt;
+&lt;p&gt;Additionally, to make this all easier, we’re going to use the &lt;code&gt;geojsonsf&lt;/code&gt; package to read in our data. It just makes everything easier.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(readr)
+library(dplyr)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;dplyr&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     filter, lag&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
+## 
+##     intersect, setdiff, setequal, union&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+library(magrittr)
+library(jsonlite)
+library(sf)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(geojsonsf)
+
+call &amp;lt;-&amp;#39;https://macrostrat.org/api/v2/units?interval_name=Miocene&amp;amp;response=long&amp;amp;format=csv&amp;#39;
+unit_data &amp;lt;- read_csv(call) %&amp;gt;%
+  group_by(col_id) %&amp;gt;%
+  mutate(t_age_max = max(t_age),
+         b_age_max = max(b_age)) %&amp;gt;%
+  ungroup() %&amp;gt;%
+  filter(t_age_max &amp;gt; 22 &amp;amp; b_age_max &amp;lt; 33,
+         clng &amp;lt; 0,
+         abs(abs(clat) - 37) &amp;lt; 10,
+         abs(abs(clng) - 122) &amp;lt; 10)    # nearish to SF&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Parsed with column specification:
+## cols(
+##   .default = col_character(),
+##   unit_id = col_integer(),
+##   section_id = col_integer(),
+##   col_id = col_integer(),
+##   project_id = col_integer(),
+##   col_area = col_double(),
+##   strat_name_id = col_integer(),
+##   t_age = col_double(),
+##   b_age = col_double(),
+##   max_thick = col_double(),
+##   min_thick = col_double(),
+##   pbdb_collections = col_integer(),
+##   pbdb_occurrences = col_integer(),
+##   t_int_id = col_integer(),
+##   t_int_age = col_double(),
+##   t_prop = col_double(),
+##   b_int_id = col_integer(),
+##   b_int_age = col_double(),
+##   b_prop = col_double(),
+##   units_below = col_number(),
+##   clat = col_double()
+##   # ... with 5 more columns
+## )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## See spec(...) for full column specifications.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unit_id &amp;lt;- unit_data %&amp;gt;%
+  pull(unit_id) %&amp;gt;%
+  unique(.) %&amp;gt;%
+  sort(.) %&amp;gt;%
+  paste0(., collapse = &amp;#39;,&amp;#39;)
+
+# write an API call
+call &amp;lt;- paste0(&amp;#39;https://macrostrat.org/api/v2/geologic_units/map?unit_id=&amp;#39;, unit_id, &amp;#39;&amp;amp;format=geojson_bare&amp;#39;)
+data &amp;lt;- geojson_sf(call)               # convert the Macrostrat data into an sf object&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning in readLines(con): incomplete final line found
+## on &amp;#39;https://macrostrat.org/api/v2/geologic_units/map?
+## unit_id=6328,6329,6330,6337,6338,6339,6588,6589,7108,7109,7110,7111,7112,7113,13546,13547,13548,13549,13550,13551,13552,13553,13554,13555,13556,13557,13558,13559,13560,14124,14128,14129,14130,14284,14285,14286,14289,14290,14291,14292,14783,14784,14785,14787,14794,14795,14796,17854,17887,17888,17889,17890,17891,22965,22966,22967,22968,22971&amp;amp;format=geojson_bare&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(data)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 4,316
+## Variables: 21
+## $ b_int_name    &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Tertiary&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;Mi...
+## $ t_int_age     &amp;lt;dbl&amp;gt; 5.3330, 2.5880, 2.5880, 0.0117, 5.3330, 5.3330, ...
+## $ b_int_id      &amp;lt;dbl&amp;gt; 13, 474, 13, 13, 13, 13, 13, 486, 483, 13, 13, 4...
+## $ t_int_name    &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Tertiary&amp;quot;, &amp;quot;Pliocene&amp;quot;, &amp;quot;Pleistocene&amp;quot;...
+## $ b_age         &amp;lt;dbl&amp;gt; 17.4600, 28.0000, 17.0875, 8.3395, 23.0300, 16.7...
+## $ geometry      &amp;lt;MULTIPOLYGON [°]&amp;gt; MULTIPOLYGON (((-119.1447 3..., MUL...
+## $ liths         &amp;lt;chr&amp;gt; &amp;quot;[68,69]&amp;quot;, &amp;quot;[10,14,15,63,67,68,69,71,75,76]&amp;quot;, &amp;quot;[...
+## $ strat_names   &amp;lt;chr&amp;gt; &amp;quot;[1013,66629,67567,68328,68452]&amp;quot;, &amp;quot;[4453]&amp;quot;, &amp;quot;[13...
+## $ color         &amp;lt;chr&amp;gt; &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FEE9B2&amp;quot;, &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FF...
+## $ b_int_age     &amp;lt;dbl&amp;gt; 23.03, 66.00, 23.03, 23.03, 23.03, 23.03, 23.03,...
+## $ macro_units   &amp;lt;chr&amp;gt; &amp;quot;[13554,13557]&amp;quot;, &amp;quot;[14787]&amp;quot;, &amp;quot;[13456,13552,13581,...
+## $ t_int_id      &amp;lt;dbl&amp;gt; 13, 474, 10, 4, 13, 13, 13, 487, 21, 13, 13, 485...
+## $ source_id     &amp;lt;dbl&amp;gt; 133, 59, 133, 133, 20, 133, 133, 112, 133, 133, ...
+## $ map_id        &amp;lt;dbl&amp;gt; 2957479, 2406235, 2961462, 2817270, 1537858, 281...
+## $ comments      &amp;lt;chr&amp;gt; &amp;quot;Original map source: Crafford, A.E.J., 2007, Ge...
+## $ strat_name    &amp;lt;chr&amp;gt; &amp;quot;Kate Peak Formation; Alta Formation; Wahmonie F...
+## $ name          &amp;lt;chr&amp;gt; &amp;quot;Younger andesite and intermediate flows and bre...
+## $ lith          &amp;lt;chr&amp;gt; &amp;quot;Major:{andesite,dacite}&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;Major:{sedimenta...
+## $ descrip       &amp;lt;chr&amp;gt; &amp;quot;Includes some rocks mapped as the Kate Peak and...
+## $ t_age         &amp;lt;dbl&amp;gt; 12.5000, 20.2165, 7.2460, 2.5880, 12.1700, 5.811...
+## $ best_int_name &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Cenozoic&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;Neogene&amp;quot;, &amp;quot;Mi...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above code chunk first makes an API call to the Macrostract database. This response data has each geological unit as a row and tons of information on each unit. Importantly, there are multiple geological units per Macrostrat column id – it is the columns which have map properties, not the units themselves.&lt;/p&gt;
+&lt;p&gt;Here is an explination of what is displayed when you &lt;code&gt;print(...)&lt;/code&gt; an sf object.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://psmits.github.io/img/sf_xfig.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;sf objects are very powerful and there are many analyses we can do with them. The simplest question we can ask is “what the area of each geological map?”&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data %&amp;gt;%
+  mutate(area = as.numeric(st_area(.)),
+         area_log = log(area),
+         m_age = (t_age + b_age) / 2) %&amp;gt;%
+  ggplot(.) +
+  geom_histogram(mapping = aes(x = area_log)) +
+  NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/macrostrat_polygon_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Because our data is an &lt;code&gt;sf&lt;/code&gt; object, it is easy to slice and dice our data and try to get a better handle on it. We can also plot our sf object. I’ll use &lt;code&gt;ggplot2&lt;/code&gt; because I like it. A neat bit of information is the color vector – this is a vector of suggested hex codes to color your polygons based on their lithologies. You can also see the &lt;code&gt;map_id&lt;/code&gt;-s – our call returned four maps. The other fields are described in the &lt;a href=&#34;https://macrostrat.org/api/v2/geologic_units/map&#34;&gt;Macrostrat API&lt;/a&gt;. I’ll take advantage of that when plotting the units&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# let&amp;#39;s only plot one of the units
+# decrease the number of units
+temp &amp;lt;- data %&amp;gt;%
+  filter(as.numeric(st_area(.)) &amp;lt; 2000)
+
+pal &amp;lt;- data$color
+ggplot() +
+  geom_sf(data = data, mapping = aes(fill = as.factor(map_id))) +
+  scale_fill_manual(values = pal, name = &amp;#39;Geological Map ID&amp;#39;) +
+  theme_bw() +
+  theme(legend.position = &amp;#39;none&amp;#39;) +
+  NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/macrostrat_polygon_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Because our map data is an sf object, it is very easy to take advantage of the whole suite of spatial analysis tools avaliable. For more information see the &lt;a href=&#34;https://r-spatial.github.io/sf/index.html&#34;&gt;sf documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Inspecting fossil diveristy in Macrostrat units</title>
       <link>https://psmits.github.io/post/macrostrat_fossils/</link>
       <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
@@ -125,8 +261,6 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
       
       <guid>https://psmits.github.io/talk/gsa_2017/</guid>
       <description>&lt;p&gt;The functional composition of regional diversity reflects the possible ecological interactions observable in any given community. The relative fitness of species functional roles leads do differences in origination and extinction, which in turns leads to changes to functional composition and a new set of observable interactions. Changes to the relative diversity of functional groups over time can indicate the loss or gain of critical habitat or environmental interactions. Understanding when functional groups are enriched or depleted relative to the long-term average is critical for understanding relative conservation importance; a low diversity group that is currently enriched relative to its historical diversity is most likely at less risk than a high diversity group which has less-than-average standing diversity. I develop a multi-level Bayesian model of species occurrence where observation, origination, and extinction are modeled as functions of functional group, global temperature, and North American plant community phase. Mammal functional group is considered the interaction between species dietary and locomotor categories. I find that digitigrade and unguligrade herbivores experience an increase in relative diversity over the Cenozoic; fossorial functional groups experience a similar but much smaller relative increase. In contrast, all arboreal func- tional groups decline in relative diversity and in some cases become absent from the species pool. Additionally, I find the environmental covarites such as temperature have no effect on instantaneous extinction probability, and instead are only associated with differences in origination probability.&lt;/p&gt;
-
-&lt;p&gt;{{&amp;lt; speakerdeck ff02e046b9ef4ef58f7437551c1a717f &amp;gt;}}&lt;/p&gt;
 </description>
     </item>
     
@@ -195,8 +329,7 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
       <pubDate>Fri, 23 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/talk/evolution_2017/</guid>
-      <description>&lt;p&gt;{{&amp;lt; speakerdeck 775b65c779554d4bbef34831fa7bc362 &amp;gt;}}&lt;/p&gt;
-</description>
+      <description></description>
     </item>
     
     <item>
@@ -458,36 +591,6 @@ model {
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;^&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Recording the audio from online calls on Ubuntu</title>
-      <link>https://psmits.github.io/post/record_self_audio/</link>
-      <pubDate>Tue, 09 May 2017 17:08:35 -0500</pubDate>
-      
-      <guid>https://psmits.github.io/post/record_self_audio/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve recently started playing role-playing games online over audio/video chat using platforms like Google Hangouts or &lt;a href=&#34;https://appear.in/&#34; target=&#34;_blank&#34;&gt;appear.in&lt;/a&gt;. Inspired by a &lt;a href=&#34;http://www.gnomestew.com/game-mastering/gming-advice/the-listen-back/&#34; target=&#34;_blank&#34;&gt;recent Gnome Stew post&lt;/a&gt;, I&amp;rsquo;ve wanted to start recording those sessions so I can listen to them again, share them, and get better at GMing.&lt;/p&gt;
-
-&lt;p&gt;I have yet to record any RPG sessions using this set up, but if everything goes as planned I should be able to record my next &lt;a href=&#34;http://kotohi.com/ryuutama/&#34; target=&#34;_blank&#34;&gt;Ryuutama&lt;/a&gt; game!&lt;/p&gt;
-
-&lt;p&gt;I found this approach after reading a few different tutorials until I found &lt;a href=&#34;https://sputniza.wordpress.com/2015/01/29/how-to-record-audio-from-a-google-hangout-on-ubuntu/&#34; target=&#34;_blank&#34;&gt;one that worked and made sense&lt;/a&gt;. I&amp;rsquo;ve got to write this kind of procedure down somewhere or I&amp;rsquo;ll forget it, so hopefully this post will help me next time I have to record something.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;install &lt;strong&gt;pavucontrol&lt;/strong&gt; using apt.&lt;/li&gt;
-&lt;li&gt;install &lt;strong&gt;audacity&lt;/strong&gt; using apt.&lt;/li&gt;
-&lt;li&gt;using Audacity&amp;rsquo;s Device Toolbar, set the host to &lt;strong&gt;ALSA&lt;/strong&gt;, output to
-&lt;strong&gt;pulse&lt;/strong&gt;, and input to sound card or whatever (probably the default).&lt;/li&gt;
-&lt;li&gt;currently, this setup is recording everything that comes through the output. What is missing is your voice, which now needs to be looped back through your speakers/output.&lt;/li&gt;
-&lt;li&gt;open a terminal and type &lt;code&gt;pactl load-module module-loopback latency_msec=1&lt;/code&gt; to
-loop your own voice back through output.&lt;/li&gt;
-&lt;li&gt;start call using whatever platform you choose.&lt;/li&gt;
-&lt;li&gt;click record in audacity.&lt;/li&gt;
-&lt;li&gt;open pavucontrol, go to &lt;strong&gt;Recording&lt;/strong&gt; tab, select &lt;strong&gt;Monitor of Built in Analog
-Stereo&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;when done recording, type &lt;code&gt;pactl unload-module module-loopback&lt;/code&gt; to stop your voice
-looping back through the speakers.&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
