@@ -359,20 +359,20 @@ library(mathhammr)</code></pre>
 <p>The first thing I want to demonstrate is the effect of Bolter Discipline on my Tactical Marines.</p>
 <p>Let’s begin by looking at how well a 5-man squad of marines does against another squad of marines before and after Bolter Discipline, at 24 inches and at 12 inches, and having not moved that turn. Let’s do this by generating 1000 simulated series.</p>
 <pre class="r"><code>n &lt;- 1000
-codex_24 &lt;- replicate(n, to_attack(n= 5, skill = 3)) %&gt;%
+codex_24 &lt;- replicate(n, to_attack(n = (1 * 5), skill = 3)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
-codex_12 &lt;- replicate(n, to_attack(n= 10, skill = 3)) %&gt;%
+codex_12 &lt;- replicate(n, to_attack(n = 2 * (1 * 5), skill = 3)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
 
-beta_24 &lt;- replicate(n, to_attack(n= 10, skill = 3)) %&gt;%
+beta_24 &lt;- replicate(n, to_attack(n = 2 * (1 * 5), skill = 3)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
-beta_12 &lt;- replicate(n, to_attack(n= 20, skill = 3)) %&gt;%
+beta_12 &lt;- replicate(n, to_attack(n = 2 * (1 * 5), skill = 3)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
@@ -402,20 +402,20 @@ results %&gt;%
 <p>Under the Old Rules there was almost no chance for a squad of Tactical Marines to one-shot 5 MEQs. With the new Beta rules, at less than 12 inches there is a much improved chance of handing out 5 wounds against MEQs.</p>
 <p>What’s even better is that if DA Infantry can re-roll to-hit rolls of 1 if they stand still. Let’s take a look at that.</p>
 <pre class="r"><code>n &lt;- 1000
-codex_24 &lt;- replicate(n, to_attack(n= 5, skill = 3, reroll = 1)) %&gt;%
+codex_24 &lt;- replicate(n, to_attack(n = (1 * 5), skill = 3, reroll = 1)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
-codex_12 &lt;- replicate(n, to_attack(n= 10, skill = 3, reroll = 1)) %&gt;%
+codex_12 &lt;- replicate(n, to_attack(n = 2 * (1 * 5), skill = 3, reroll = 1)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
 
-beta_24 &lt;- replicate(n, to_attack(n= 10, skill = 3, reroll = 1)) %&gt;%
+beta_24 &lt;- replicate(n, to_attack(n = 2 * (1 * 5), skill = 3, reroll = 1)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
-beta_12 &lt;- replicate(n, to_attack(n= 20, skill = 3, reroll = 1)) %&gt;%
+beta_12 &lt;- replicate(n, to_attack(n = 2 * (1 * 5), skill = 3, reroll = 1)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
@@ -443,20 +443,20 @@ results %&gt;%
 <p>The effect of the Beta rules is even more pronounced when combined with re-rolls.</p>
 <p>And, just for fun, how about Deathwing Terminators firing at MEQs.</p>
 <pre class="r"><code>n &lt;- 1000
-codex_24 &lt;- replicate(n, to_attack(n= 4 * 5, skill = 2)) %&gt;%
+codex_24 &lt;- replicate(n, to_attack(n = (2 * 5), skill = 2)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
-codex_12 &lt;- replicate(n, to_attack(n= 2 * (4 * 5), skill = 2)) %&gt;%
+codex_12 &lt;- replicate(n, to_attack(n = 2 * (2 * 5), skill = 2)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
 
-beta_24 &lt;- replicate(n, to_attack(n= 8 * 5, skill = 2)) %&gt;%
+beta_24 &lt;- replicate(n, to_attack(n = 2 * (2 * 5), skill = 2)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
-beta_12 &lt;- replicate(n, to_attack(n= 2 * (8 * 5), skill = 2)) %&gt;%
+beta_12 &lt;- replicate(n, to_attack(n = 2 * (2 * 5), skill = 2)) %&gt;%
   map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&gt;%
   map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
 
