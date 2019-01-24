@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fun on Peter D Smits</title>
+    <link>https://psmits.github.io/tags/fun/</link>
+    <description>Recent content in Fun on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Wed, 23 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/tags/fun/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mathhammr and Bolter Discipline Beta rule</title>
+      <link>https://psmits.github.io/post/bolter-drill/</link>
+      <pubDate>Wed, 23 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/bolter-drill/</guid>
+      <description>In my spare time I play Warhammer 40k, a game that involves rolling a lot of six-sided dice. My largest army are the Dark Angels, a major chapter of space marines.
+Because I’ve wanted to grow my R skills, I finally wrote my first R package mathhammr. This lightweight package is a collection functions for simulating collections of dice rolls.
+The recently released Bolter Discipline beta rule for 40k is the perfect opportunity to demonstrate the package.</description>
+    </item>
+    
+  </channel>
+</rss>

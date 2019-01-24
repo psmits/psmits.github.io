@@ -13,6 +13,17 @@
     
     
     <item>
+      <title>mathhammr and Bolter Discipline Beta rule</title>
+      <link>https://psmits.github.io/post/bolter-drill/</link>
+      <pubDate>Wed, 23 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/bolter-drill/</guid>
+      <description>In my spare time I play Warhammer 40k, a game that involves rolling a lot of six-sided dice. My largest army are the Dark Angels, a major chapter of space marines.
+Because I’ve wanted to grow my R skills, I finally wrote my first R package mathhammr. This lightweight package is a collection functions for simulating collections of dice rolls.
+The recently released Bolter Discipline beta rule for 40k is the perfect opportunity to demonstrate the package.</description>
+    </item>
+    
+    <item>
       <title>Extracting Macrostrat polygons</title>
       <link>https://psmits.github.io/post/macrostrat-polygon/</link>
       <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>

@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>https://psmits.github.io/post/bolter-drill/</loc>
+      <lastmod>2019-01-23T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>https://psmits.github.io/post/macrostrat-polygon/</loc>
       <lastmod>2018-12-04T00:00:00+00:00</lastmod>
     </url>
@@ -280,6 +288,15 @@
     
       <loc>https://psmits.github.io/tags/data-visualization/</loc>
       <lastmod>2018-02-12T00:00:00-08:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://psmits.github.io/tags/fun/</loc>
+      <lastmod>2019-01-23T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

@@ -11,6 +11,160 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>mathhammr and Bolter Discipline Beta rule</title>
+      <link>https://psmits.github.io/post/bolter-drill/</link>
+      <pubDate>Wed, 23 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/bolter-drill/</guid>
+      <description>&lt;p&gt;In my spare time I play Warhammer 40k, a game that involves rolling a lot of six-sided dice. My largest army are the Dark Angels, a major chapter of space marines.&lt;/p&gt;
+&lt;p&gt;Because I’ve wanted to grow my R skills, I finally wrote my first R package &lt;a href=&#34;https://github.com/psmits/mathhammr&#34;&gt;&lt;code&gt;mathhammr&lt;/code&gt;&lt;/a&gt;. This lightweight package is a collection functions for simulating collections of dice rolls.&lt;/p&gt;
+&lt;p&gt;The recently released Bolter Discipline beta rule for 40k is the perfect opportunity to demonstrate the package.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;https://psmits.github.io/img/bolter_disc.jpg&#34; /&gt;
+
+&lt;/div&gt;
+&lt;p&gt;The Bolter Discipline rule DOUBLES the amount of shots from &lt;strong&gt;bolt&lt;/strong&gt; weapons! This is huge for the Dark Angels, synergizing very well with their chapter tactic and giving a huge boost to the Deathwing and Ravenwing.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;if (!require(devtools)) {
+    install.packages(&amp;#39;devtools&amp;#39;)
+}
+devtools::install_github(&amp;#39;psmits/mathhammr&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(magrittr)
+library(purrr)
+library(tidyr)
+library(forcats)
+library(ggplot2)
+library(mathhammr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first thing I want to demonstrate is the effect of Bolter Discipline on my Tactical Marines.&lt;/p&gt;
+&lt;p&gt;Let’s begin by looking at how well a 5-man squad of marines does against another squad of marines before and after Bolter Discipline, at 24 inches and at 12 inches. Let’s do this by generating 1000 simulated series.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n &amp;lt;- 1000
+codex_24 &amp;lt;- replicate(n, to_attack(n= 5, skill = 3)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+codex_12 &amp;lt;- replicate(n, to_attack(n= 10, skill = 3)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+
+beta_24 &amp;lt;- replicate(n, to_attack(n= 10, skill = 3)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+beta_12 &amp;lt;- replicate(n, to_attack(n= 20, skill = 3)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+
+results &amp;lt;- tibble(
+  codex_24,
+  codex_12,
+  beta_24,
+  beta_12
+  )
+
+results %&amp;gt;%
+  gather(key = &amp;#39;key&amp;#39;, value = &amp;#39;value&amp;#39;) %&amp;gt;%
+  tidyr::separate(key, c(&amp;#39;type&amp;#39;, &amp;#39;range&amp;#39;), &amp;#39;_&amp;#39;) %&amp;gt;%
+  mutate(type = case_when(type == &amp;#39;codex&amp;#39; ~ &amp;#39;Old rules&amp;#39;,
+                          type == &amp;#39;beta&amp;#39; ~ &amp;#39;Beta rules&amp;#39;),
+         type = fct_rev(type),
+         range = case_when(range == &amp;#39;12&amp;#39; ~ &amp;#39;&amp;lt;= 12 Inches&amp;#39;,
+                           range == &amp;#39;24&amp;#39; ~ &amp;#39;&amp;lt;= 24 Inches&amp;#39;)) %&amp;gt;%
+  ggplot() +
+  geom_bar(aes(x = value, fill = type)) +
+  facet_grid(type ~ range) +
+  labs(x = &amp;#39;Wounds Inflicted by 5 MEQs at MEQ target&amp;#39;, y = &amp;#39;Count&amp;#39;) +
+  theme(legend.position = &amp;#39;none&amp;#39;) +
+  NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-01-23-bolter-drill_files/figure-html/bolters-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Under the Old Rules there was almost no chance for a squad of Tactical Marines to one-shot 5 MEQs. With the new Beta rules, at less than 12 inches there is a much improved chance of handing out 5 wounds against MEQs.&lt;/p&gt;
+&lt;p&gt;What’s even better is that if DA Infantry can re-roll to-hit rolls of 1 if they stand still. Let’s take a look at that.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n &amp;lt;- 1000
+codex_24 &amp;lt;- replicate(n, to_attack(n= 5, skill = 3, reroll = 1)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+codex_12 &amp;lt;- replicate(n, to_attack(n= 10, skill = 3, reroll = 1)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+
+beta_24 &amp;lt;- replicate(n, to_attack(n= 10, skill = 3, reroll = 1)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+beta_12 &amp;lt;- replicate(n, to_attack(n= 20, skill = 3, reroll = 1)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+results &amp;lt;- tibble(
+  codex_24,
+  codex_12,
+  beta_24,
+  beta_12)
+
+results %&amp;gt;%
+  gather(key = &amp;#39;key&amp;#39;, value = &amp;#39;value&amp;#39;) %&amp;gt;%
+  tidyr::separate(key, c(&amp;#39;type&amp;#39;, &amp;#39;range&amp;#39;), &amp;#39;_&amp;#39;) %&amp;gt;%
+  mutate(type = case_when(type == &amp;#39;codex&amp;#39; ~ &amp;#39;Old rules&amp;#39;,
+                          type == &amp;#39;beta&amp;#39; ~ &amp;#39;Beta rules&amp;#39;),
+         type = fct_rev(type),
+         range = case_when(range == &amp;#39;12&amp;#39; ~ &amp;#39;&amp;lt;= 12 Inches&amp;#39;,
+                           range == &amp;#39;24&amp;#39; ~ &amp;#39;&amp;lt;= 24 Inches&amp;#39;)) %&amp;gt;%
+  ggplot() +
+  geom_bar(aes(x = value, fill = type)) +
+  facet_grid(type ~ range) +
+  labs(x = &amp;#39;Wounds Inflicted by 5 MEQs at MEQ target, w/ rerolls&amp;#39;, y = &amp;#39;Count&amp;#39;) +
+  theme(legend.position = &amp;#39;none&amp;#39;) +
+  NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-01-23-bolter-drill_files/figure-html/reroll-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The effect of the Beta rules is even more pronounced when combined with re-rolls.&lt;/p&gt;
+&lt;p&gt;And, just for fun, how about Deathwing Terminators firing at MEQs.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n &amp;lt;- 1000
+codex_24 &amp;lt;- replicate(n, to_attack(n= 4 * 5, skill = 2)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+codex_12 &amp;lt;- replicate(n, to_attack(n= 2 * (4 * 5), skill = 2)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+
+beta_24 &amp;lt;- replicate(n, to_attack(n= 8 * 5, skill = 2)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+beta_12 &amp;lt;- replicate(n, to_attack(n= 2 * (8 * 5), skill = 2)) %&amp;gt;%
+  map_dbl(., ~ to_wound(n = .x, str = 4, tgh = 4)) %&amp;gt;%
+  map_dbl(., ~ to_save(n = .x, sv = 3, ap = 0))
+
+results &amp;lt;- tibble(
+  codex_24,
+  codex_12,
+  beta_24,
+  beta_12)
+
+results %&amp;gt;%
+  gather(key = &amp;#39;key&amp;#39;, value = &amp;#39;value&amp;#39;) %&amp;gt;%
+  tidyr::separate(key, c(&amp;#39;type&amp;#39;, &amp;#39;range&amp;#39;), &amp;#39;_&amp;#39;) %&amp;gt;%
+  mutate(type = case_when(type == &amp;#39;codex&amp;#39; ~ &amp;#39;Old rules&amp;#39;,
+                          type == &amp;#39;beta&amp;#39; ~ &amp;#39;Beta rules&amp;#39;),
+         type = fct_rev(type),
+         range = case_when(range == &amp;#39;12&amp;#39; ~ &amp;#39;&amp;lt;= 12 Inches&amp;#39;,
+                           range == &amp;#39;24&amp;#39; ~ &amp;#39;&amp;lt;= 24 Inches&amp;#39;)) %&amp;gt;%
+  ggplot() +
+  geom_bar(aes(x = value, fill = type)) +
+  facet_grid(type ~ range) +
+  labs(x = &amp;#39;Wounds Inflicted by 5 TEQs at MEQ target&amp;#39;, y = &amp;#39;Count&amp;#39;) +
+  theme(legend.position = &amp;#39;none&amp;#39;) +
+  NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-01-23-bolter-drill_files/figure-html/terminator-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Terminators totally destroy MEQs with the new Beta rules, it is crazy!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Extracting Macrostrat polygons</title>
       <link>https://psmits.github.io/post/macrostrat-polygon/</link>
       <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
@@ -52,28 +206,26 @@ unit_data &amp;lt;- read_csv(call) %&amp;gt;%
          abs(abs(clng) - 122) &amp;lt; 10)    # nearish to SF&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Parsed with column specification:
 ## cols(
-##   .default = col_character(),
-##   unit_id = col_integer(),
-##   section_id = col_integer(),
-##   col_id = col_integer(),
-##   project_id = col_integer(),
-##   col_area = col_double(),
-##   strat_name_id = col_integer(),
-##   t_age = col_double(),
-##   b_age = col_double(),
-##   max_thick = col_double(),
-##   min_thick = col_double(),
-##   pbdb_collections = col_integer(),
-##   pbdb_occurrences = col_integer(),
-##   t_int_id = col_integer(),
-##   t_int_age = col_double(),
-##   t_prop = col_double(),
-##   b_int_id = col_integer(),
-##   b_int_age = col_double(),
-##   b_prop = col_double(),
+##   .default = col_double(),
+##   unit_name = col_character(),
+##   Mbr = col_character(),
+##   Fm = col_character(),
+##   Gp = col_character(),
+##   SGp = col_character(),
+##   outcrop = col_character(),
+##   lith = col_character(),
+##   environ = col_character(),
+##   econ = col_character(),
+##   measure = col_character(),
+##   notes = col_character(),
+##   color = col_character(),
+##   text_color = col_character(),
+##   t_int_name = col_character(),
+##   units_above = col_character(),
+##   b_int_name = col_character(),
 ##   units_below = col_number(),
-##   clat = col_double()
-##   # ... with 5 more columns
+##   strat_name_long = col_character(),
+##   refs = col_character()
 ## )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## See spec(...) for full column specifications.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unit_id &amp;lt;- unit_data %&amp;gt;%
@@ -91,27 +243,27 @@ data &amp;lt;- geojson_sf(call)               # convert the Macrostrat data into
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;glimpse(data)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Observations: 4,316
 ## Variables: 21
-## $ b_int_name    &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Tertiary&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;Mi...
-## $ t_int_age     &amp;lt;dbl&amp;gt; 5.3330, 2.5880, 2.5880, 0.0117, 5.3330, 5.3330, ...
-## $ b_int_id      &amp;lt;dbl&amp;gt; 13, 474, 13, 13, 13, 13, 13, 486, 483, 13, 13, 4...
-## $ t_int_name    &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Tertiary&amp;quot;, &amp;quot;Pliocene&amp;quot;, &amp;quot;Pleistocene&amp;quot;...
-## $ b_age         &amp;lt;dbl&amp;gt; 17.4600, 28.0000, 17.0875, 8.3395, 23.0300, 16.7...
-## $ geometry      &amp;lt;MULTIPOLYGON [°]&amp;gt; MULTIPOLYGON (((-119.1447 3..., MUL...
-## $ liths         &amp;lt;chr&amp;gt; &amp;quot;[68,69]&amp;quot;, &amp;quot;[10,14,15,63,67,68,69,71,75,76]&amp;quot;, &amp;quot;[...
-## $ strat_names   &amp;lt;chr&amp;gt; &amp;quot;[1013,66629,67567,68328,68452]&amp;quot;, &amp;quot;[4453]&amp;quot;, &amp;quot;[13...
-## $ color         &amp;lt;chr&amp;gt; &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FEE9B2&amp;quot;, &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FF...
-## $ b_int_age     &amp;lt;dbl&amp;gt; 23.03, 66.00, 23.03, 23.03, 23.03, 23.03, 23.03,...
-## $ macro_units   &amp;lt;chr&amp;gt; &amp;quot;[13554,13557]&amp;quot;, &amp;quot;[14787]&amp;quot;, &amp;quot;[13456,13552,13581,...
-## $ t_int_id      &amp;lt;dbl&amp;gt; 13, 474, 10, 4, 13, 13, 13, 487, 21, 13, 13, 485...
-## $ source_id     &amp;lt;dbl&amp;gt; 133, 59, 133, 133, 20, 133, 133, 112, 133, 133, ...
-## $ map_id        &amp;lt;dbl&amp;gt; 2957479, 2406235, 2961462, 2817270, 1537858, 281...
-## $ comments      &amp;lt;chr&amp;gt; &amp;quot;Original map source: Crafford, A.E.J., 2007, Ge...
-## $ strat_name    &amp;lt;chr&amp;gt; &amp;quot;Kate Peak Formation; Alta Formation; Wahmonie F...
-## $ name          &amp;lt;chr&amp;gt; &amp;quot;Younger andesite and intermediate flows and bre...
-## $ lith          &amp;lt;chr&amp;gt; &amp;quot;Major:{andesite,dacite}&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;Major:{sedimenta...
-## $ descrip       &amp;lt;chr&amp;gt; &amp;quot;Includes some rocks mapped as the Kate Peak and...
-## $ t_age         &amp;lt;dbl&amp;gt; 12.5000, 20.2165, 7.2460, 2.5880, 12.1700, 5.811...
-## $ best_int_name &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Cenozoic&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;Neogene&amp;quot;, &amp;quot;Mi...&lt;/code&gt;&lt;/pre&gt;
+## $ b_int_name    &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Tertiary&amp;quot;, &amp;quot;Late Eocene&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;…
+## $ t_int_age     &amp;lt;dbl&amp;gt; 5.3330, 2.5880, 23.0300, 2.5880, 0.0117, 5.3330, 5…
+## $ b_int_id      &amp;lt;dbl&amp;gt; 13, 474, 483, 13, 13, 13, 13, 13, 486, 483, 13, 13…
+## $ t_int_name    &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Tertiary&amp;quot;, &amp;quot;Oligocene&amp;quot;, &amp;quot;Pliocene&amp;quot;, &amp;quot;P…
+## $ b_age         &amp;lt;dbl&amp;gt; 17.4600, 28.0000, 47.8000, 17.0875, 8.3395, 23.030…
+## $ geometry      &amp;lt;MULTIPOLYGON [°]&amp;gt; MULTIPOLYGON (((-119.1447 3..., MULTI…
+## $ liths         &amp;lt;chr&amp;gt; &amp;quot;[68,69]&amp;quot;, &amp;quot;[10,14,15,63,67,68,69,71,75,76]&amp;quot;, &amp;quot;[10…
+## $ strat_names   &amp;lt;chr&amp;gt; &amp;quot;[1013,66629,67567,68328,68452]&amp;quot;, &amp;quot;[4453]&amp;quot;, &amp;quot;[7795…
+## $ color         &amp;lt;chr&amp;gt; &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FEE9B2&amp;quot;, &amp;quot;#F4B470&amp;quot;, &amp;quot;#FFFF00&amp;quot;, &amp;quot;#FFFF…
+## $ b_int_age     &amp;lt;dbl&amp;gt; 23.03, 66.00, 37.80, 23.03, 23.03, 23.03, 23.03, 2…
+## $ macro_units   &amp;lt;chr&amp;gt; &amp;quot;[13554,13557]&amp;quot;, &amp;quot;[14787]&amp;quot;, &amp;quot;[6329,17855,17857,179…
+## $ t_int_id      &amp;lt;dbl&amp;gt; 13, 474, 21, 10, 4, 13, 13, 13, 487, 21, 13, 13, 4…
+## $ source_id     &amp;lt;dbl&amp;gt; 133, 59, 102, 133, 133, 20, 133, 133, 112, 133, 13…
+## $ map_id        &amp;lt;dbl&amp;gt; 2957479, 2406235, 2655162, 2961462, 2817270, 15378…
+## $ comments      &amp;lt;chr&amp;gt; &amp;quot;Original map source: Crafford, A.E.J., 2007, Geol…
+## $ strat_name    &amp;lt;chr&amp;gt; &amp;quot;Kate Peak Formation; Alta Formation; Wahmonie For…
+## $ name          &amp;lt;chr&amp;gt; &amp;quot;Younger andesite and intermediate flows and brecc…
+## $ lith          &amp;lt;chr&amp;gt; &amp;quot;Major:{andesite,dacite}&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;&amp;quot;, &amp;quot;Major:{sedimen…
+## $ descrip       &amp;lt;chr&amp;gt; &amp;quot;Includes some rocks mapped as the Kate Peak and A…
+## $ t_age         &amp;lt;dbl&amp;gt; 12.5000, 20.2165, 17.4600, 7.2460, 2.5880, 12.1700…
+## $ best_int_name &amp;lt;chr&amp;gt; &amp;quot;Miocene&amp;quot;, &amp;quot;Cenozoic&amp;quot;, &amp;quot;Cenozoic&amp;quot;, &amp;quot;Miocene&amp;quot;, &amp;quot;Neo…&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The above code chunk first makes an API call to the Macrostract database. This response data has each geological unit as a row and tons of information on each unit. Importantly, there are multiple geological units per Macrostrat column id – it is the columns which have map properties, not the units themselves.&lt;/p&gt;
 &lt;p&gt;Here is an explination of what is displayed when you &lt;code&gt;print(...)&lt;/code&gt; an sf object.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
@@ -449,148 +601,6 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
 &lt;p&gt;I&amp;rsquo;m interested in how taxon functional traits are associated with differences in taxon extinction risk. Functional traits are those which have important (i.e. known) ecological function; examples include mammal tooth shape, environmental preference, and body size. I enjoy focusing on functional traits because I&amp;rsquo;m able to more clearly, or at least more sensibly, define hypotheses as to why these traits might relate to differences in taxon duration; this is as much for my own clarity as anyone else&amp;rsquo;s.&lt;/p&gt;
 
 &lt;p&gt;The two major theories my research engages with are &lt;a href=&#34;http://ebme.marine.rutgers.edu/HistoryEarthSystems/HistEarthSystems_Fall2010/VanValen%201973%20Evol%20%20Theor%20.pdf&#34; target=&#34;_blank&#34;&gt;Van Valen&amp;rsquo;s Law of Constant Extinction&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/Tempo_and_Mode_in_Evolution&#34; target=&#34;_blank&#34;&gt;Simpson&amp;rsquo;s Survival of the Unspecialized&lt;/a&gt;. I approach these fundamental questions by developing Bayesian statistical models of how species duration is associated with individual-level functional traits as well also group-level factors such as cohort or environmental context, or a taxon&amp;rsquo;s &amp;ldquo;aging.&amp;rdquo;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An attempt at a basic capture-mark-recapture model in Stan</title>
-      <link>https://psmits.github.io/post/stan_birth_death/</link>
-      <pubDate>Wed, 10 May 2017 13:24:42 -0500</pubDate>
-      
-      <guid>https://psmits.github.io/post/stan_birth_death/</guid>
-      <description>&lt;p&gt;Capture-mark-recapture (CMR) models come up in ecology and paleobiology when attempting to estimate species richness, birth rates, death rates, and sampling rates from occurrence history data. I use &lt;a href=&#34;http://mc-stan.org/&#34; target=&#34;_blank&#34;&gt;Stan&lt;/a&gt; to write all my statistical models, and I found implementing a CMR model a bit of a bear because Stan&amp;rsquo;s gradient-based samplers cannot estimate discrete parameters. Instead, as described in the Stan manual, I needed to marginalize over all possible occurrence histories for each subject. Lucky for me, there are only two possible states (0 and 1) at each time point and they follow relatively simple rules. Sadly, the number of potential occurrence histories can grow dramatically as the number of subjects and time points increase. Here&amp;rsquo;s my solution as implemented in Stan. Oh, and in case it wasn&amp;rsquo;t obvious, this is a Bayesian model.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m going to focus on the Jolly-Seber (JS) model as presented in &lt;a href=&#34;https://www.amazon.com/Hierarchical-Modeling-Inference-Ecology-Metapopulations/dp/0123740975&#34; target=&#34;_blank&#34;&gt;Royle and Dorazio&lt;/a&gt;. At its core, this model is a discrete-time hidden Markov model with an absorbing state (&amp;ldquo;death&amp;rdquo;).&lt;/p&gt;
-
-&lt;p&gt;The type of data suited for a JS model is where multiple subjects (e.g. species, individuals) are sampled at multiple discrete times (e.g. days, geologic stages). If a subject is observed, it gets a 1 for that time point; if the subject is not observed at that time point, it gets a 0.&lt;/p&gt;
-
-&lt;p&gt;The recorded absences are very important for filling in the missing &amp;ldquo;true&amp;rdquo; occurrence histories. While all non-observations are recorded as a 0, species are expected to range-through all time points between their first and last occurrences (i.e. observation history 101 implies occurrence history of 111). Additionally, as is certainly the case with paleontological data, the &lt;strong&gt;observed&lt;/strong&gt; first occurrence is not necessarily the &lt;strong&gt;true&lt;/strong&gt; first occurrence; same for last occurrence. Another important detail is that once a subject leaves the system, they&amp;rsquo;ve left it permanently (i.e. extinction, death).&lt;/p&gt;
-
-&lt;p&gt;The JS model over comes this by estimating the probability of observing a subject if it is present. The JS model expressed hierarchically involves two statements, one for the probability of observing a subject and one for the probability that the subject is present. In the first statement, $y$ is the matrix of observations, $p$ is the probability of observing a subject if present, and $z$ is the &amp;ldquo;true&amp;rdquo; occurrence matrix.&lt;/p&gt;
-
-&lt;p&gt;$$y_{i,t} \sim \text{Bernoulli}(p z_{i,t})$$&lt;/p&gt;
-
-&lt;p&gt;The second statement is effectively a prior on $z$, and it is more involved because the birth and death probabilities need to be included. Also, because death is an absorbing state I need to insure that the probability of a subject returning after death is 0. Here $\phi$ is the probability of a subject surviving from one time point to the next and $\lambda$ is the probability of subject originating at time $t$. While these models are called birth-death, we are actually estimating birth and survival. The product term in the equation ensures no &amp;ldquo;zombies&amp;rdquo; or de-extinctions.&lt;/p&gt;
-
-&lt;p&gt;$$z_{i,t} \sim \text{Bernoulli}\left(\phi z_{i, t - 1} + \lambda \left(\prod_{n=1}^{t}(1 - z_{i, n})\right)\right)$$&lt;/p&gt;
-
-&lt;p&gt;Priors then need to be given for $p$, $phi$, and $\lambda$. Covariates can be
-incorporated into these priors as you would with a logistic regression.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;As you might be able to guess, the big issue is the matrix $z$ of which almost every value must be estimated. To implement the above in Stan, I need to write a function to marginalize over all possible values of $z$. Using that function I can then estimate the log posterior. There are other helped functions to smooth everything along; you might recognize them from the Stan manual. I owe a lot of thanks to &lt;a href=&#34;http://bob-carpenter.github.io/&#34; target=&#34;_blank&#34;&gt;Bob Carpenter&lt;/a&gt; and the extremely helpful &lt;a href=&#34;https://groups.google.com/forum/?fromgroups#!forum/stan-users&#34; target=&#34;_blank&#34;&gt;Stan mailing list&lt;/a&gt; for helping me figure out this solution!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-stan&#34;&gt;functions {
-  int first_capture(int[] y_i) {
-    for (k in 1:size(y_i))
-      if (y_i[k])
-        return k;
-    return 0;
-  }
-  int last_capture(int[] y_i) {
-    for (k_rev in 0:(size(y_i) - 1)) {
-      int k;
-      k = size(y_i) - k_rev;
-      if (y_i[k])
-        return k;
-    }
-    return 0;
-  }
-  real state_space_lp(int[] y, real origin, real stay, real p) {
-    int ft;
-    int lt;
-    int S;
-    int i;
-    int prod_term;
-    int lp_size;
-
-    S = size(y);
-    i = 1;
-    ft = first_capture(y);
-    lt = last_capture(y);
-    lp_size = ft * (S - lt + 1); // how many possible combinations
-
-    // have to go through all possible event histories for each species
-    {
-      // vector of log probabilities for all possible valid z-s
-      vector[lp_size] lp;  
-
-      for(t_first_alive in 1:ft) {
-        for (t_last_alive in lt:S) {
-          real sl;
-          int z[S];
-
-          for(j in 1:S) {
-            z[j] = 0;
-          }
-          // fill in the range through knowledge
-          for(a in t_first_alive:t_last_alive) {
-            z[a] = 1;
-          }
-          // notice how z is never actually estimated 
-          // instead, log probability of every possible history is calculated
-
-          // first time point only allows birth
-          sl = bernoulli_lpmf(z[1] | origin);
-          prod_term = 1 - z[1];
-
-          {
-            vector[S - 1] gg;
-            for(j in 2:S) {
-              prod_term = prod_term * (1 - z[j - 1]); // calculate if extinct
-              gg[j - 1] = bernoulli_lpmf(z[j] | (z[j - 1] * stay) + 
-                  prod_term * origin);
-            }
-            sl = sl + sum(gg);
-          }
-
-          // finally, y as function of z and p
-          {
-            vector[S] hh;
-            for(k in 1:S) {
-              hh[k] = bernoulli_lpmf(y[k] | z[k] * p);
-            }
-            sl = sl + sum(hh);
-          }
-
-          lp[i] = sl;
-          i = i + 1;
-        }
-      }
-      return log_sum_exp(lp);
-    }
-  }
-}
-data {
-  int N;  // number of species
-  int T;  // number of temporal units
-  int sight[N, T];  // observed presences
-}
-parameters {
-  real&amp;lt;lower=0,upper=1&amp;gt; origin; // birth
-  real&amp;lt;lower=0,upper=1&amp;gt; stay; // survival
-  real&amp;lt;lower=0,upper=1&amp;gt; p;
-}
-model {
-  // priors are kinda arbitrary but not flat
-  origin ~ beta(2, 2);
-  stay ~ beta(2, 2);
-  p ~ beta(2, 2);
-  
-  // the typing of the function doesn&#39;t allow for vectorizing, but ok
-  for(n in 1:N) {
-    target += state_space_lp(sight[n], origin, stay, p);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;see &lt;a href=&#34;https://www.amazon.com/Bayesian-Analysis-Chapman-Statistical-Science/dp/1439840954/&#34; target=&#34;_blank&#34;&gt;BDA3&lt;/a&gt;, &lt;a href=&#34;https://www.amazon.com/Analysis-Regression-Multilevel-Hierarchical-Models/dp/052168689X/&#34; target=&#34;_blank&#34;&gt;ARM&lt;/a&gt;, or &lt;a href=&#34;https://www.amazon.com/Statistical-Rethinking-Bayesian-Examples-Chapman/dp/1482253445/&#34; target=&#34;_blank&#34;&gt;Statistical Rethinking&lt;/a&gt;.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;^&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </description>
     </item>
     
