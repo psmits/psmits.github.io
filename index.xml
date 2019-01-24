@@ -78,7 +78,7 @@ results %&amp;gt;%
   theme(legend.position = &amp;#39;none&amp;#39;) +
   NULL&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-01-23-bolter-drill_files/figure-html/bolters-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Under the Old Rules there was almost no chance for a squad of Tactical Marines to one-shot 5 MEQs. With the new Beta rules, at less than 12 inches there is a much improved chance of handing out 5 wounds against MEQs.&lt;/p&gt;
+&lt;p&gt;Under the Old Rules there was almost no chance for a squad of Tactical Marines to one-shot 5 MEQs. With the new Beta rules, tacticals have a much better damage output from where they should be – far away from assault units.&lt;/p&gt;
 &lt;p&gt;What’s even better is that if DA Infantry can re-roll to-hit rolls of 1 if they stand still. Let’s take a look at that.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n &amp;lt;- 1000
 codex_24 &amp;lt;- replicate(n, to_attack(n = (1 * 5), skill = 3, reroll = 1)) %&amp;gt;%
@@ -160,7 +160,7 @@ results %&amp;gt;%
   theme(legend.position = &amp;#39;none&amp;#39;) +
   NULL&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-01-23-bolter-drill_files/figure-html/terminator-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Terminators totally destroy MEQs with the new Beta rules, it is crazy!&lt;/p&gt;
+&lt;p&gt;Terminators totally destroy MEQs at all ranges with the new Beta rules, it is crazy!&lt;/p&gt;
 </description>
     </item>
     
