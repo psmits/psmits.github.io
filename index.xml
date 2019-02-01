@@ -165,6 +165,15 @@ results %&amp;gt;%
     </item>
     
     <item>
+      <title>How macroecology affects macroevolution: the interplay between extinction intensity and trait-dependent extinction in brachiopods</title>
+      <link>https://psmits.github.io/publication/brach_surv/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/publication/brach_surv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Extracting Macrostrat polygons</title>
       <link>https://psmits.github.io/post/macrostrat-polygon/</link>
       <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
@@ -587,20 +596,6 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
 &lt;p&gt;Understanding if and when a functional group is enriched or depleted in a species pool is a useful conservation tool. An important point worth considering is what enriched or depleted is defined relative to: other contemporaneous communities/species pools, or average relative diversity through time. As a paleontologist I&amp;rsquo;m able to focus on the latter in the context of large scale historical processes such as speciation, &lt;a href=&#34;https://psmits.github.io/project/extinction_risk/&#34; target=&#34;_blank&#34;&gt;extinction&lt;/a&gt;, and migration.&lt;/p&gt;
 
 &lt;p&gt;My research is concerned with understanding how the functional composition of a species pool changes over time. Additionally, I am interested in how changes to environmental context, such as global temperature or dominant plant groups, can affect the historical processes underlying the presence (or absence) of individual functional groups at any time. My research thus far has focused on changes to mammal functional diversity of the North American species pool over the last 65 million years.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Extinction</title>
-      <link>https://psmits.github.io/project/extinction_risk/</link>
-      <pubDate>Fri, 12 May 2017 17:09:33 -0500</pubDate>
-      
-      <guid>https://psmits.github.io/project/extinction_risk/</guid>
-      <description>&lt;p&gt;The ultimate fate of all species is extinction. The rates at which species go extinction varies widely between and within clades. How and why extinction risk varies is vital for understanding the differential diversification of species over time and the processes leading up to the observed diversity composition; why we see the diversity species we do as opposed to some other possible makeup. Extinction is also a distinctly group-level, or emergent, phenomenon as all members of the species need to have died for the species to go extinct.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m interested in how taxon functional traits are associated with differences in taxon extinction risk. Functional traits are those which have important (i.e. known) ecological function; examples include mammal tooth shape, environmental preference, and body size. I enjoy focusing on functional traits because I&amp;rsquo;m able to more clearly, or at least more sensibly, define hypotheses as to why these traits might relate to differences in taxon duration; this is as much for my own clarity as anyone else&amp;rsquo;s.&lt;/p&gt;
-
-&lt;p&gt;The two major theories my research engages with are &lt;a href=&#34;http://ebme.marine.rutgers.edu/HistoryEarthSystems/HistEarthSystems_Fall2010/VanValen%201973%20Evol%20%20Theor%20.pdf&#34; target=&#34;_blank&#34;&gt;Van Valen&amp;rsquo;s Law of Constant Extinction&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/Tempo_and_Mode_in_Evolution&#34; target=&#34;_blank&#34;&gt;Simpson&amp;rsquo;s Survival of the Unspecialized&lt;/a&gt;. I approach these fundamental questions by developing Bayesian statistical models of how species duration is associated with individual-level functional traits as well also group-level factors such as cohort or environmental context, or a taxon&amp;rsquo;s &amp;ldquo;aging.&amp;rdquo;&lt;/p&gt;
 </description>
     </item>
     
