@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Peter D Smits</copyright>
-    <lastBuildDate>Tue, 04 Dec 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://psmits.github.io/tags/academic/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Teaching analytical paleobiology</title>
+      <link>https://psmits.github.io/project/analytical_paleobiology/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/project/analytical_paleobiology/</guid>
+      <description>In 2018 I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology. All of these lessons have been written in RMarkdown and emphasize the use of tidyverse packages. Additionally, I emphasize Bayesian data analysis as fundamental and use the brms package for implementing Stan-based models in R.
+So far I have written lessons on</description>
+    </item>
     
     <item>
       <title>Extracting Macrostrat polygons</title>

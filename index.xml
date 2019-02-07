@@ -174,6 +174,29 @@ results %&amp;gt;%
     </item>
     
     <item>
+      <title>Teaching analytical paleobiology</title>
+      <link>https://psmits.github.io/project/analytical_paleobiology/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/project/analytical_paleobiology/</guid>
+      <description>&lt;p&gt;In 2018 I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology. All of these lessons have been written in &lt;a href=&#34;https://rmarkdown.rstudio.com/&#34; target=&#34;_blank&#34;&gt;RMarkdown&lt;/a&gt; and emphasize the use of &lt;a href=&#34;https://www.tidyverse.org/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;tidyverse&lt;/code&gt; packages&lt;/a&gt;. Additionally, I emphasize Bayesian data analysis as fundamental and use the &lt;a href=&#34;https://github.com/paul-buerkner/brms&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;brms&lt;/code&gt; package&lt;/a&gt; for implementing &lt;a href=&#34;https://mc-stan.org/&#34; target=&#34;_blank&#34;&gt;Stan-based&lt;/a&gt; models in R.&lt;/p&gt;
+
+&lt;p&gt;So far I have written lessons on&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Importing and cleaning data from the &lt;a href=&#34;https://paleobiodb.org/#/&#34; target=&#34;_blank&#34;&gt;Paleobiology Database&lt;/a&gt; using &lt;code&gt;dplyr&lt;/code&gt;, with an emphasis on reproducible analyses.&lt;/li&gt;
+&lt;li&gt;Introduction to the logic of Bayesian data analysis.&lt;/li&gt;
+&lt;li&gt;Introduction to linear regression with a single binary predictor, emphasizing the interpretation of parameters and checking model adequacy.&lt;/li&gt;
+&lt;li&gt;Graph theory and network analysis approaches in paleobiology, with an emphasis on analyzing biogeographic co-occurrence of species. This module was requested by the class and is thus out of order.&lt;/li&gt;
+&lt;li&gt;Continuing linear regression by introducing continuous predictors, methods for improving parameter interpretation, and further emphasis on checking model adequacy.&lt;/li&gt;
+&lt;li&gt;Linear regression with categorical predictors with more than two levels, interpreting models with multiple predictors (incl. continuous and discrete), interpreting interaction effects, and methods for visualizing multivariate regression. (In progress).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The initial 5 lessons are available &lt;a href=&#34;https://github.com/psmits/cal_paleostats&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;. I have begun compiling these initial lessons, as well as new ones, in an online textbook using &lt;a href=&#34;https://bookdown.org/home/&#34; target=&#34;_blank&#34;&gt;bookdown&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Extracting Macrostrat polygons</title>
       <link>https://psmits.github.io/post/macrostrat-polygon/</link>
       <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
@@ -582,20 +605,6 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
 &lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/screen_3.jpg&#34; alt=&#34;5E custom 3&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m curious about other improvements that could be made to various official GM screens to make them more useful, or even convert them across systems! Any examples of ways you&amp;rsquo;ve customized your GM screens?&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Functional diversity</title>
-      <link>https://psmits.github.io/project/functional_diversity/</link>
-      <pubDate>Sat, 13 May 2017 14:31:23 -0500</pubDate>
-      
-      <guid>https://psmits.github.io/project/functional_diversity/</guid>
-      <description>&lt;p&gt;A species pool is the collection of all species across multiple communities. The members of the pool are thus the collection of &lt;em&gt;potential&lt;/em&gt; members of any constituent community. A regional species pool defines this collection of communities geographically; for example a community of mammals in North America is part of the North American mammal species pool.&lt;/p&gt;
-
-&lt;p&gt;Understanding if and when a functional group is enriched or depleted in a species pool is a useful conservation tool. An important point worth considering is what enriched or depleted is defined relative to: other contemporaneous communities/species pools, or average relative diversity through time. As a paleontologist I&amp;rsquo;m able to focus on the latter in the context of large scale historical processes such as speciation, &lt;a href=&#34;https://psmits.github.io/project/extinction_risk/&#34; target=&#34;_blank&#34;&gt;extinction&lt;/a&gt;, and migration.&lt;/p&gt;
-
-&lt;p&gt;My research is concerned with understanding how the functional composition of a species pool changes over time. Additionally, I am interested in how changes to environmental context, such as global temperature or dominant plant groups, can affect the historical processes underlying the presence (or absence) of individual functional groups at any time. My research thus far has focused on changes to mammal functional diversity of the North American species pool over the last 65 million years.&lt;/p&gt;
 </description>
     </item>
     
