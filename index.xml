@@ -439,6 +439,26 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
     </item>
     
     <item>
+      <title>How predictable is extinction? Forecasting species survival at million-year timescales</title>
+      <link>https://psmits.github.io/talk/gsa_2018/</link>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/talk/gsa_2018/</guid>
+      <description>&lt;p&gt;Peter D Smits, Seth Finnegan&lt;/p&gt;
+
+&lt;p&gt;One of the great promises of paleobiology is that by studying the past we can better predict the future.  This promise is particularly pertinent given as risk assessments for some modern species could potentially be improved by examining past extinction patterns and by using paleontological records to establish geographic range and abundance trajectories on geological timescales.  Any effort to assess future risk based on past extinctions and range trajectories must address two key questions:  (1) At a given timescale, are geographic range and extinction risk trajectories deterministic (past trends are likely to continue into the future) or Markovian (the future depends only on the present state)? (2) Given knowledge of past extinction/survival patterns and the present geographic ranges of extant taxa, how accurate are extinction risk predictions?&lt;/p&gt;
+
+&lt;p&gt;To address these questions we analyze the fossil record of Cenozoic planktonic microfossil taxa (foramanifera, radiolarians, diatoms, and calcareous nanoplankton). Using a model of species survival, we analyzed how survival probability changes over time as a function of species age, time of observation, current geographic range, most recent change in geographic range, global temperature average, and the lag of global temperature. Our best supported model includes the historical covariates, change in geographic range and lag of global temperature, which indicates that the past improves our estimates of the present and future.&lt;/p&gt;
+
+&lt;p&gt;The effects of the historical covariates are extremely small and vary considerably over time. For example, the effect of change in geographic range size can either increase or decrease probability of extinction depending on when in the Cenozoic the observation takes place. The improvement in predictive power by including these historical covariates is modest at best and reflects the rarity of extinction events (i.e. class-imbalance) and the extremely stochastic nature of species survival. Correcting for class imbalance, we find that in-sample model performance measures are approximately equal to out-of-sample performance as estimated from cross-validation. These results reflect the difficulty of estimating species extinction, and that while including historical covariates does improve model performance, that gain is very small.  This result implies that at million-year timescales geographic range trajectories are nearly Markovian, perhaps because the processes driving geographic range changes vary on substantially shorter timescales. The effect of change in geographic range on survival most likely stands for many interacting and unobserved processes which in-turn produce that species&amp;rsquo; geographic range and its affect on survival.&lt;/p&gt;
+
+&lt;p&gt;Finally, we find support for species&amp;rsquo; extinction risk increases with age, though the strength of this effect varies among taxonomic groups. This effect is most pronounced in forams and radiolarians, and less pronounced in diatoms and calcareous nanoplankton. The greatest source of variance in survival probability is the timing of observation. Importantly, this result means that the time of an observation is a greater source of variation in survival probability when compared to species age.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, we find that including information on a species&amp;rsquo; change in geographic range size on average improves our predictions of species survival at million-year timescales. However, the effect of change in geographic range is much smaller than the effect of current geographic range, and highly variable through time as the effect changes sign and there are times where there is little evidence for any effect of past geographic range. The results of this study reinforce the importance of the promise of paleontology and using the past to predict the future.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Modeling changes to the functional composition of the North American mammal diveristy: multi-level dynamics of a regional species pool</title>
       <link>https://psmits.github.io/talk/gsa_2017/</link>
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
@@ -575,36 +595,6 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
 &lt;hr /&gt;
 
 &lt;p&gt;Now I just need to revise the dissertation chapter into an actual publication!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Customizing your GM screen</title>
-      <link>https://psmits.github.io/post/gm_screen/</link>
-      <pubDate>Tue, 16 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/post/gm_screen/</guid>
-      <description>&lt;p&gt;The GM&amp;rsquo;s screen is a major part of my GMing toolkit. The uses are obvious: the GM facing side can have useful information, the player facing side can have art which helps set the mood, and the whole apparatus blocks the GM&amp;rsquo;s notes from easy viewing. My buying the GM screen for a system tends to be a sign that I&amp;rsquo;m serious about running some games with that system/in that setting.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/multi_screen.jpg&#34; alt=&#34;example screens&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As I&amp;rsquo;m sure is pretty common, I&amp;rsquo;ve always been pretty protective of RPG items I buy, which means I try to keep them in decent shape and not written in or similar. I&amp;rsquo;ve also found that GM screens don&amp;rsquo;t necessarily include the information I want to be in front of me, and instead has a lot of information I &lt;em&gt;don&amp;rsquo;t&lt;/em&gt; need. That&amp;rsquo;s a lot of the appeal of customizable GM screens like those produced by &lt;a href=&#34;https://www.peginc.com/store/savage-worlds-customizable-gm-screen/&#34; target=&#34;_blank&#34;&gt;Pinnacle/Savage Worlds&lt;/a&gt; and &lt;a href=&#34;http://hammerdog.com/twgs/&#34; target=&#34;_blank&#34;&gt;Hammerdog/the TWGS&lt;/a&gt;. Up until recently, I&amp;rsquo;d never modified an official GM screen to make it more useful.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve been playing D&amp;amp;D 5E since the Starter Set came out and began by using a &lt;a href=&#34;https://psmits.github.io/pdf/mini_screen5e_cut_marks.pdf&#34;&gt;custom GM screen I found online&lt;/a&gt;. This screen is designed for the mini six-panel 4X6 TWGS customizable screen, which I happened to have bought at GenCon 2014. The information on the custom screen is cleanly presented and covers all the major topics, including a well organized skills panel (more on that later). For the outside I just printed out and inserted some old Russ Nicholson art because of nostalgia. I used this screen until the official 5E screen came out.&lt;/p&gt;
-
-&lt;p&gt;When I switched to the official screen I found it a bit lacking. Most of the content was the same but there were a few issues that made me sad. For example, the organization of the Skills section and the lack of Action and Movement types were frustrating. Organizing skills by relevant ability makes much more sense to me than alphabetically, and I found this actually getting in my way of quickly making decisions. So, I decided to give modifying to better suit my needs the screen a shot.&lt;/p&gt;
-
-&lt;p&gt;Almost fortuitously, the 5E GM screen has lots of art space which provides ample space to customize with. While this means that the GM facing art gets covered up, I&amp;rsquo;ve found I&amp;rsquo;ve been able to pack in a ton of information by splicing the two screens together along with a few print outs. I barely have to remember rules minutiae or grab a manual these days!&lt;/p&gt;
-
-&lt;p&gt;Here are some pictures of the ways I&amp;rsquo;ve customized three of the four GM facing panels. I&amp;rsquo;m considering revising the Name Generator section, but I&amp;rsquo;m unsure what I would replace it with.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/screen_1.jpg&#34; alt=&#34;5E custom 1&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/screen_2.jpg&#34; alt=&#34;5E custom 2&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/img/screen_3.jpg&#34; alt=&#34;5E custom 3&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m curious about other improvements that could be made to various official GM screens to make them more useful, or even convert them across systems! Any examples of ways you&amp;rsquo;ve customized your GM screens?&lt;/p&gt;
 </description>
     </item>
     
