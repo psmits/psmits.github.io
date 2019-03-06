@@ -18,9 +18,9 @@
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/project/analytical_paleobiology/</guid>
-      <description>Current webbook draft avaliable here!
-In 2018 I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology. All of these lessons have been written in RMarkdown and emphasize the use of tidyverse packages. Additionally, I emphasize Bayesian data analysis as fundamental and use the brms package for implementing Stan-based models in R.
-So far I have written lessons on</description>
+      <description>I am writing a webbook on the analysis of paleontological data. The current draft of this book is avaliable here!. This project started in 2018 when I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology.
+So far I have written lessons on
+ Importing and cleaning data from the Paleobiology Database using dplyr and an emphasis on reproducible analyses.</description>
     </item>
     
     <item>

@@ -179,22 +179,30 @@ results %&amp;gt;%
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/project/analytical_paleobiology/</guid>
-      <description>&lt;p&gt;Current webbook draft avaliable &lt;a href=&#34;https://psmits.github.io/paleo_book/index.html&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In 2018 I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology. All of these lessons have been written in &lt;a href=&#34;https://rmarkdown.rstudio.com/&#34; target=&#34;_blank&#34;&gt;RMarkdown&lt;/a&gt; and emphasize the use of &lt;a href=&#34;https://www.tidyverse.org/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;tidyverse&lt;/code&gt; packages&lt;/a&gt;. Additionally, I emphasize Bayesian data analysis as fundamental and use the &lt;a href=&#34;https://github.com/paul-buerkner/brms&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;brms&lt;/code&gt; package&lt;/a&gt; for implementing &lt;a href=&#34;https://mc-stan.org/&#34; target=&#34;_blank&#34;&gt;Stan-based&lt;/a&gt; models in R.&lt;/p&gt;
+      <description>&lt;p&gt;I am writing a webbook on the analysis of paleontological data. The current draft of this book is &lt;a href=&#34;https://psmits.github.io/paleo_book/index.html&#34; target=&#34;_blank&#34;&gt;avaliable here!&lt;/a&gt;. This project started in 2018 when I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology.&lt;/p&gt;
 
 &lt;p&gt;So far I have written lessons on&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Importing and cleaning data from the &lt;a href=&#34;https://paleobiodb.org/#/&#34; target=&#34;_blank&#34;&gt;Paleobiology Database&lt;/a&gt; using &lt;code&gt;dplyr&lt;/code&gt;, with an emphasis on reproducible analyses.&lt;/li&gt;
+&lt;li&gt;Importing and cleaning data from the &lt;a href=&#34;https://paleobiodb.org/#/&#34; target=&#34;_blank&#34;&gt;Paleobiology Database&lt;/a&gt; using &lt;code&gt;dplyr&lt;/code&gt; and an emphasis on reproducible analyses.&lt;/li&gt;
 &lt;li&gt;Introduction to the logic of Bayesian data analysis.&lt;/li&gt;
 &lt;li&gt;Introduction to linear regression with a single binary predictor, emphasizing the interpretation of parameters and checking model adequacy.&lt;/li&gt;
-&lt;li&gt;Graph theory and network analysis approaches in paleobiology, with an emphasis on analyzing biogeographic co-occurrence of species. This module was requested by the class and is thus out of order.&lt;/li&gt;
 &lt;li&gt;Continuing linear regression by introducing continuous predictors, methods for improving parameter interpretation, and further emphasis on checking model adequacy.&lt;/li&gt;
-&lt;li&gt;Linear regression with categorical predictors with more than two levels, interpreting models with multiple predictors (incl. continuous and discrete), interpreting interaction effects, and methods for visualizing multivariate regression. (In progress).&lt;/li&gt;
+&lt;li&gt;Linear regression with categorical predictors with more than two levels, interpreting models with multiple predictors (incl. continuous and discrete), and methods for visualizing multivariate regression.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The initial 5 lessons are available &lt;a href=&#34;https://github.com/psmits/cal_paleostats&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;. I have begun compiling these initial lessons, as well as new ones, in an online textbook using &lt;a href=&#34;https://bookdown.org/home/&#34; target=&#34;_blank&#34;&gt;bookdown&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The next few lessons are expected to cover the following&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Logistic regression&lt;/li&gt;
+&lt;li&gt;Poisson regression&lt;/li&gt;
+&lt;li&gt;Random intercepts&lt;/li&gt;
+&lt;li&gt;Random slopes&lt;/li&gt;
+&lt;li&gt;Phylogenetic mixed models (i.e. phylogenetic effect as random intercept)&lt;/li&gt;
+&lt;li&gt;Discrete time series&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you have any suggestions for other materials to cover, please head over to the &lt;a href=&#34;https://github.com/psmits/paleo_book&#34; target=&#34;_blank&#34;&gt;book&amp;rsquo;s github page&lt;/a&gt; and lodge an &lt;a href=&#34;https://github.com/psmits/paleo_book/issues&#34; target=&#34;_blank&#34;&gt;issue&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
