@@ -179,7 +179,9 @@ results %&amp;gt;%
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/project/analytical_paleobiology/</guid>
-      <description>&lt;p&gt;In 2018 I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology. All of these lessons have been written in &lt;a href=&#34;https://rmarkdown.rstudio.com/&#34; target=&#34;_blank&#34;&gt;RMarkdown&lt;/a&gt; and emphasize the use of &lt;a href=&#34;https://www.tidyverse.org/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;tidyverse&lt;/code&gt; packages&lt;/a&gt;. Additionally, I emphasize Bayesian data analysis as fundamental and use the &lt;a href=&#34;https://github.com/paul-buerkner/brms&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;brms&lt;/code&gt; package&lt;/a&gt; for implementing &lt;a href=&#34;https://mc-stan.org/&#34; target=&#34;_blank&#34;&gt;Stan-based&lt;/a&gt; models in R.&lt;/p&gt;
+      <description>&lt;p&gt;Current webbook draft avaliable &lt;a href=&#34;https://psmits.github.io/paleo_book/index.html&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In 2018 I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology. All of these lessons have been written in &lt;a href=&#34;https://rmarkdown.rstudio.com/&#34; target=&#34;_blank&#34;&gt;RMarkdown&lt;/a&gt; and emphasize the use of &lt;a href=&#34;https://www.tidyverse.org/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;tidyverse&lt;/code&gt; packages&lt;/a&gt;. Additionally, I emphasize Bayesian data analysis as fundamental and use the &lt;a href=&#34;https://github.com/paul-buerkner/brms&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;brms&lt;/code&gt; package&lt;/a&gt; for implementing &lt;a href=&#34;https://mc-stan.org/&#34; target=&#34;_blank&#34;&gt;Stan-based&lt;/a&gt; models in R.&lt;/p&gt;
 
 &lt;p&gt;So far I have written lessons on&lt;/p&gt;
 
