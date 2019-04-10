@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Peter D Smits on Peter D Smits</title>
@@ -7,7 +6,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Peter D Smits</copyright>
-    <lastBuildDate>Mon, 05 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Jan 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
@@ -16,7 +15,10 @@
       <pubDate>Wed, 23 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/post/bolter-drill/</guid>
-      <description>&lt;p&gt;In my spare time I play Warhammer 40k, a game that involves rolling a lot of six-sided dice. My largest army are the Dark Angels, a major chapter of space marines.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;In my spare time I play Warhammer 40k, a game that involves rolling a lot of six-sided dice. My largest army are the Dark Angels, a major chapter of space marines.&lt;/p&gt;
 &lt;p&gt;Because I’ve wanted to grow my R skills, I finally wrote my first R package &lt;a href=&#34;https://github.com/psmits/mathhammr&#34;&gt;&lt;code&gt;mathhammr&lt;/code&gt;&lt;/a&gt;. This lightweight package is a collection functions for simulating collections of dice rolls.&lt;/p&gt;
 &lt;p&gt;The recently released Bolter Discipline beta rule for 40k is the perfect opportunity to demonstrate the package.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
@@ -179,7 +181,9 @@ results %&amp;gt;%
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/project/analytical_paleobiology/</guid>
-      <description>&lt;p&gt;I am writing a webbook on the analysis of paleontological data. The current draft of this book is &lt;a href=&#34;https://psmits.github.io/paleo_book/index.html&#34; target=&#34;_blank&#34;&gt;avaliable here!&lt;/a&gt;. This project started in 2018 when I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology.&lt;/p&gt;
+      <description>&lt;p&gt;I am writing a webbook on the analysis of paleontological data. The first six chapters are &lt;a href=&#34;https://psmits.github.io/paleo_book/index.html&#34; target=&#34;_blank&#34;&gt;avaliable here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This project started in 2018 when I helped teach a graduate-level class at UC-Berkeley on analytical paleobiology. Since then I have continued to produce short modules covering many different aspects of analytical paleobiology.&lt;/p&gt;
 
 &lt;p&gt;So far I have written lessons on&lt;/p&gt;
 
@@ -189,12 +193,12 @@ results %&amp;gt;%
 &lt;li&gt;Introduction to linear regression with a single binary predictor, emphasizing the interpretation of parameters and checking model adequacy.&lt;/li&gt;
 &lt;li&gt;Continuing linear regression by introducing continuous predictors, methods for improving parameter interpretation, and further emphasis on checking model adequacy.&lt;/li&gt;
 &lt;li&gt;Linear regression with categorical predictors with more than two levels, interpreting models with multiple predictors (incl. continuous and discrete), and methods for visualizing multivariate regression.&lt;/li&gt;
+&lt;li&gt;Logistic regression&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;The next few lessons are expected to cover the following&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Logistic regression&lt;/li&gt;
 &lt;li&gt;Poisson regression&lt;/li&gt;
 &lt;li&gt;Random intercepts&lt;/li&gt;
 &lt;li&gt;Random slopes&lt;/li&gt;
@@ -212,7 +216,10 @@ results %&amp;gt;%
       <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>https://psmits.github.io/post/macrostrat-polygon/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://macrostrat.org/&#34;&gt;Macrostrat&lt;/a&gt; is a data service I’ve written [about before]({{&amp;lt; relref “/post/macrostrat.html” &amp;gt;}}). Today I’m going to explaining how to get the fancy geological unit polygons you see when go to their &lt;a href=&#34;https://macrostrat.org/map/#/z=1.5/x=16/y=23/bedrock/lines/&#34;&gt;interactive&lt;/a&gt; &lt;a href=&#34;https://macrostrat.org/burwell/#3/40.80/-94.10&#34;&gt;geological maps&lt;/a&gt;. This is not covered or documented in the &lt;a href=&#34;https://macrostrat.org/api/v2/&#34;&gt;Macrostrat API&lt;/a&gt; – I only figured it out through snooping, determination, and careful skimming of the &lt;a href=&#34;https://github.com/UW-Macrostrat/sift&#34;&gt;sift&lt;/a&gt; source code.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;&lt;a href=&#34;https://macrostrat.org/&#34;&gt;Macrostrat&lt;/a&gt; is a data service I’ve written [about before]({{&amp;lt; relref “/post/macrostrat.html” &amp;gt;}}). Today I’m going to explaining how to get the fancy geological unit polygons you see when go to their &lt;a href=&#34;https://macrostrat.org/map/#/z=1.5/x=16/y=23/bedrock/lines/&#34;&gt;interactive&lt;/a&gt; &lt;a href=&#34;https://macrostrat.org/burwell/#3/40.80/-94.10&#34;&gt;geological maps&lt;/a&gt;. This is not covered or documented in the &lt;a href=&#34;https://macrostrat.org/api/v2/&#34;&gt;Macrostrat API&lt;/a&gt; – I only figured it out through snooping, determination, and careful skimming of the &lt;a href=&#34;https://github.com/UW-Macrostrat/sift&#34;&gt;sift&lt;/a&gt; source code.&lt;/p&gt;
 &lt;p&gt;The goal of this “how-to” is to get the map for at least one geological unit. But how do we find this?&lt;/p&gt;
 &lt;p&gt;The Macrostrat API is not very…expansive. This makes interacting with the API frequently difficult.&lt;/p&gt;
 &lt;p&gt;The information we’re looking for are associated with the geologic map units. From the API landing page, we’d expect our map information to be somewhere along the &lt;code&gt;/geologic_units&lt;/code&gt; path. From the landing page there appear to be only three paths forward &lt;code&gt;/geologic_units/gmna&lt;/code&gt;, &lt;code&gt;/geologic_units/gmus/&lt;/code&gt;, and &lt;code&gt;/geologic_units/map&lt;/code&gt;. That last one seems right, right?&lt;/p&gt;

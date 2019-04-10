@@ -7,31 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Peter D Smits</copyright>
-    <lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://psmits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Academic</title>
-      <link>https://psmits.github.io/tags/academic/</link>
-      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/tags/academic/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data visualization</title>
-      <link>https://psmits.github.io/tags/data-visualization/</link>
-      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
-      
-      <guid>https://psmits.github.io/tags/data-visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fun</title>
+      <title>fun</title>
       <link>https://psmits.github.io/tags/fun/</link>
       <pubDate>Wed, 23 Jan 2019 00:00:00 +0000</pubDate>
       
@@ -40,7 +22,25 @@
     </item>
     
     <item>
-      <title>Macrostrat</title>
+      <title>academic</title>
+      <link>https://psmits.github.io/tags/academic/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/tags/academic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data visualization</title>
+      <link>https://psmits.github.io/tags/data-visualization/</link>
+      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
+      
+      <guid>https://psmits.github.io/tags/data-visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macrostrat</title>
       <link>https://psmits.github.io/tags/macrostrat/</link>
       <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
       
@@ -49,7 +49,7 @@
     </item>
     
     <item>
-      <title>Rpg</title>
+      <title>rpg</title>
       <link>https://psmits.github.io/tags/rpg/</link>
       <pubDate>Thu, 27 Jul 2017 21:18:08 -0500</pubDate>
       
@@ -58,7 +58,7 @@
     </item>
     
     <item>
-      <title>Stan</title>
+      <title>stan</title>
       <link>https://psmits.github.io/tags/stan/</link>
       <pubDate>Wed, 10 May 2017 13:24:42 -0500</pubDate>
       

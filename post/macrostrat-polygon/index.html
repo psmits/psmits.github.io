@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Source Themes Academic 2.4.0">
-  <meta name="generator" content="Hugo 0.48" />
+  <meta name="generator" content="Hugo 0.55.0" />
   <meta name="author" content="Peter D Smits">
 
   
@@ -335,7 +335,10 @@ The goal of this “how-to” is to get the map for at least one geological unit
 
 
     <div class="article-style" itemprop="articleBody">
-      <p><a href="https://macrostrat.org/">Macrostrat</a> is a data service I’ve written [about before]({{&lt; relref “/post/macrostrat.html” &gt;}}). Today I’m going to explaining how to get the fancy geological unit polygons you see when go to their <a href="https://macrostrat.org/map/#/z=1.5/x=16/y=23/bedrock/lines/">interactive</a> <a href="https://macrostrat.org/burwell/#3/40.80/-94.10">geological maps</a>. This is not covered or documented in the <a href="https://macrostrat.org/api/v2/">Macrostrat API</a> – I only figured it out through snooping, determination, and careful skimming of the <a href="https://github.com/UW-Macrostrat/sift">sift</a> source code.</p>
+      
+
+
+<p><a href="https://macrostrat.org/">Macrostrat</a> is a data service I’ve written [about before]({{&lt; relref “/post/macrostrat.html” &gt;}}). Today I’m going to explaining how to get the fancy geological unit polygons you see when go to their <a href="https://macrostrat.org/map/#/z=1.5/x=16/y=23/bedrock/lines/">interactive</a> <a href="https://macrostrat.org/burwell/#3/40.80/-94.10">geological maps</a>. This is not covered or documented in the <a href="https://macrostrat.org/api/v2/">Macrostrat API</a> – I only figured it out through snooping, determination, and careful skimming of the <a href="https://github.com/UW-Macrostrat/sift">sift</a> source code.</p>
 <p>The goal of this “how-to” is to get the map for at least one geological unit. But how do we find this?</p>
 <p>The Macrostrat API is not very…expansive. This makes interacting with the API frequently difficult.</p>
 <p>The information we’re looking for are associated with the geologic map units. From the API landing page, we’d expect our map information to be somewhere along the <code>/geologic_units</code> path. From the landing page there appear to be only three paths forward <code>/geologic_units/gmna</code>, <code>/geologic_units/gmus/</code>, and <code>/geologic_units/map</code>. That last one seems right, right?</p>
