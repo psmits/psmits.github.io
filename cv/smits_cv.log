@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  26 FEB 2019 14:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  2 MAY 2019 11:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -342,7 +342,7 @@ onal Academy of Sci-ences\OT1/cmr/m/n/10 , 112(42):1301513020,
  []
 
 
-Overfull \hbox (10.35614pt too wide) in paragraph at lines 339--340
+Overfull \hbox (10.35614pt too wide) in paragraph at lines 340--341
 []\OT1/cmr/bx/n/10 Peter D Smits\OT1/cmr/m/n/10 , Ken-neth D Ang-iel-czyk, Jame
 s F Parham, Bryan Stu-art. Su-per-vised
  []
@@ -353,18 +353,18 @@ s F Parham, Bryan Stu-art. Su-per-vised
 
 AED: lastpage setting LastPage
 [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 496.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 496.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
  (./smits_cv.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 496.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 496.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
 Package rerunfilecheck Info: File `smits_cv.out' has not changed.
-(rerunfilecheck)             Checksum: 1A90896E904FCD2DFA08699684D55316;496.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 496.
+(rerunfilecheck)             Checksum: 30D45B423ADAB4D0E8D852FC365E00F4;495.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 497.
  ) 
 Here is how much of TeX's memory you used:
- 5815 strings out of 492982
- 86664 string characters out of 6134895
+ 5816 strings out of 492982
+ 86670 string characters out of 6134895
  183126 words of memory out of 5000000
  9340 multiletter control sequences out of 15000+600000
  5200 words of font info for 19 fonts, out of 8000000 for 9000
@@ -376,10 +376,10 @@ e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on smits_cv.pdf (3 pages, 90795 bytes).
+Output written on smits_cv.pdf (3 pages, 90915 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
- 22 named destinations out of 1000 (max. 500000)
+ 100 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
+ 23 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
