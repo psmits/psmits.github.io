@@ -6,8 +6,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Peter D Smits</copyright>
-    <lastBuildDate>Wed, 23 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 May 2019 14:00:38 -0700</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Online textbook on Analytical Paleobiology</title>
+      <link>https://psmits.github.io/post/online_textbook/</link>
+      <pubDate>Mon, 13 May 2019 14:00:38 -0700</pubDate>
+      
+      <guid>https://psmits.github.io/post/online_textbook/</guid>
+      <description>&lt;p&gt;For the last few months I have been working on an &lt;a href=&#34;https://psmits.github.io/paleo_book/index.html&#34; target=&#34;_blank&#34;&gt;online textbook/short-course on analytical paleobiology&lt;/a&gt;. The goal of this project is to develop a series of tutorials and how-to guides that are suitable to teach from as individual 2-hour lessons. These lessons are meant to serve launching points for further learning, and not as fully comprehensive reference tools (suggested readings are listed at the top of each lesson). Throughout the text I emphasize critically thinking about your data and using domain knowledge to shape and drive our analyses. I demonstrate this by using real-world datasets to illustrate analytical approaches and tools.&lt;/p&gt;
+
+&lt;p&gt;The first section covers importing and cleaning data from the Paleobiology Database using &lt;code&gt;tidyverse&lt;/code&gt; tools such as &lt;code&gt;dplyr&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The second section introduce the core concepts behind Bayesian data analysis. This approach is emphasized throughout the text.&lt;/p&gt;
+
+&lt;p&gt;Most of the subsequence sections cover regression modeling, from the most basic linear regression to interaction terms to logistic regression.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve written a section on varying-intercept models and am developing more material on multilevel models, in particular application to analyzing paleontological time-series data.&lt;/p&gt;
+
+&lt;p&gt;You can track more information about this text on the &lt;a href=&#34;https://psmits.github.io/project/analytical_paleobiology/&#34; target=&#34;_blank&#34;&gt;project page&lt;/a&gt;, or on the &lt;a href=&#34;https://github.com/psmits/paleo_book&#34; target=&#34;_blank&#34;&gt;text&amp;rsquo;s github page&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>mathhammr and Bolter Discipline Beta rule</title>
@@ -193,17 +213,18 @@ results %&amp;gt;%
 &lt;li&gt;Introduction to linear regression with a single binary predictor, emphasizing the interpretation of parameters and checking model adequacy.&lt;/li&gt;
 &lt;li&gt;Continuing linear regression by introducing continuous predictors, methods for improving parameter interpretation, and further emphasis on checking model adequacy.&lt;/li&gt;
 &lt;li&gt;Linear regression with categorical predictors with more than two levels, interpreting models with multiple predictors (incl. continuous and discrete), and methods for visualizing multivariate regression.&lt;/li&gt;
-&lt;li&gt;Logistic regression&lt;/li&gt;
+&lt;li&gt;Logistic regression.&lt;/li&gt;
+&lt;li&gt;Interaction terms in regression models.&lt;/li&gt;
+&lt;li&gt;Varying-intercept models.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;The next few lessons are expected to cover the following&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Poisson regression&lt;/li&gt;
-&lt;li&gt;Random intercepts&lt;/li&gt;
-&lt;li&gt;Random slopes&lt;/li&gt;
-&lt;li&gt;Phylogenetic mixed models (i.e. phylogenetic effect as random intercept)&lt;/li&gt;
+&lt;li&gt;Varying-intercept and varying-slopes models&lt;/li&gt;
 &lt;li&gt;Discrete time series&lt;/li&gt;
+&lt;li&gt;Phylogenetic mixed models (i.e. phylogenetic effect as random intercept)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;If you have any suggestions for other materials to cover, please head over to the &lt;a href=&#34;https://github.com/psmits/paleo_book&#34; target=&#34;_blank&#34;&gt;book&amp;rsquo;s github page&lt;/a&gt; and lodge an &lt;a href=&#34;https://github.com/psmits/paleo_book/issues&#34; target=&#34;_blank&#34;&gt;issue&lt;/a&gt;.&lt;/p&gt;
@@ -588,30 +609,6 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
 &lt;hr /&gt;
 
 &lt;p&gt;These suggested changes allow the sorcerer to cast and modify their spells very freely which I think improves the unique aspects of their flavor. These ideas are taken from something I read on a traditional games forum, and I claim no ownership to these ideas. Sadly the original post no longer exists, but to whomever suggested these changes, I thank you. I think I&amp;rsquo;ll be using this bit of homebrew for my (hopefully) upcoming Planescape campaign!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Introduction to my Evolution2017 talk</title>
-      <link>https://psmits.github.io/post/pre_evol_2017/</link>
-      <pubDate>Fri, 19 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/post/pre_evol_2017/</guid>
-      <description>&lt;p&gt;I will be presenting the analysis and results from the third study from my Ph.D at &lt;a href=&#34;http://www.evolutionmeetings.org/evolution-2017---portland-oregon.html&#34; target=&#34;_blank&#34;&gt;Evolution2017 in Portland, Oregon&lt;/a&gt;. In preparation for and to better contextualize my talk, I have decided to write an extended abstract. My talk is titled &amp;ldquo;The changing functional composition of the North American species pool: modeling species origination-extinction as a function of functional group and environmental context&amp;rdquo; and I&amp;rsquo;m the sole author on the study though all of the data analyzed is available through the &lt;a href=&#34;https://paleobiodb.org/&#34; target=&#34;_blank&#34;&gt;Paleobiological Database&lt;/a&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;A species pools change over time as new species enter the system through speciation or immigration and species leave through extinction and extirpation. Changes in the functional composition of a regional species pool are changes that occur across all local communities drawn from that species pool. While a species&amp;rsquo; presence in a local community is due to the availability of the necessary biotic-biotic or biotic-abiotic interactions that enable coexistence, a species&amp;rsquo; presence in a regional species pool just requires that at least one local community has that set of necessary interactions. I am investigating how the interaction of multiple macroecological and macroevolutionary processes acting at multiple levels of organization can lead to specific changes to the functional diversity of the species pool.&lt;/p&gt;
-
-&lt;p&gt;Here, I analyze the diversity history of North American mammals functional groups for most of the Cenozoic (the last 65 million years). The goal of this analysis is to understand when, and possibly for what reasons, mammal functional groups are enriched or depleted relative to their average diversity. Additionally, I frame the historical processes affecting mammal diversity in terms of both their means of interacting with the biotic and abiotic environment (i.e. functional group) as well as their regional and global environmental context (e.g. dominant floral groups, temperature).&lt;/p&gt;
-
-&lt;p&gt;I analyzed the mammal fossil occurrence data using a Bayesian hidden Markov model based off of the Jolly-Seber capture-mark-recapture model. I then modeled the three probability parameters (i.e. sampling, speciation, extinction) as the result three separate hierarchical logistic regressions. The code implementing this model was written using the Stan probabilistic programming language.&lt;/p&gt;
-
-&lt;p&gt;I find that changes to mammal diversity are driven more by changes to speciation rate rather than changes to extinction rate. I also find that the only functional groups which increase in standing diversity over time are digitigrade and unguligrade herbivores, though herbivores in general increase in relative diversity compared to other ecotypes. This increase in diversity is at the possible expense of the arboreal functional groups which became increasingly rare and in many cases disappear entirely from the species pool by the Recent. Additionally, I find that global temperature is only associated with the origination of some mammal ecotypes but, in almost all cases, does not affect the extinction of mammal ecotypes.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Now I just need to revise the dissertation chapter into an actual publication!&lt;/p&gt;
 </description>
     </item>
     

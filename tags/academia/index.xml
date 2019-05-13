@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>academia on Peter D Smits</title>
+    <link>https://psmits.github.io/tags/academia/</link>
+    <description>Recent content in academia on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Mon, 13 May 2019 14:00:38 -0700</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/tags/academia/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Online textbook on Analytical Paleobiology</title>
+      <link>https://psmits.github.io/post/online_textbook/</link>
+      <pubDate>Mon, 13 May 2019 14:00:38 -0700</pubDate>
+      
+      <guid>https://psmits.github.io/post/online_textbook/</guid>
+      <description>For the last few months I have been working on an online textbook/short-course on analytical paleobiology. The goal of this project is to develop a series of tutorials and how-to guides that are suitable to teach from as individual 2-hour lessons. These lessons are meant to serve launching points for further learning, and not as fully comprehensive reference tools (suggested readings are listed at the top of each lesson). Throughout the text I emphasize critically thinking about your data and using domain knowledge to shape and drive our analyses.</description>
+    </item>
+    
+  </channel>
+</rss>
