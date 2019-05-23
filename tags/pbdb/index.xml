@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pbdb on Peter D Smits</title>
+    <link>https://psmits.github.io/tags/pbdb/</link>
+    <description>Recent content in pbdb on Peter D Smits</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Peter D Smits</copyright>
+    <lastBuildDate>Thu, 23 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://psmits.github.io/tags/pbdb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Connecting Macrostrat and Paleobiology Database</title>
+      <link>https://psmits.github.io/post/macrostrat-and-pbdb/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat-and-pbdb/</guid>
+      <description>As a small project before I change careers, I’ve gone back to exploring the fossil record of the Ordovician and Silurian through the lens of how well does lithology predict the observed diversity or richness of fossils.
+This exploration requires data from the Macrostrat and Paleobiology Database databases. While these two databases share a lot of similar ideas, they are not directly linked. Instead, Macrostrat entries have information linking them to PBDB occurrences and collections.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Peter D Smits</copyright>
-    <lastBuildDate>Mon, 13 May 2019 14:00:38 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 23 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://psmits.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>academic</title>
+      <link>https://psmits.github.io/tags/academic/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/tags/academic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macrostrat</title>
+      <link>https://psmits.github.io/tags/macrostrat/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/tags/macrostrat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pbdb</title>
+      <link>https://psmits.github.io/tags/pbdb/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/tags/pbdb/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>academia</title>
@@ -31,29 +58,11 @@
     </item>
     
     <item>
-      <title>academic</title>
-      <link>https://psmits.github.io/tags/academic/</link>
-      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/tags/academic/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>data visualization</title>
       <link>https://psmits.github.io/tags/data-visualization/</link>
       <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
       
       <guid>https://psmits.github.io/tags/data-visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>macrostrat</title>
-      <link>https://psmits.github.io/tags/macrostrat/</link>
-      <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
-      
-      <guid>https://psmits.github.io/tags/macrostrat/</guid>
       <description></description>
     </item>
     

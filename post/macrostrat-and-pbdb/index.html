@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 2.4.0">
+  <meta name="generator" content="Hugo 0.55.0" />
+  <meta name="author" content="Peter D Smits">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="As a small project before I change careers, I’ve gone back to exploring the fossil record of the Ordovician and Silurian through the lens of how well does lithology predict the observed diversity or richness of fossils.
+This exploration requires data from the Macrostrat and Paleobiology Database databases. While these two databases share a lot of similar ideas, they are not directly linked. Instead, Macrostrat entries have information linking them to PBDB occurrences and collections.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://psmits.github.io/post/macrostrat-and-pbdb/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://psmits.github.io/index.xml" type="application/rss+xml" title="Peter D Smits">
+  <link rel="feed" href="https://psmits.github.io/index.xml" type="application/rss+xml" title="Peter D Smits">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://psmits.github.io/post/macrostrat-and-pbdb/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Peter D Smits">
+  <meta property="og:url" content="https://psmits.github.io/post/macrostrat-and-pbdb/">
+  <meta property="og:title" content="Connecting Macrostrat and Paleobiology Database | Peter D Smits">
+  <meta property="og:description" content="As a small project before I change careers, I’ve gone back to exploring the fossil record of the Ordovician and Silurian through the lens of how well does lithology predict the observed diversity or richness of fossils.
+This exploration requires data from the Macrostrat and Paleobiology Database databases. While these two databases share a lot of similar ideas, they are not directly linked. Instead, Macrostrat entries have information linking them to PBDB occurrences and collections.">
+  
+  
+    
+  <meta property="og:image" content="https://psmits.github.io/img/icon-192.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-05-23T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2019-05-23T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>Connecting Macrostrat and Paleobiology Database | Peter D Smits</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Peter D Smits</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>CV/Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Connecting Macrostrat and Paleobiology Database</h1>
+
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Peter D Smits">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2019-05-23 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2019-05-23 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      May 23, 2019
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Peter D Smits">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    10 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/macrostrat-and-pbdb/#disqus_thread"></a>
+  
+
+  
+  
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Connecting%20Macrostrat%20and%20Paleobiology%20Database&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat-and-pbdb%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat-and-pbdb%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat-and-pbdb%2f&amp;title=Connecting%20Macrostrat%20and%20Paleobiology%20Database"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat-and-pbdb%2f&amp;title=Connecting%20Macrostrat%20and%20Paleobiology%20Database"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Connecting%20Macrostrat%20and%20Paleobiology%20Database&amp;body=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat-and-pbdb%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>As a small project before I change careers, I’ve gone back to exploring the fossil record of the Ordovician and Silurian through the lens of how well does lithology predict the observed diversity or richness of fossils.</p>
+<p>This exploration requires data from the <a href="https://macrostrat.org/">Macrostrat</a> and <a href="https://paleobiodb.org/#/">Paleobiology Database</a> databases. While these two databases share a lot of similar ideas, they are not directly linked. Instead, Macrostrat entries have information linking them to PBDB occurrences and collections. These unique ideas are the key to connecting these two databases.</p>
+<p>For this “how-to”, I’m focusing on adding information about a fossils geological context to that occurrence record. This requires geological unit and fossil collection information from Macrostrat, and then the relevant occurrence information from the PBDB. Once all this information is avaliable, it only takes a few joins to get us to a usable dataset.</p>
+<p>I’ve been writing out my explorations as I do them, so I’ll just copy and paste them here.</p>
+<div id="scrap-data-from-dbs" class="section level1">
+<h1>Scrap data from DBs</h1>
+<p>We are analyzing the association between fossils and the geological units in which they are found. The data for this analysis is spread across multiple databases, and multiple tables within those databases.</p>
+<p>The first major source is Macrostrat, which provides geological information for North America. This information includes unique id-s for fossil collections made from those geological units.</p>
+<p>The second major source is the Paleobiology Database, which provides information on those fossil occurrences. Macrostrat and PBDB are linked by a few key variables, most importantly <code>unit_id</code> (unique identifer for each geologicla unit.)</p>
+<p>In this section, I’m going to pull all of the correct tables from their respective databases. Which then sets up all of our subsequent analyses. We can regenerate/update our data at anytime by running this script. The only limits are internet connection and server status.</p>
+<p>Step 0 is loading some useful packages for loading and cleaning data.</p>
+<pre class="r"><code>library(pacman)
+
+p_load(here, janitor, tibble, readr, magrittr, dplyr, 
+       tidyr, purrr, glue, stringr, 
+       ggplot2, scales, viridis, ggrepel)</code></pre>
+<p>There are several useful constants that will appear throughout the next few sections.</p>
+<pre class="r"><code>theme_set(theme_bw(base_size = 20))
+
+# colour blind palette of choice
+blind &lt;- c(&quot;#999999&quot;, &quot;#E69F00&quot;, &quot;#56B4E9&quot;, &quot;#009E73&quot;, 
+           &quot;#F0E442&quot;, &quot;#0072B2&quot;, &quot;#D55E00&quot;, &quot;#CC79A7&quot;)
+
+# useful constants
+shelly &lt;- c(&#39;Brachiopoda&#39;, &#39;Anthozoa&#39;, &#39;Trilobita&#39;, 
+            &#39;Bivalvia&#39;, &#39;Gastropoda&#39;)#, &#39;Cephalopoda&#39;)
+temp_range &lt;- c(485.4, 419.2)          # ordovicain + silurian
+hirnantian &lt;- c(445.2, 443.8)</code></pre>
+<div id="macrostrat-units" class="section level2">
+<h2>Macrostrat units</h2>
+<p>The next step is pulling all of the geological units recorded in Macrostrat for the Ordovician and the Silurian. I’ve had trouble writing out API call to do this all in one step, so I’ve broken it out by period and then combine them.</p>
+<pre class="r"><code>ord_unit_url &lt;- glue(&#39;https://macrostrat.org/api/v2/units?&#39;,
+                     &#39;interval_name=Ordovician&amp;response=long&amp;format=csv&#39;)
+ord_unit &lt;- read_csv(ord_unit_url)
+
+sil_unit_url &lt;- glue(&#39;https://macrostrat.org/api/v2/units?&#39;,
+                     &#39;interval_name=Silurian&amp;response=long&amp;format=csv&#39;)
+sil_unit &lt;- read_csv(sil_unit_url)
+
+unit_data &lt;- dplyr::union(ord_unit, sil_unit) # formerly `strat`</code></pre>
+</div>
+<div id="macrostrat-fossils" class="section level2">
+<h2>Macrostrat fossils</h2>
+<p>Now that we have the data for all of our fossil units, let’s extract the relevant fossil information. <code>unit_id</code> is the key value that links the units and fossils tables within the Macrostrat DB.</p>
+<p>However, not every unit that has Ordovician or Silurian sediments contains a fossil. A quick filter gives the <code>unit_id</code> values for fossil-bearing geological units. This vector can then be massaged and passed to the Macrostrat API.</p>
+<pre class="r"><code>unit_w_fossils &lt;- 
+  unit_data %&gt;%
+  filter(pbdb_collections &gt; 0) %&gt;%
+  dplyr::select(unit_id) %&gt;%
+  pull() %&gt;%
+  glue_collapse(., sep = &#39;,&#39;)
+
+collect_url &lt;- glue(&#39;https://macrostrat.org/api/v2/fossils?unit_id=&#39;,
+                   &#39;{unit_w_fossils}&#39;,
+                   &#39;&amp;response=long&amp;format=csv&#39;)
+
+collect_data &lt;- read_csv(collect_url)  # formerly `fossil`</code></pre>
+</div>
+<div id="pbdb-occurrences" class="section level2">
+<h2>PBDB occurrences</h2>
+<p>The <code>collect_data</code> tibble has all the necessary information to recover fossil occurrence information from the PBDB. The column <code>cltn_id</code> has the unique identifier for the PBDB collections assocated with each geological unit (<code>unit_id</code>). We can extract and massage the <code>cltn_id</code> column into a vector we can pass to the PBDB API, making a call for an occurrence list. The resulting tibble has a row for every fossil occurrence found in collections made from geological units that contain Ordovician or Siliurian sediments.</p>
+<pre class="r"><code>pbdb_collections &lt;- 
+  collect_data %&gt;%
+  dplyr::select(cltn_id) %&gt;%
+  pull() %&gt;%
+  glue_collapse(., sep = &#39;,&#39;)
+
+pbdb_url &lt;- glue(&#39;https://paleobiodb.org/data1.2/occs/list.txt?coll_id=&#39;,
+                 &#39;{pbdb_collections}&#39;,
+                 &#39;&amp;show=full&#39;)
+
+pbdb_data &lt;- read_csv(pbdb_url) %&gt;%    # formerly `taxon`
+  drop_na(genus)</code></pre>
+<pre><code>## Warning: Duplicated column names deduplicated: &#39;cc&#39; =&gt; &#39;cc_1&#39; [47]</code></pre>
+<pre><code>## Warning: 226361 parsing failures.
+##  row              col           expected                 actual</code></pre>
+</div>
+</div>
+<div id="preparing-data-for-analysis" class="section level1">
+<h1>Preparing data for analysis</h1>
+<p>The next step is to process our data so that it is ready for analysis. This process takes a lot of steps, but once it is complete we can start visualizing and modeling out data.</p>
+<div id="joining-macrostrat-and-pbdb" class="section level2">
+<h2>Joining Macrostrat and PBDB</h2>
+<p>Now that that’s out of the way, let’s start getting out data into shape. An obvious first step is connect the Macrostrat units table to the fossils table.</p>
+<p>There are multiple collections occurrences per unit, so I’ll add all the appropriate unit information to each fossil collection. I’m not worrying about units that lack fossils (yet), hence the left join.</p>
+<pre class="r"><code>collect_unit &lt;- left_join(x = collect_data, y = unit_data, 
+                         by = c(&#39;unit_id&#39;, &#39;col_id&#39;, &#39;t_age&#39;, &#39;b_age&#39;)) %&gt;%
+  dplyr::select(-(genus_no:taxon_no), refs.y) # redundant/unnecessary
+
+print(collect_unit)</code></pre>
+<pre><code>## # A tibble: 8,693 x 48
+##    cltn_id cltn_name t_age b_age pbdb_occs unit_id col_id refs.x
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1     228 SS-24, S…  458.  466.         7    2084     58      8
+##  2     237 Marathon…  457.  460.         8    2146     59      8
+##  3     244 SW Riche…  480.  502.         5    9412    339      8
+##  4     246 SW Riche…  480.  502.        16    9412    339      8
+##  5     251 Bear Riv…  483.  496.        17   14482    477      8
+##  6     253 Stansbur…  483.  493.         2   14175    471      8
+##  7     257 H-1. nea…  483.  494.         6   10248    315      8
+##  8     258 SW Riche…  480.  502.        15    9412    339      8
+##  9     270 SW Riche…  480.  502.         8    9412    339      8
+## 10     271 Zones B …  480.  485.        22    5677    163      8
+## # … with 8,683 more rows, and 40 more variables:
+## #   strat_name_concept_id &lt;dbl&gt;, section_id &lt;dbl&gt;, project_id &lt;dbl&gt;,
+## #   col_area &lt;dbl&gt;, unit_name &lt;chr&gt;, strat_name_id &lt;dbl&gt;, Mbr &lt;chr&gt;,
+## #   Fm &lt;chr&gt;, Gp &lt;chr&gt;, SGp &lt;chr&gt;, max_thick &lt;dbl&gt;, min_thick &lt;dbl&gt;,
+## #   outcrop &lt;chr&gt;, pbdb_collections &lt;dbl&gt;, pbdb_occurrences &lt;dbl&gt;,
+## #   lith &lt;chr&gt;, environ &lt;chr&gt;, econ &lt;chr&gt;, measure &lt;chr&gt;, notes &lt;chr&gt;,
+## #   color &lt;chr&gt;, text_color &lt;chr&gt;, t_int_id &lt;dbl&gt;, t_int_name &lt;chr&gt;,
+## #   t_int_age &lt;dbl&gt;, t_prop &lt;dbl&gt;, units_above &lt;chr&gt;, b_int_id &lt;dbl&gt;,
+## #   b_int_name &lt;chr&gt;, b_int_age &lt;dbl&gt;, b_prop &lt;dbl&gt;, units_below &lt;dbl&gt;,
+## #   strat_name_long &lt;chr&gt;, refs.y &lt;chr&gt;, clat &lt;dbl&gt;, clng &lt;dbl&gt;,
+## #   t_plat &lt;dbl&gt;, t_plng &lt;dbl&gt;, b_plat &lt;dbl&gt;, b_plng &lt;dbl&gt;</code></pre>
+<p>This gives a single table with all fossil collections associated with their geological information (lithology, age, etc.) The next step is associating the geological context of each collection with the individual occurrences within that collection. I’m only caring about occurrences recorded in the PBDB – they have the most information – hence the left join. I’m also going to filter the occurrences to just those of shelly marine taxa which I defined above as one of the useful constants.</p>
+<pre class="r"><code>occur_collect &lt;- 
+  pbdb_data %&gt;%
+  filter(phylum %in% shelly | class %in% shelly) %&gt;%
+  left_join(., collect_unit, by = c(&#39;collection_no&#39; = &#39;cltn_id&#39;)) %&gt;%
+  mutate(occur_mid_ma = (max_ma + min_ma) / 2,
+         unit_mid_ma = (t_age + b_age) / 2)</code></pre>
+</div>
+<div id="filter-by-occurrence-age" class="section level2">
+<h2>Filter by occurrence age</h2>
+<p>A big issue is that these occurrences from all over time, not just the Ordovician + Silurian. Just look.</p>
+<pre class="r"><code>occur_collect %&gt;% 
+  ggplot(aes(x = occur_mid_ma)) +
+  geom_bar(width = 2) +
+  scale_x_reverse()</code></pre>
+<pre><code>## Warning: position_stack requires non-overlapping x intervals</code></pre>
+<p><img src="/post/2019-05-23-macrostrat-and-pbdb_files/figure-html/vis_ages-1.png" width="672" /></p>
+<p>This problem due to geological units not being restricted to a particular time interval. A unit can range through, into, or out of our target temporal range.</p>
+<p>To overcome this and focus only on fossil occurrences from the Ordovician or Silurian, I filtering down to only those occurrences who’s mid-point age is within <code>temp_range</code>.</p>
+<pre class="r"><code>occur_collect %&lt;&gt;%
+  filter(between(occur_mid_ma, temp_range[2], temp_range[1]))
+
+occur_collect %&gt;%
+  ggplot(aes(x = occur_mid_ma)) +
+  geom_bar(width = 2) +
+  scale_x_reverse()</code></pre>
+<pre><code>## Warning: position_stack requires non-overlapping x intervals</code></pre>
+<p><img src="/post/2019-05-23-macrostrat-and-pbdb_files/figure-html/filter_age-1.png" width="672" /></p>
+<p>Much better.</p>
+</div>
+<div id="binning-occurrences" class="section level2">
+<h2>Binning occurrences</h2>
+<p>The fossil record is a discrete recording of continuous time which creates all kinds of problems. Additionally, paleo-time is more of a range than an instaneous value. Binning out data helps alleviate this – it just requires us to define a temporal width for each bin. There are two ways to do this: predetermine how many bins you want, or pick an (arbitrary) value. Luckily I’ve written a function that can do both: <code>bin_ages()</code>.</p>
+<pre class="r"><code>#&#39; Break time data up into bins
+#&#39; 
+#&#39; Have fun with this. Basic rules. Greater than equal to base, less than top.
+#&#39; 
+#&#39; @param x vector of ages
+#&#39; @param by bin width
+#&#39; @param age logical bin age returned, not number (default FALSE, return bin number)
+#&#39; @return vector of bin memberships
+#&#39; @author Peter D Smits &lt;peterdavidsmits@gmail.com&gt;
+#&#39; @export
+bin_ages &lt;- function(x, by = NULL, number = NULL, age = FALSE) {
+
+  if(is.null(by) &amp; is.null(number)) {
+    return(&#39;no scheme given. Specify either bin width or number of bins.&#39;)
+  }
+
+  if(!is.null(by) &amp; !is.null(number)) {
+    return(&#39;too much information. Specify either bin width OR number of bins, not both.&#39;)
+  }
+
+  # range to bin
+  top &lt;- ceiling(max(x))
+  bot &lt;- floor(min(x))
+
+  # create bins
+  if(!is.null(by)) {
+    unt &lt;- seq(from = bot, to = top, by = by)
+  } else if(!is.null(number)) {
+    unt &lt;- seq(from = bot, to = top, length.out = number + 1)
+  }
+
+  # bin top and bottom
+  unt1 &lt;- unt[-length(unt)]
+  unt2 &lt;- unt[-1]
+
+  # assign memberships
+  uu &lt;- map2(unt1, unt2, ~ which(between(x, left = .x, right = .y)))
+
+  # what if we want the &quot;age&quot; of the bin, not number?
+  if(age == TRUE) {
+    unt_age &lt;- map2_dbl(unt1, unt2, ~ median(c(.x, .y)))
+  }
+
+  # create output vector
+  y &lt;- x
+  for(ii in seq(length(uu))) {
+    if(age == FALSE) {
+      y[uu[[ii]]] &lt;- ii
+    } else if(age == TRUE) {
+      y[uu[[ii]]] &lt;- unt_age[ii]
+    }
+  }
+  y
+}</code></pre>
+<p>I want to compare multiple arbitrary bin widths to pick whatever feels “smoothest”. Sadly, I have trouble defining this algorithmically, but the general idea is to have as many bins as possible to have 1+ fossils and there are as few bins as possible with 0 fossils. Common bin widths include 1, 2, 5, and 10 million years, but I’m gonna look at a few more.</p>
+<pre class="r"><code>occur_collect %&gt;%
+  transmute(bin_01 = bin_ages(occur_mid_ma, by = 1, age = TRUE),
+            bin_02 = bin_ages(occur_mid_ma, by = 2, age = TRUE),
+            bin_025 = bin_ages(occur_mid_ma, by = 2.5, age = TRUE),
+            bin_05 = bin_ages(occur_mid_ma, by = 5, age = TRUE),
+            bin_10 = bin_ages(occur_mid_ma, by = 10, age = TRUE)) %&gt;%
+  gather(key = key, value = value) %&gt;%
+  ggplot(aes(x = value)) +
+  geom_bar(width = 2) +
+  facet_grid(key ~ .) +
+  scale_x_reverse()</code></pre>
+<pre><code>## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals</code></pre>
+<p><img src="/post/2019-05-23-macrostrat-and-pbdb_files/figure-html/compare_bin-1.png" width="672" /></p>
+<p>2 and 2.5 seem like the nicest of these options, and I like to favor having a lot of bins over having few bins so I’m going to stick with 2 million year bins.</p>
+<div id="saving-the-hirnantian" class="section level3">
+<h3>Saving the Hirnantian</h3>
+<p>However, there is a twist – we’re <em>really</em> interested in the occurrence patterns during the Hirnantian. This means I’d like the Hirnantian time interval preserved. The Hirnantian lasted from 445.2 to 443.8 Ma – a <em>really</em> small interval of time.</p>
+<p>A solution is to bin all the data <em>before</em> and <em>after</em> the Hirnantian as per usual, leaving the Hirnantian as a one-off. Here is that effort.</p>
+<pre class="r"><code>occur_before &lt;- 
+  occur_collect %&gt;%
+  filter(occur_mid_ma &gt; max(hirnantian)) %&gt;%
+  mutate(bin_age = bin_ages(occur_mid_ma, by = 2, age = TRUE)) %&gt;%
+  dplyr::select(occurrence_no, bin_age)
+
+occur_after &lt;- 
+  occur_collect %&gt;%
+  filter(occur_mid_ma &lt; min(hirnantian)) %&gt;%
+  mutate(bin_age = bin_ages(occur_mid_ma, by = 2, age = TRUE)) %&gt;%
+  dplyr::select(occurrence_no, bin_age)
+
+
+occur_collect %&lt;&gt;%
+  left_join(., occur_before, by = &#39;occurrence_no&#39;) %&gt;%
+  left_join(., occur_after, by = &#39;occurrence_no&#39;) %&gt;%
+  mutate(bin_age = coalesce(bin_age.x, bin_age.y),
+         bin_age = if_else(is.na(bin_age),
+                           true = 445.2,
+                           false = bin_age),
+         # worst trick in the book
+         # lower values, younger bin
+         bin_num = as.numeric(as.factor(bin_age))) %&gt;% 
+  dplyr::select(-bin_age.x, -bin_age.y)</code></pre>
+<p>Now are tibble <code>occur_collect</code> has every observation assigned to a temporal bin and we know one of these bins (i.e. 445.2) is the Hirnantian. I’ve saved this to disk so it can be shared/interrogated on its own.</p>
+</div>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/academic/">academic</a>
+  
+  <a class="badge badge-light" href="/tags/macrostrat/">macrostrat</a>
+  
+  <a class="badge badge-light" href="/tags/pbdb/">pbdb</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/macrostrat_fossils/">Inspecting fossil diveristy in Macrostrat units</a></li>
+        
+        <li><a href="/post/macrostrat/">Downloading unit data from Macrostrat and looking at it</a></li>
+        
+        <li><a href="/project/analytical_paleobiology/">Teaching Material for Analytical Paleobiology</a></li>
+        
+        <li><a href="/post/macrostrat-polygon/">Extracting Macrostrat polygons</a></li>
+        
+        <li><a href="/talk/gsa_2018/">How predictable is extinction? Forecasting species survival at million-year timescales</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "peterdavidsmits" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; 2018 Peter D Smits &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//peterdavidsmits.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "Search Results",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+
+  </body>
+</html>
+

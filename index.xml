@@ -6,8 +6,276 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Peter D Smits</copyright>
-    <lastBuildDate>Mon, 13 May 2019 14:00:38 -0700</lastBuildDate>
+    <lastBuildDate>Thu, 23 May 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Connecting Macrostrat and Paleobiology Database</title>
+      <link>https://psmits.github.io/post/macrostrat-and-pbdb/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://psmits.github.io/post/macrostrat-and-pbdb/</guid>
+      <description>
+
+
+&lt;p&gt;As a small project before I change careers, I’ve gone back to exploring the fossil record of the Ordovician and Silurian through the lens of how well does lithology predict the observed diversity or richness of fossils.&lt;/p&gt;
+&lt;p&gt;This exploration requires data from the &lt;a href=&#34;https://macrostrat.org/&#34;&gt;Macrostrat&lt;/a&gt; and &lt;a href=&#34;https://paleobiodb.org/#/&#34;&gt;Paleobiology Database&lt;/a&gt; databases. While these two databases share a lot of similar ideas, they are not directly linked. Instead, Macrostrat entries have information linking them to PBDB occurrences and collections. These unique ideas are the key to connecting these two databases.&lt;/p&gt;
+&lt;p&gt;For this “how-to”, I’m focusing on adding information about a fossils geological context to that occurrence record. This requires geological unit and fossil collection information from Macrostrat, and then the relevant occurrence information from the PBDB. Once all this information is avaliable, it only takes a few joins to get us to a usable dataset.&lt;/p&gt;
+&lt;p&gt;I’ve been writing out my explorations as I do them, so I’ll just copy and paste them here.&lt;/p&gt;
+&lt;div id=&#34;scrap-data-from-dbs&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Scrap data from DBs&lt;/h1&gt;
+&lt;p&gt;We are analyzing the association between fossils and the geological units in which they are found. The data for this analysis is spread across multiple databases, and multiple tables within those databases.&lt;/p&gt;
+&lt;p&gt;The first major source is Macrostrat, which provides geological information for North America. This information includes unique id-s for fossil collections made from those geological units.&lt;/p&gt;
+&lt;p&gt;The second major source is the Paleobiology Database, which provides information on those fossil occurrences. Macrostrat and PBDB are linked by a few key variables, most importantly &lt;code&gt;unit_id&lt;/code&gt; (unique identifer for each geologicla unit.)&lt;/p&gt;
+&lt;p&gt;In this section, I’m going to pull all of the correct tables from their respective databases. Which then sets up all of our subsequent analyses. We can regenerate/update our data at anytime by running this script. The only limits are internet connection and server status.&lt;/p&gt;
+&lt;p&gt;Step 0 is loading some useful packages for loading and cleaning data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(pacman)
+
+p_load(here, janitor, tibble, readr, magrittr, dplyr, 
+       tidyr, purrr, glue, stringr, 
+       ggplot2, scales, viridis, ggrepel)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are several useful constants that will appear throughout the next few sections.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;theme_set(theme_bw(base_size = 20))
+
+# colour blind palette of choice
+blind &amp;lt;- c(&amp;quot;#999999&amp;quot;, &amp;quot;#E69F00&amp;quot;, &amp;quot;#56B4E9&amp;quot;, &amp;quot;#009E73&amp;quot;, 
+           &amp;quot;#F0E442&amp;quot;, &amp;quot;#0072B2&amp;quot;, &amp;quot;#D55E00&amp;quot;, &amp;quot;#CC79A7&amp;quot;)
+
+# useful constants
+shelly &amp;lt;- c(&amp;#39;Brachiopoda&amp;#39;, &amp;#39;Anthozoa&amp;#39;, &amp;#39;Trilobita&amp;#39;, 
+            &amp;#39;Bivalvia&amp;#39;, &amp;#39;Gastropoda&amp;#39;)#, &amp;#39;Cephalopoda&amp;#39;)
+temp_range &amp;lt;- c(485.4, 419.2)          # ordovicain + silurian
+hirnantian &amp;lt;- c(445.2, 443.8)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;macrostrat-units&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Macrostrat units&lt;/h2&gt;
+&lt;p&gt;The next step is pulling all of the geological units recorded in Macrostrat for the Ordovician and the Silurian. I’ve had trouble writing out API call to do this all in one step, so I’ve broken it out by period and then combine them.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ord_unit_url &amp;lt;- glue(&amp;#39;https://macrostrat.org/api/v2/units?&amp;#39;,
+                     &amp;#39;interval_name=Ordovician&amp;amp;response=long&amp;amp;format=csv&amp;#39;)
+ord_unit &amp;lt;- read_csv(ord_unit_url)
+
+sil_unit_url &amp;lt;- glue(&amp;#39;https://macrostrat.org/api/v2/units?&amp;#39;,
+                     &amp;#39;interval_name=Silurian&amp;amp;response=long&amp;amp;format=csv&amp;#39;)
+sil_unit &amp;lt;- read_csv(sil_unit_url)
+
+unit_data &amp;lt;- dplyr::union(ord_unit, sil_unit) # formerly `strat`&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;macrostrat-fossils&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Macrostrat fossils&lt;/h2&gt;
+&lt;p&gt;Now that we have the data for all of our fossil units, let’s extract the relevant fossil information. &lt;code&gt;unit_id&lt;/code&gt; is the key value that links the units and fossils tables within the Macrostrat DB.&lt;/p&gt;
+&lt;p&gt;However, not every unit that has Ordovician or Silurian sediments contains a fossil. A quick filter gives the &lt;code&gt;unit_id&lt;/code&gt; values for fossil-bearing geological units. This vector can then be massaged and passed to the Macrostrat API.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unit_w_fossils &amp;lt;- 
+  unit_data %&amp;gt;%
+  filter(pbdb_collections &amp;gt; 0) %&amp;gt;%
+  dplyr::select(unit_id) %&amp;gt;%
+  pull() %&amp;gt;%
+  glue_collapse(., sep = &amp;#39;,&amp;#39;)
+
+collect_url &amp;lt;- glue(&amp;#39;https://macrostrat.org/api/v2/fossils?unit_id=&amp;#39;,
+                   &amp;#39;{unit_w_fossils}&amp;#39;,
+                   &amp;#39;&amp;amp;response=long&amp;amp;format=csv&amp;#39;)
+
+collect_data &amp;lt;- read_csv(collect_url)  # formerly `fossil`&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pbdb-occurrences&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;PBDB occurrences&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;collect_data&lt;/code&gt; tibble has all the necessary information to recover fossil occurrence information from the PBDB. The column &lt;code&gt;cltn_id&lt;/code&gt; has the unique identifier for the PBDB collections assocated with each geological unit (&lt;code&gt;unit_id&lt;/code&gt;). We can extract and massage the &lt;code&gt;cltn_id&lt;/code&gt; column into a vector we can pass to the PBDB API, making a call for an occurrence list. The resulting tibble has a row for every fossil occurrence found in collections made from geological units that contain Ordovician or Siliurian sediments.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pbdb_collections &amp;lt;- 
+  collect_data %&amp;gt;%
+  dplyr::select(cltn_id) %&amp;gt;%
+  pull() %&amp;gt;%
+  glue_collapse(., sep = &amp;#39;,&amp;#39;)
+
+pbdb_url &amp;lt;- glue(&amp;#39;https://paleobiodb.org/data1.2/occs/list.txt?coll_id=&amp;#39;,
+                 &amp;#39;{pbdb_collections}&amp;#39;,
+                 &amp;#39;&amp;amp;show=full&amp;#39;)
+
+pbdb_data &amp;lt;- read_csv(pbdb_url) %&amp;gt;%    # formerly `taxon`
+  drop_na(genus)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Duplicated column names deduplicated: &amp;#39;cc&amp;#39; =&amp;gt; &amp;#39;cc_1&amp;#39; [47]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: 226361 parsing failures.
+##  row              col           expected                 actual&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;preparing-data-for-analysis&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Preparing data for analysis&lt;/h1&gt;
+&lt;p&gt;The next step is to process our data so that it is ready for analysis. This process takes a lot of steps, but once it is complete we can start visualizing and modeling out data.&lt;/p&gt;
+&lt;div id=&#34;joining-macrostrat-and-pbdb&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Joining Macrostrat and PBDB&lt;/h2&gt;
+&lt;p&gt;Now that that’s out of the way, let’s start getting out data into shape. An obvious first step is connect the Macrostrat units table to the fossils table.&lt;/p&gt;
+&lt;p&gt;There are multiple collections occurrences per unit, so I’ll add all the appropriate unit information to each fossil collection. I’m not worrying about units that lack fossils (yet), hence the left join.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;collect_unit &amp;lt;- left_join(x = collect_data, y = unit_data, 
+                         by = c(&amp;#39;unit_id&amp;#39;, &amp;#39;col_id&amp;#39;, &amp;#39;t_age&amp;#39;, &amp;#39;b_age&amp;#39;)) %&amp;gt;%
+  dplyr::select(-(genus_no:taxon_no), refs.y) # redundant/unnecessary
+
+print(collect_unit)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 8,693 x 48
+##    cltn_id cltn_name t_age b_age pbdb_occs unit_id col_id refs.x
+##      &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+##  1     228 SS-24, S…  458.  466.         7    2084     58      8
+##  2     237 Marathon…  457.  460.         8    2146     59      8
+##  3     244 SW Riche…  480.  502.         5    9412    339      8
+##  4     246 SW Riche…  480.  502.        16    9412    339      8
+##  5     251 Bear Riv…  483.  496.        17   14482    477      8
+##  6     253 Stansbur…  483.  493.         2   14175    471      8
+##  7     257 H-1. nea…  483.  494.         6   10248    315      8
+##  8     258 SW Riche…  480.  502.        15    9412    339      8
+##  9     270 SW Riche…  480.  502.         8    9412    339      8
+## 10     271 Zones B …  480.  485.        22    5677    163      8
+## # … with 8,683 more rows, and 40 more variables:
+## #   strat_name_concept_id &amp;lt;dbl&amp;gt;, section_id &amp;lt;dbl&amp;gt;, project_id &amp;lt;dbl&amp;gt;,
+## #   col_area &amp;lt;dbl&amp;gt;, unit_name &amp;lt;chr&amp;gt;, strat_name_id &amp;lt;dbl&amp;gt;, Mbr &amp;lt;chr&amp;gt;,
+## #   Fm &amp;lt;chr&amp;gt;, Gp &amp;lt;chr&amp;gt;, SGp &amp;lt;chr&amp;gt;, max_thick &amp;lt;dbl&amp;gt;, min_thick &amp;lt;dbl&amp;gt;,
+## #   outcrop &amp;lt;chr&amp;gt;, pbdb_collections &amp;lt;dbl&amp;gt;, pbdb_occurrences &amp;lt;dbl&amp;gt;,
+## #   lith &amp;lt;chr&amp;gt;, environ &amp;lt;chr&amp;gt;, econ &amp;lt;chr&amp;gt;, measure &amp;lt;chr&amp;gt;, notes &amp;lt;chr&amp;gt;,
+## #   color &amp;lt;chr&amp;gt;, text_color &amp;lt;chr&amp;gt;, t_int_id &amp;lt;dbl&amp;gt;, t_int_name &amp;lt;chr&amp;gt;,
+## #   t_int_age &amp;lt;dbl&amp;gt;, t_prop &amp;lt;dbl&amp;gt;, units_above &amp;lt;chr&amp;gt;, b_int_id &amp;lt;dbl&amp;gt;,
+## #   b_int_name &amp;lt;chr&amp;gt;, b_int_age &amp;lt;dbl&amp;gt;, b_prop &amp;lt;dbl&amp;gt;, units_below &amp;lt;dbl&amp;gt;,
+## #   strat_name_long &amp;lt;chr&amp;gt;, refs.y &amp;lt;chr&amp;gt;, clat &amp;lt;dbl&amp;gt;, clng &amp;lt;dbl&amp;gt;,
+## #   t_plat &amp;lt;dbl&amp;gt;, t_plng &amp;lt;dbl&amp;gt;, b_plat &amp;lt;dbl&amp;gt;, b_plng &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This gives a single table with all fossil collections associated with their geological information (lithology, age, etc.) The next step is associating the geological context of each collection with the individual occurrences within that collection. I’m only caring about occurrences recorded in the PBDB – they have the most information – hence the left join. I’m also going to filter the occurrences to just those of shelly marine taxa which I defined above as one of the useful constants.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;occur_collect &amp;lt;- 
+  pbdb_data %&amp;gt;%
+  filter(phylum %in% shelly | class %in% shelly) %&amp;gt;%
+  left_join(., collect_unit, by = c(&amp;#39;collection_no&amp;#39; = &amp;#39;cltn_id&amp;#39;)) %&amp;gt;%
+  mutate(occur_mid_ma = (max_ma + min_ma) / 2,
+         unit_mid_ma = (t_age + b_age) / 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;filter-by-occurrence-age&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Filter by occurrence age&lt;/h2&gt;
+&lt;p&gt;A big issue is that these occurrences from all over time, not just the Ordovician + Silurian. Just look.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;occur_collect %&amp;gt;% 
+  ggplot(aes(x = occur_mid_ma)) +
+  geom_bar(width = 2) +
+  scale_x_reverse()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: position_stack requires non-overlapping x intervals&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-05-23-macrostrat-and-pbdb_files/figure-html/vis_ages-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This problem due to geological units not being restricted to a particular time interval. A unit can range through, into, or out of our target temporal range.&lt;/p&gt;
+&lt;p&gt;To overcome this and focus only on fossil occurrences from the Ordovician or Silurian, I filtering down to only those occurrences who’s mid-point age is within &lt;code&gt;temp_range&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;occur_collect %&amp;lt;&amp;gt;%
+  filter(between(occur_mid_ma, temp_range[2], temp_range[1]))
+
+occur_collect %&amp;gt;%
+  ggplot(aes(x = occur_mid_ma)) +
+  geom_bar(width = 2) +
+  scale_x_reverse()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: position_stack requires non-overlapping x intervals&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-05-23-macrostrat-and-pbdb_files/figure-html/filter_age-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Much better.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;binning-occurrences&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Binning occurrences&lt;/h2&gt;
+&lt;p&gt;The fossil record is a discrete recording of continuous time which creates all kinds of problems. Additionally, paleo-time is more of a range than an instaneous value. Binning out data helps alleviate this – it just requires us to define a temporal width for each bin. There are two ways to do this: predetermine how many bins you want, or pick an (arbitrary) value. Luckily I’ve written a function that can do both: &lt;code&gt;bin_ages()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#&amp;#39; Break time data up into bins
+#&amp;#39; 
+#&amp;#39; Have fun with this. Basic rules. Greater than equal to base, less than top.
+#&amp;#39; 
+#&amp;#39; @param x vector of ages
+#&amp;#39; @param by bin width
+#&amp;#39; @param age logical bin age returned, not number (default FALSE, return bin number)
+#&amp;#39; @return vector of bin memberships
+#&amp;#39; @author Peter D Smits &amp;lt;peterdavidsmits@gmail.com&amp;gt;
+#&amp;#39; @export
+bin_ages &amp;lt;- function(x, by = NULL, number = NULL, age = FALSE) {
+
+  if(is.null(by) &amp;amp; is.null(number)) {
+    return(&amp;#39;no scheme given. Specify either bin width or number of bins.&amp;#39;)
+  }
+
+  if(!is.null(by) &amp;amp; !is.null(number)) {
+    return(&amp;#39;too much information. Specify either bin width OR number of bins, not both.&amp;#39;)
+  }
+
+  # range to bin
+  top &amp;lt;- ceiling(max(x))
+  bot &amp;lt;- floor(min(x))
+
+  # create bins
+  if(!is.null(by)) {
+    unt &amp;lt;- seq(from = bot, to = top, by = by)
+  } else if(!is.null(number)) {
+    unt &amp;lt;- seq(from = bot, to = top, length.out = number + 1)
+  }
+
+  # bin top and bottom
+  unt1 &amp;lt;- unt[-length(unt)]
+  unt2 &amp;lt;- unt[-1]
+
+  # assign memberships
+  uu &amp;lt;- map2(unt1, unt2, ~ which(between(x, left = .x, right = .y)))
+
+  # what if we want the &amp;quot;age&amp;quot; of the bin, not number?
+  if(age == TRUE) {
+    unt_age &amp;lt;- map2_dbl(unt1, unt2, ~ median(c(.x, .y)))
+  }
+
+  # create output vector
+  y &amp;lt;- x
+  for(ii in seq(length(uu))) {
+    if(age == FALSE) {
+      y[uu[[ii]]] &amp;lt;- ii
+    } else if(age == TRUE) {
+      y[uu[[ii]]] &amp;lt;- unt_age[ii]
+    }
+  }
+  y
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I want to compare multiple arbitrary bin widths to pick whatever feels “smoothest”. Sadly, I have trouble defining this algorithmically, but the general idea is to have as many bins as possible to have 1+ fossils and there are as few bins as possible with 0 fossils. Common bin widths include 1, 2, 5, and 10 million years, but I’m gonna look at a few more.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;occur_collect %&amp;gt;%
+  transmute(bin_01 = bin_ages(occur_mid_ma, by = 1, age = TRUE),
+            bin_02 = bin_ages(occur_mid_ma, by = 2, age = TRUE),
+            bin_025 = bin_ages(occur_mid_ma, by = 2.5, age = TRUE),
+            bin_05 = bin_ages(occur_mid_ma, by = 5, age = TRUE),
+            bin_10 = bin_ages(occur_mid_ma, by = 10, age = TRUE)) %&amp;gt;%
+  gather(key = key, value = value) %&amp;gt;%
+  ggplot(aes(x = value)) +
+  geom_bar(width = 2) +
+  facet_grid(key ~ .) +
+  scale_x_reverse()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals
+
+## Warning: position_stack requires non-overlapping x intervals&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://psmits.github.io/post/2019-05-23-macrostrat-and-pbdb_files/figure-html/compare_bin-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;2 and 2.5 seem like the nicest of these options, and I like to favor having a lot of bins over having few bins so I’m going to stick with 2 million year bins.&lt;/p&gt;
+&lt;div id=&#34;saving-the-hirnantian&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Saving the Hirnantian&lt;/h3&gt;
+&lt;p&gt;However, there is a twist – we’re &lt;em&gt;really&lt;/em&gt; interested in the occurrence patterns during the Hirnantian. This means I’d like the Hirnantian time interval preserved. The Hirnantian lasted from 445.2 to 443.8 Ma – a &lt;em&gt;really&lt;/em&gt; small interval of time.&lt;/p&gt;
+&lt;p&gt;A solution is to bin all the data &lt;em&gt;before&lt;/em&gt; and &lt;em&gt;after&lt;/em&gt; the Hirnantian as per usual, leaving the Hirnantian as a one-off. Here is that effort.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;occur_before &amp;lt;- 
+  occur_collect %&amp;gt;%
+  filter(occur_mid_ma &amp;gt; max(hirnantian)) %&amp;gt;%
+  mutate(bin_age = bin_ages(occur_mid_ma, by = 2, age = TRUE)) %&amp;gt;%
+  dplyr::select(occurrence_no, bin_age)
+
+occur_after &amp;lt;- 
+  occur_collect %&amp;gt;%
+  filter(occur_mid_ma &amp;lt; min(hirnantian)) %&amp;gt;%
+  mutate(bin_age = bin_ages(occur_mid_ma, by = 2, age = TRUE)) %&amp;gt;%
+  dplyr::select(occurrence_no, bin_age)
+
+
+occur_collect %&amp;lt;&amp;gt;%
+  left_join(., occur_before, by = &amp;#39;occurrence_no&amp;#39;) %&amp;gt;%
+  left_join(., occur_after, by = &amp;#39;occurrence_no&amp;#39;) %&amp;gt;%
+  mutate(bin_age = coalesce(bin_age.x, bin_age.y),
+         bin_age = if_else(is.na(bin_age),
+                           true = 445.2,
+                           false = bin_age),
+         # worst trick in the book
+         # lower values, younger bin
+         bin_num = as.numeric(as.factor(bin_age))) %&amp;gt;% 
+  dplyr::select(-bin_age.x, -bin_age.y)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now are tibble &lt;code&gt;occur_collect&lt;/code&gt; has every observation assigned to a temporal bin and we know one of these bins (i.e. 445.2) is the Hirnantian. I’ve saved this to disk so it can be shared/interrogated on its own.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Online textbook on Analytical Paleobiology</title>
@@ -257,8 +525,13 @@ library(dplyr)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## The following objects are masked from &amp;#39;package:base&amp;#39;:
 ## 
 ##     intersect, setdiff, setequal, union&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
-library(magrittr)
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 methods overwritten by &amp;#39;ggplot2&amp;#39;:
+##   method         from 
+##   [.quosures     rlang
+##   c.quosures     rlang
+##   print.quosures rlang&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(magrittr)
 library(jsonlite)
 library(sf)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3&lt;/code&gt;&lt;/pre&gt;
@@ -589,26 +862,6 @@ taxon$unit_id &amp;lt;- cypher[match(taxon$collection_no, cypher[, 1]), 2]
 &lt;p&gt;From these core books it is possible to read an incredible amount of statistics literature, and intuit the similarities between different &amp;ldquo;types&amp;rdquo; of models (e.g. GLMMs, survival analysis, logistic regression, Markov models). I had tried reading books like Bayesian Survival Analysis and I couldn&amp;rsquo;t penetrate the math; for some reason the notation never made any sense to me. The way models are presented in BDA, ARM, and Statistical Rethinking is extremely clear and unifies all analyses in terms of probability and not subfield specific or assumed notation; it gets the math wankry out of data analysis. Now, when I approach a text I just concentrate on the PDFs and quickly jot out the model along the side.&lt;/p&gt;
 
 &lt;p&gt;For teaching and communication resources, the way models are presented in &lt;a href=&#34;https://www.amazon.com/Doing-Bayesian-Data-Analysis-Second/dp/0124058884/&#34; target=&#34;_blank&#34;&gt;Doing Bayesian Data Analysis&lt;/a&gt; has proved invaluable to explaining how Bayesian models &amp;ldquo;work;&amp;rdquo; it is also way less abstract and complicated than &lt;a href=&#34;https://en.wikipedia.org/wiki/Plate_notation&#34; target=&#34;_blank&#34;&gt;plate notation&lt;/a&gt;. I&amp;rsquo;ve not actually read that textbook but I read through the section on drawing models. &lt;a href=&#34;http://www.sumsar.net/blog/2013/10/diy-kruschke-style-diagrams/&#34; target=&#34;_blank&#34;&gt;Rasmus Baathhas produced some templates for drawing your own &amp;ldquo;Krushke diagrams.&amp;rdquo;&lt;/a&gt; I&amp;rsquo;ve used this resource in talks before to great success.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Variant 5E Sorcerer</title>
-      <link>https://psmits.github.io/post/sorc_variant/</link>
-      <pubDate>Wed, 24 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://psmits.github.io/post/sorc_variant/</guid>
-      <description>&lt;p&gt;To me the &lt;a href=&#34;http://dnd.wizards.com/&#34; target=&#34;_blank&#34;&gt;D&amp;amp;D 5E&lt;/a&gt; sorcerer is the least interesting implementation of the classes. The spellcasting doesn&amp;rsquo;t read as interesting or unique enough to merit choosing to be a sorcerer over, say, a wizard. The sorcery points seem like a wasted opportunity for real spell flexibility. The subclasses that aren&amp;rsquo;t the wild mage don&amp;rsquo;t really grab me, and that is mostly due to nostalgia as my first run through &lt;a href=&#34;https://en.wikipedia.org/wiki/Baldur%27s_Gate_II:_Shadows_of_Amn&#34; target=&#34;_blank&#34;&gt;Baldur&amp;rsquo;s Gate 2&lt;/a&gt; was as a wild mage.&lt;/p&gt;
-
-&lt;p&gt;Two of my favorite points-based spellcasting implementations were the in the &lt;a href=&#34;https://en.wikipedia.org/wiki/The_Wheel_of_Time_Roleplaying_Game&#34; target=&#34;_blank&#34;&gt;Wheel of Time RPG&lt;/a&gt; and in &lt;a href=&#34;https://en.wikipedia.org/wiki/Iron_Heroes&#34; target=&#34;_blank&#34;&gt;Iron Heroes&lt;/a&gt;. The similarity between these two systems is that they had access to very few spells, but those spells had many forms and functions depending on how many spell points were invested. The spell point system in the 5E sorcerer tries to do that but I think is sadly humstrung by the Vancian spellcasting which clearly fits the wizard class flavor much better. The following suggestions reflect this preference.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The already built-in choose the spell level features of 5E is a great foundation to work from. Replace the Sorcerer&amp;rsquo;s spell slots with the Variant: Spell Points rule from DMG:288. Combine the spell points with the Sorcerer&amp;rsquo;s normal Sorcery Points; treat them as the same pool for everything.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;These suggested changes allow the sorcerer to cast and modify their spells very freely which I think improves the unique aspects of their flavor. These ideas are taken from something I read on a traditional games forum, and I claim no ownership to these ideas. Sadly the original post no longer exists, but to whomever suggested these changes, I thank you. I think I&amp;rsquo;ll be using this bit of homebrew for my (hopefully) upcoming Planescape campaign!&lt;/p&gt;
 </description>
     </item>
     
