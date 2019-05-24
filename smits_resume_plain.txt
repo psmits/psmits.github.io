@@ -1,0 +1,37 @@
+Peter D. Smits
+
+1661 Hopkins St
+Berkeley, CA 94707
+
+Tel: (609) 933-7042
+Email: peterdavidsmits@gmail.com
+
+
+Experience
+----------
+
+Postdoctoral Scholar, University of California Berkeley, Sept 2017 -- present. Project lead for study on predicting when rare events (e.g. extinctions) are likely to be clustered. Developed a discrete-time survival model using Stan to predict probability of species extinction. Generalized results from this survival model to estimate the accuracy of predicting future species extinctions. Wrote online textbook/short-course on analyzing macroecological and paleontological data. Taught graduate level course on applied statistics, Bayesian modeling, and network analysis using R and Stan.
+
+Doctoral Researcher, University of Chicago, Sept 2012 -- June 2017. Completed dissertation on modeling emergent macroecological and macroevolutionary patterns. Analyzed how factors influencing extinction are correlated over time using a multi-level survival model. Developed a multilevel birth-death model to understand how species community structure changes over time. Mentored and taught graduate and undergraduate students in statistics, Stan, R, and pedagogy.
+
+Postgraduate Researcher, Monash University, Sept 2010 -- Aug 2012. Developed thesis on the relationship between tooth shape and jaw movement in carnivorous mammals. Used three-dimensional scans of mammal skulls to reconstruct jaw movement. Used R to analyze relationship among biomechanical measurements. Demonstrated for undergraduate course on introduction to data analysis and R.
+
+
+Skills
+------
+
+**Statistical/Analytical**: Bayesian data analysis, multilevel/mixed-effects models, generalized linear models (logistic, Poisson, multinomial, etc.), time-series analysis, survival analysis, longitudinal and cross-sectional data analysis, hidden Markov models, network analysis/graph theory, exploratory data analysis, clustering, classification, machine learning, measurement error/missing data, variable selection, etc.
+
+**Technologies**: R (RStudio, tidyverse, dplyr, purrr, ggplot2, knitr, shiny, caret, igraph), Stan (CmdStan, rstan, rstanarm, brms), JAGS, L A TEX, git/github, bash/Linux command line.
+
+**Other**: near-fluency French, dual US–Australian citizen, radio experience. 
+
+
+Education
+---------
+
+Doctor of Philosophy, Biology, University of Chicago, Chicago, IL 2017.
+
+Masters of Science, Biological Sciences, Monash University, Melbourne, Vic, AUS 2012.
+
+Bachelor of Science, University of Washington 20101.

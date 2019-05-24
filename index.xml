@@ -642,7 +642,7 @@ ggplot() +
     </item>
     
     <item>
-      <title>Inspecting fossil diveristy in Macrostrat units</title>
+      <title>Inspecting fossil diversity in Macrostrat units</title>
       <link>https://psmits.github.io/post/macrostrat_fossils/</link>
       <pubDate>Mon, 12 Feb 2018 00:00:00 -0800</pubDate>
       
@@ -651,7 +651,7 @@ ggplot() +
 
 &lt;p&gt;Our initial data call is exactly the same as my previous post; I&amp;rsquo;m looking for geological units with Permian sediments: &lt;a href=&#34;https://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&#34; target=&#34;_blank&#34;&gt;https://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&lt;/a&gt;. Unfortunately this API call does not return useful information about what fossils are found in the geologic unit, only how many. Fortunately, this is pretty easy to overcome.&lt;/p&gt;
 
-&lt;p&gt;To get the fossil information for each geological unit, I need make another API call. With a tiny bit of code the unit id&amp;rsquo;s are transformed into a comma seperated string that can be used to form the appropriate url&lt;/p&gt;
+&lt;p&gt;To get the fossil information for each geological unit, I need make another API call. With a tiny bit of code the unit id&amp;rsquo;s are transformed into a comma separate string that can be used to form the appropriate url&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;strat &amp;lt;- read.csv(&#39;https://macrostrat.org/api/v2/units?interval_name=Permian&amp;amp;response=long&amp;amp;format=csv&#39;, 
                   stringsAsFactors = FALSE)

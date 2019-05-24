@@ -89,7 +89,7 @@ Our initial data call is exactly the same as my previous post; I&rsquo;m looking
   
   <meta property="og:site_name" content="Peter D Smits">
   <meta property="og:url" content="https://psmits.github.io/post/macrostrat_fossils/">
-  <meta property="og:title" content="Inspecting fossil diveristy in Macrostrat units | Peter D Smits">
+  <meta property="og:title" content="Inspecting fossil diversity in Macrostrat units | Peter D Smits">
   <meta property="og:description" content="In this post I&rsquo;m going to dive deeper in to Macrostrat and start looking at genus diversity of geological units; this is the first follow-up on my previous post. Like before, the code used to generate all the figures etc. is available here.
 Our initial data call is exactly the same as my previous post; I&rsquo;m looking for geological units with Permian sediments: https://macrostrat.org/api/v2/units?interval_name=Permian&amp;response=long&amp;format=csv. Unfortunately this API call does not return useful information about what fossils are found in the geologic unit, only how many.">
   
@@ -107,7 +107,7 @@ Our initial data call is exactly the same as my previous post; I&rsquo;m looking
 
   
 
-  <title>Inspecting fossil diveristy in Macrostrat units | Peter D Smits</title>
+  <title>Inspecting fossil diversity in Macrostrat units | Peter D Smits</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -245,7 +245,7 @@ Our initial data call is exactly the same as my previous post; I&rsquo;m looking
 
 
   <div class="article-container">
-    <h1 itemprop="name">Inspecting fossil diveristy in Macrostrat units</h1>
+    <h1 itemprop="name">Inspecting fossil diversity in Macrostrat units</h1>
 
     
 
@@ -293,7 +293,7 @@ Our initial data call is exactly the same as my previous post; I&rsquo;m looking
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Inspecting%20fossil%20diveristy%20in%20Macrostrat%20units&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f"
+         href="https://twitter.com/intent/tweet?text=Inspecting%20fossil%20diversity%20in%20Macrostrat%20units&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
@@ -307,21 +307,21 @@ Our initial data call is exactly the same as my previous post; I&rsquo;m looking
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f&amp;title=Inspecting%20fossil%20diveristy%20in%20Macrostrat%20units"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f&amp;title=Inspecting%20fossil%20diversity%20in%20Macrostrat%20units"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f&amp;title=Inspecting%20fossil%20diveristy%20in%20Macrostrat%20units"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f&amp;title=Inspecting%20fossil%20diversity%20in%20Macrostrat%20units"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Inspecting%20fossil%20diveristy%20in%20Macrostrat%20units&amp;body=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f">
+         href="mailto:?subject=Inspecting%20fossil%20diversity%20in%20Macrostrat%20units&amp;body=https%3a%2f%2fpsmits.github.io%2fpost%2fmacrostrat_fossils%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -339,7 +339,7 @@ Our initial data call is exactly the same as my previous post; I&rsquo;m looking
 
 <p>Our initial data call is exactly the same as my previous post; I&rsquo;m looking for geological units with Permian sediments: <a href="https://macrostrat.org/api/v2/units?interval_name=Permian&amp;response=long&amp;format=csv" target="_blank">https://macrostrat.org/api/v2/units?interval_name=Permian&amp;response=long&amp;format=csv</a>. Unfortunately this API call does not return useful information about what fossils are found in the geologic unit, only how many. Fortunately, this is pretty easy to overcome.</p>
 
-<p>To get the fossil information for each geological unit, I need make another API call. With a tiny bit of code the unit id&rsquo;s are transformed into a comma seperated string that can be used to form the appropriate url</p>
+<p>To get the fossil information for each geological unit, I need make another API call. With a tiny bit of code the unit id&rsquo;s are transformed into a comma separate string that can be used to form the appropriate url</p>
 
 <pre><code>strat &lt;- read.csv('https://macrostrat.org/api/v2/units?interval_name=Permian&amp;response=long&amp;format=csv', 
                   stringsAsFactors = FALSE)
