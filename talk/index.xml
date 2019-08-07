@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Peter D Smits</copyright>
-    <lastBuildDate>Mon, 23 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jun 2019 00:00:00 -0700</lastBuildDate>
     
 	<atom:link href="https://psmits.github.io/talk/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How predictable is extinction? Forecasting species survival at million-year timescales</title>
+      <link>https://psmits.github.io/talk/napc_2019/</link>
+      <pubDate>Sun, 23 Jun 2019 00:00:00 -0700</pubDate>
+      
+      <guid>https://psmits.github.io/talk/napc_2019/</guid>
+      <description>A tenant of conservation paleobiology is that knowledge of past extinction patterns can help us to better predict future extinctions. Although the future is unobservable, we can test the strength of this proposition by asking how well models conditioned on past observations would have predicted subsequent extinction events at different points in the geological past. To answer this question we analyze the well-sampled fossil record of Cenozoic planktonic microfossil taxa (foramanifera, radiolarians, diatoms, and calcareous nanoplankton.</description>
+    </item>
     
     <item>
       <title>How predictable is extinction? Forecasting species survival at million-year timescales</title>
