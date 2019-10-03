@@ -13,10 +13,13 @@
 
 %-----------------------------------------------------------
 \usepackage{latexsym}
-\usepackage[empty]{fullpage}
+%\usepackage[empty]{fullpage}
+\usepackage[margin=0.75in]{geometry}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{verbatim}
 \usepackage[pdftex]{hyperref}
+%\usepackage{paralist}
+\usepackage{enumitem}
 \hypersetup{
   colorlinks,%
   citecolor=black,%
@@ -26,24 +29,28 @@
     %urlcolor=mygreylink     % can put red here to better visualize the links
 }
 \urlstyle{same}
-\definecolor{mygrey}{gray}{.85}
+\definecolor{mygrey}{gray}{.90}
 \definecolor{mygreylink}{gray}{.40}
 \textheight=9.0in
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
 
+\pagenumbering{gobble}
+
 % Adjust margins
-\addtolength{\oddsidemargin}{-0.375in}
-\addtolength{\evensidemargin}{0.375in}
-\addtolength{\textwidth}{0.5in}
-\addtolength{\topmargin}{-.375in}
-\addtolength{\textheight}{0.75in}
+%\addtolength{\oddsidemargin}{-0.375in}
+%\addtolength{\evensidemargin}{0.375in}
+%\addtolength{\textwidth}{0.5in}
+%\addtolength{\topmargin}{-.375in}
+%\addtolength{\textheight}{0.75in}
 
 %-----------------------------------------------------------
 %Custom commands
 \newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
-\newcommand{\resheading}[1]{{\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}}
+\newcommand{\resheading}[1]{
+  {\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}
+}
 \newcommand{\ressubheading}[4]{
   \begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
     \textbf{#1} & #2 \\
@@ -67,11 +74,13 @@
 
 \newcommand{\mywebheader}{
   \begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
-    \textbf{\href{https://psmits.github.io/}{\LARGE Peter David Smits}} & \href{mailto:peterdavidsmits@gmail.com}{peterdavidsmits@gmail.com}\\
-    {\footnotesize \texttt{ph: 609-933-7042; add: 1661 Hopkins St, Berkeley, CA 94707}} & \href{https://psmits.github.io/}{https://psmits.github.io/} \\
+    \textbf{\href{https://psmits.github.io/}{\Large Peter David Smits}} & \href{https://psmits.github.io/}{psmits.github.io/} \\
+    Seattle, Washington; 609-933-7042 & \href{https://github.com/psmits}{github.com/psmits} \\
+    \href{mailto:peterdavidsmits@gmail.com}{peterdavidsmits@gmail.com} & \href{https://www.linkedin.com/in/pdsmits/}{linkedin.com/in/pdsmits/} \\
   \end{tabular*}
   \\
-\vspace{0.1in}}
+\vspace{0.05in}
+}
 
 % CHANGE HEADER SOURCE HERE
 \mywebheader
@@ -84,116 +93,88 @@
 %%    \item International collaborator analyzing biomechanical, phylogenetic, and time-series count data and with applying machine learning techniques for prediction
 %  \end{itemize}
 
+
 %%%%%%%%%%%%%%%%%%%%%%
+%\vspace{0.25in}
+\resheading{Skills}
+\begin{description}[itemsep=0mm]
+    %\begin{small}
+    \item \textbf{Languages:}  R, Stan, Python, SQL 
+    \item \textbf{Packages:} 
+      \begin{itemize}[itemsep=0mm]
+        \item \textbf{R:} brms, rstan, rstanarm, ggplot2, tidyverse, knitr, caret, shiny
+        \item \textbf{Python:} pandas, numpy, beautifulsoup, keras, flask
+      \end{itemize}
+    \item \textbf{Statistics:} Bayesian data analysis, hierarchical modeling, survival analysis, time series analysis, machine learning 
+    \item \textbf{Other:} git, bash, \LaTeX, cmdstan
+    %\end{small}
+\end{description} % End Skills list
+%\vspace{0.25in}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Experience}
 \begin{itemize}
   \item 
-    \ressubheading{University of California -- Berkeley}{Berkeley, CA}{Postdoctoral Scholar}{Sept 2017 -- present}
+    \ressubheading{Data Science Fellow}{Seattle, WA}{Insight Data Science}{Sept 2019 -- present}
     { \footnotesize
       \begin{itemize}
-          \resitem{Project lead for study on predicting when rare events (e.g. extinctions) are likely to be clustered }
-          \resitem{Developed a discrete-time survival model using Stan to predict probability of species extinction }
-          \resitem{Generalized results from this survival model to estimate the accuracy of predicting future species extinctions }
-          %\resitem{Analyzed how sedimentological composition predicts the occurrence of rare events (e.g. fossils) using a time-series mixture model }
-          \resitem{Wrote online textbook/short-course on analyzing macroecological and paleontological data }
-          \resitem{Taught graduate level course on applied statistics, Bayesian modeling, and network analysis using R and Stan }
-          %\resitem{Elected to University of California Postdoctoral Union Joint Council as Recording Secretary for UC Berkeley }
+          \resitem{Designed Copyprisim, a web application for generating rough draft product descriptions from an image of the product.}
+          \resitem{Wrote web scraper for collecting Ikea product descriptions in python using beautifulsoup.}
+          \resitem{Trained text generation deep learning model in python using keras with TensorFlow backend.}
+          \resitem{Deployed web application using flask.}
       \end{itemize}
     }
   \item 
-    \ressubheading{University of Chicago}{Chicago, IL}{Doctoral Researcher}{Sept 2012 -- June 2017}
+    \ressubheading{Postdoctoral Scholar}{Berkeley, CA}{University of California -- Berkeley}{Sept 2017 -- July 2019}
     { \footnotesize
       \begin{itemize}
-          \resitem{Completed dissertation on modeling emergent macroecological and macroevolutionary patterns }
-          \resitem{Analyzed how factors influencing extinction are correlated over time using a multi-level survival model }
-          \resitem{Developed a multilevel birth-death model to understand how species community structure changes over time }
-          \resitem{Mentored and taught graduate and undergraduate students in statistics, Stan, R, and pedagogy }
+          \resitem{Designed a discrete-time survival model using Stan to predict probability of species extinction which generalized to correctly ranking which of two species is more likely to go extinct in 1 million years with a 79\% probability.}
+          \resitem{Created a hierarchical Bayesian time series model in Stan for predicting when rare events (species extinctions) were likely to be clustered in time based on geological information sourced from multiple databases.}
+          \resitem{Wrote nine chapters of online book on the analysis of paleontological data using R, tidyverse, and brms.}
       \end{itemize}
     }
-		\item 
-			\ressubheading{Monash University}{Melbourne, AUS}{Postgraduate Researcher}{Sept 2010 -- Aug 2012}
-				{ \footnotesize
-				\begin{itemize}
-            \resitem{Developed thesis on the relationship between tooth shape and jaw movement in carnivorous mammals }
-            \resitem{Used three-dimensional scans of mammal skulls to reconstruct jaw movement }
-            \resitem{Used R to analyze relationship among biomechanical measurements }
-            \resitem{Demonstrated for undergraduate course on introduction to data analysis and R }
-				\end{itemize}
-				}
-%		\item 
-%			\ressubheading{Macquarie University}{Sydney, AUS}{Paleobiology Database Intensive Workshop in Quantitative Paleobiology}{July 2011 -- Aug 2011}
-%				{ \footnotesize
-%				\begin{itemize}
-%            \resitem{5 week intensive workshop on statistical and analytical methods and their applications in paleobiology}
-%            \resitem{Trained in using R for birth-death modelling, basic Gaussian processes, exploratory multivariate data analysis, phylogentic comparative methods, and geometric morphometrics}
-%				\end{itemize}
-%				}
-%    \item 
-%      \ressubheading{Burke Museum of Natural History}{Seattle, WA}{Collections Assistant in Paleontology}{June 2010 -- Aug 2010}
-%        { \footnotesize
-%        \begin{itemize}
-%            \resitem{Catalogued specimens in the collections which appeared in publication}
-%            \resitem{Managed specimen database growth and annotation}
-%        \end{itemize}
-%        }
-%    \item 
-%      \ressubheading{American Museum of Natural History}{New York, NY}{NSF Research Experience for Undergraduates Internship}{June 2009 -- Aug 2009}
-%        { \footnotesize
-%        \begin{itemize}
-%            %\resitem{Collected data describing bat tooth shapes }
-%            \resitem{Analyzed similarities in bat tooth shape in a phylogenetic context, resulted in one publication }
-%        \end{itemize}
-%        }
-%    \item 
-%      \ressubheading{University of Washington}{Seattle, WA}{Undergraduate Research Assistant}{Jan 2008 -- June 2010}
-%        { \footnotesize
-%        \begin{itemize}
-%            \resitem{Analyzed relationship between mammal tooth size and body size using linear regression in order to predict body sizes of extinct mammals, resulted in one publication }
-%            %\resitem{Assisted with field collection of fossils from the Hell Creek Formation (Latest Cretaceous) in Montana }
-%        \end{itemize}
-%        }
-%    \item 
-%      \ressubheading{Burke Museum of Natural History}{Seattle, WA}{Field and Lab Assistant in Mammalogy}{Oct 2006 -- Aug 2008}
-%        { \footnotesize
-%        \begin{itemize}
-%            \resitem{Assisted with museum specimen preparation, taxidermy, and curation}
-%            \resitem{Assisted with wild specimen collection and preparation}
-%        \end{itemize}
-%        }
+  \item 
+    \ressubheading{Graduate Researcher}{Chicago, IL}{University of Chicago}{Sept 2012 -- June 2017}
+    { \footnotesize
+      \begin{itemize}
+          \resitem{Identified how differences in mammal species ecologies affected their survival rates over the last 65 million years from a database of fossil occurrences in space and time using a hierarchical Bayesian survival model implemented in Stan and R.}
+          \resitem{Modeled how the strength of factors influencing extinction risk change in response to average extinction rate increasing or decreasing estimated from incompletely observed longitudinal data using Stan and R.}
+          \resitem{Developed ensemble machine learning framework for differentiating between similar species based on 2d shape information in R which capable of correctly identifying seven closely related turtle species with an AUC over 0.98.}
+          \resitem{Mentored and taught graduate and undergraduate students in R, statistics, Stan, and pedagogy.}
+      \end{itemize}
+    }
+%  \item 
+%    \ressubheading{University of Chicago}{Chicago, IL}{Instructor}{Sept 2012 -- December 2016}
+%    { \footnotesize
+%      \begin{itemize}
+%          \resitem{ Taught multiple courses including introduction to computational biology, environmental ecology, and graduate-level teaching course. }
+%          \resitem{ Designed syllabus for graduate teaching course that served as the template for future years. }
+%      \end{itemize}
+%    }
 \end{itemize}  % End Experience list
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-
 %\resheading{Projects}
 %
 %\begin{description}
   %  \item[:] { }
 %\end{description}
 
-%%%%%%%%%%%%%%%%%%%%%%
-\vspace{0.25in}
-\resheading{Skills}
-\begin{description}
-  \item[Statistical/Analytical:] { \footnotesize Bayesian data analysis, multilevel/mixed-effects models, generalized linear models (logistic, Poisson, multinomial, etc.), time-series analysis, survival analysis, longitudinal and cross-sectional data analysis, hidden Markov models, network analysis/graph theory, exploratory data analysis, clustering, classification, machine learning, measurement error/missing data, variable selection, etc. }
-  \item[Technologies:] { \footnotesize R (RStudio, tidyverse, dplyr, purrr, ggplot2, knitr, shiny, caret, igraph), Stan (CmdStan, rstan, rstanarm, brms), JAGS, \LaTeX, git/github, bash/Linux command line }
-  \item[Other:] { \footnotesize near-fluency French, dual US--Australian citizen, radio experience }
-\end{description} % End Skills list
-\vspace{0.25in}
-
 
 %%%%%%%%%%%%%%%%%%%%%%
 \resheading{Education}
 \begin{itemize}
   \item
-    \ressubheading{University of Chicago}{Chicago, IL}{Ph.D. in Evolutionary Biology}{Sept 2012 -- June 2017}
+    \ressubheading{University of Chicago}{Chicago, Illinois}{Ph.D. Evolutionary Biology}{June 2017}
   \item
-    \ressubheading{Monash University}{Melbourne, AUS}{M.Sc. in Biological Sciences}{Sept 2010 -- Aug 2012}
+    \ressubheading{Monash University}{Melbourne, Australia}{M.Sc. Biological Sciences}{Aug 2012}
     \begin{itemize}
-      \item Vice-Chancellor's Commendation for Master's Thesis Excellence
+      \item {\footnotesize Vice-Chancellor's Commendation for Master's Thesis Excellence}
     \end{itemize}
   \item
-    \ressubheading{University of Washington}{Seattle, WA}{B.S. in Biology -- Ecology and Evolution}{Sept 2006 -- June 2010}
+    \ressubheading{University of Washington}{Seattle, Washington}{B.S. Biology}{June 2010}
 \end{itemize} % End Education list
 
 
