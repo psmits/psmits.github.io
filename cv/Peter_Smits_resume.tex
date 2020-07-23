@@ -1,0 +1,208 @@
+%May  resume.tex
+%
+% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
+% (c) 2003 David J. Grant <dgrant@ieee.org> http://www.davidgrant.ca
+% (c) 2007 Todd C. Miller <Todd.Miller@courtesan.com> http://www.courtesan.com/todd
+% (c) 2009-2012 Derek R. Hildreth <derek@derekhildreth.com> http://www.derekhildreth.com 
+% (c) 2019 Peter D. Smits <peterdavidsmits@gmail.com> https://psmits.github.io/
+%This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/1.0/ or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+
+% GENERAL NOTE:  There may be some notes specific to myself.  If you're only interested in my LaTeX source or it doesn't make sense, please disregard it.
+
+\documentclass[letterpaper,11pt]{article}
+
+%-----------------------------------------------------------
+\usepackage{latexsym}
+%\usepackage[empty]{fullpage}
+\usepackage[margin=0.5in,bottom=0mm,nofoot,nohead]{geometry}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage[pdftex]{hyperref}
+%\usepackage{paralist}
+\usepackage{enumitem}
+\hypersetup{
+  colorlinks,%
+  citecolor=black,%
+  filecolor=black,%
+  linkcolor=black,%
+  urlcolor=black 
+    %urlcolor=mygreylink     % can put red here to better visualize the links
+}
+\urlstyle{same}
+\definecolor{mygrey}{gray}{.90}
+\definecolor{mygreylink}{gray}{.40}
+\textheight=10.0in
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\pagenumbering{gobble}
+
+% Adjust margins
+%\addtolength{\oddsidemargin}{-0.375in}
+%\addtolength{\evensidemargin}{0.375in}
+%\addtolength{\textwidth}{0.5in}
+%\addtolength{\topmargin}{-.375in}
+%\addtolength{\textheight}{0.75in}
+
+%-----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{
+  {\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}
+}
+\newcommand{\ressubheading}[4]{
+  \begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+
+% my implementation for eduction elements
+\newcommand{\ressubheadingb}[3]{
+  \begin{tabular*}{6.5in}{ll@{\extracolsep{\fill}}r}
+    \textbf{#1} & \hspace{0.1mm} #2 & #3 \\
+    %\textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+
+\newcommand{\ressubsubheading}[2]{
+  \begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
+    \textit{#1} & \textit{#2} \\
+\end{tabular*}\vspace{-6pt}}
+%-----------------------------------------------------------
+
+%-----------------------------------------------------------
+%General Resume Tips
+%   No periods!  Technically, nothing in this document is a full sentence.
+%   Use parallelism by ending key words with the same thing,  i.e. "Coordinated; Designed; Communicated".
+%   More tips on bottom of this LaTeX document.
+%-----------------------------------------------------------
+
+\begin{document}
+
+\newcommand{\mywebheader}{
+  \begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
+    \textbf{\href{https://psmits.github.io/}{\Large Peter David Smits}} & \href{https://psmits.github.io/}{psmits.github.io/} \\
+    Seattle, Washington; 609-933-7042 & \href{https://github.com/psmits}{github.com/psmits} \\
+    \href{mailto:peterdavidsmits@gmail.com}{peterdavidsmits@gmail.com} & \href{https://www.linkedin.com/in/pdsmits/}{linkedin.com/in/pdsmits/} \\
+  \end{tabular*}
+  \\
+\vspace{0.05in}
+}
+
+% CHANGE HEADER SOURCE HERE
+\mywebheader
+
+%\resheading{Summary}
+%  \begin{itemize}
+%    \item Paleobiologist and data scientist with 8+ years research experience in evolution, ecology, and geology; works cited over 180 times
+%    \item Bayesian data analysis and multilevel/hierarchical models across multiple applications (e.g. survival, longitudinal, and discrete time-series data; hidden Markov models)
+%%    \item Six publications in peer-reviewed journals, cited 189 times
+%%    \item International collaborator analyzing biomechanical, phylogenetic, and time-series count data and with applying machine learning techniques for prediction
+%  \end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%\vspace{0.25in}
+\resheading{Skills}
+\begin{description}[itemsep=-1mm]
+    %\begin{small}
+    \item \textbf{Languages/Tools:}  R, Stan, Python, SQL, bash, \LaTeX, git
+    \item \textbf{Packages:} \vspace{-5pt}
+      \begin{itemize}[itemsep=-1mm]
+        \item \textbf{R:} brms, rstan, rstanarm, ggplot2, tidyverse, knitr, caret, shiny
+        \item \textbf{Python:} pandas, numpy, beautifulsoup, keras, flask
+      \end{itemize}
+    \item \textbf{Statistics:} Bayesian data analysis, multilevel/hierarchical modeling, survival analysis, time series analysis
+    \item \textbf{Machine Learning:} regression, decision trees/CART, random forests, k-means, hierarchical clustering, regularization, feature engineering/selection, dimensionality reduction/PCA, NLP, neural networks
+    %\end{small}
+\end{description} % End Skills list
+\vspace{0.05in}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Experience}
+\begin{itemize}[itemsep=0mm]
+  \item 
+    \ressubheading{Data Science Fellow}{Seattle, WA}{Insight Data Science}{Sept 2019 -- present}
+    { %normalsize%small%footnotesize
+      \begin{itemize}
+          \resitem{Designed Copyprism, a web application for generating draft product descriptions from an image.}
+          \resitem{Implemented web scraper for collecting IKEA product descriptions in \textbf{python} using \textbf{beautifulsoup}.}
+          \resitem{Fine-tuned GPT-2 natural language deep learning model on IKEA catalog in \textbf{python} using \textbf{Google Colab}, whose generated text was indistinguishable from human text 26\% of the time.}
+          \resitem{Deployed Copyprism web application on AWS using \textbf{flask}.}
+      \end{itemize}
+    }
+  \item 
+    \ressubheading{Postdoctoral Scholar}{Berkeley, CA}{University of California -- Berkeley}{Sept 2017 -- July 2019}
+    { %\normalsize%small%footnotesize
+      \begin{itemize}
+          \resitem{Designed multilevel discrete-time survival model using \textbf{Stan} to predict species extinction which identified species at risk of extinction within 1-million years with an AUC of 0.78.}
+          \resitem{Created multievel Bayesian time series model in \textbf{Stan} for predicting when rare extinction events were likely to be clustered in time based on geological information sourced from multiple databases.}
+          \resitem{Wrote nine chapters of \href{https://psmits.github.io/paleo_book/index.html}{online book} on the analysis of paleontological and macroecological data using \textbf{R}, \textbf{tidyverse}, and \textbf{brms}.}
+      \end{itemize}
+    }
+  \item 
+    \ressubheading{Graduate Researcher}{Chicago, IL}{University of Chicago}{Sept 2012 -- June 2017}
+    { %normalsize%small%footnotesize
+      \begin{itemize}
+          \resitem{Identified how differences in mammal species ecologies affected their survival rates over the last 65 million years using a multilevel Bayesian survival model implemented in \textbf{Stan} and \textbf{R} applied to a database of fossil occurrences (approx. 40k rows) accessed via web API.}
+          \resitem{Created hidden Markov birth-death model for incompletely observed longitudinal data in \textbf{Stan} where transition probabilities were modeled as multilevel regressions in order to identify how speciation and extinction rates varied over time by species ecology and environmental state.}
+          \resitem{Developed ensemble framework for identifying species based on 2D shape information using \textbf{R} and \textbf{caret} where average of multinomial logistic regression, neural network, and random forest models correctly differentiated seven closely related turtle species with an AUC over 0.98.}
+          \resitem{Mentored and taught graduate and undergraduate students in R, statistics, Stan, and pedagogy.}
+      \end{itemize}
+    }
+\end{itemize}  % End Experience list
+\vspace{0.05in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Projects}
+\begin{itemize}[itemsep=-1mm]
+  \item \textbf{mathhammr:} \textbf{R} package and \href{https://psmits.shinyapps.io/dice_roller/}{\textbf{shiny} web application} for generating dice rolls for Warhammer 40k and comparing those rolls to a simulated distribution of results.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Education}
+\begin{itemize}
+  \item
+    \ressubheadingb{University of Chicago}{ Ph.D. Evolutionary Biology}{June 2017}
+  \item
+    \ressubheadingb{Monash University}{ M.Sc. Biological Sciences}{Aug 2012}
+    \begin{itemize}
+      \item {\small Vice-Chancellor's Commendation for Master's Thesis Excellence}
+    \end{itemize} \vspace{-7.5pt}
+  \item
+    \ressubheadingb{University of Washington}{ B.S. Biology}{June 2010}
+\end{itemize} % End Education list
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\resheading{Publications}
+%  \begin{description}
+%    \item Stewart M Edie, {\bf Peter D Smits}, David Jablonski. Probabilistic models of species discovery and biodiversity comparisons. \emph{Proceedings of the National Academy of Sciences}, 114(14):3666-3671, 2016. {\bf IF 9.423}
+%    \item {\bf Peter D Smits}. Expected time-invariant effects of biological traits on mammal species duration. \emph{Proceedings of the National Academy of Sciences}, 112(42):13015–13020, 2015. {\bf IF 9.423}
+%    \item Liliana M Davalos, Paul M Velazco, Omar M Warsi, {\bf Peter D Smits}, Nancy B Simmons. Integrating Incomplete Fossils by Isolating Conflicting Signal in Saturated and Non-Independent Morphological Characters. \emph{Systematic Biology}, 63(4):582-600, 2014. {\bf IF 14.387}
+%    \item Christopher W Walmsley, {\bf Peter D Smits}, Michelle R Quayle, Matthew R Mc-Curry, Heather S Richard, Christopher C Oldfield, Stephen Wroe, Phillip D Clausen, and Colin R McHenry. Why the fong face? The mechanics of mandibular symphysis proportions in crocodiles. \emph{PLoS ONE}, 8(1):e53873, 2013. {\bf IF 3.234}
+%    \item {\bf Peter D Smits}, Alistair R Evans. Functional constraints on tooth morphology in carnivorous mammals. \emph{BMC Evolutionary Biology}, 12(1):146, 2012. {\bf IF 3.407}
+%    \item Gregory P Wilson, Alistair R Evans, Ian J Corfe, {\bf Peter D Smits}, Mikael Fortelius, and Jukka Jernvall. Adaptive radiation of multituberculate mammals before the extinction of dinosaurs. \emph{Nature}, 483:457-460, 2012. {\bf IF 39.138}
+%  \end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\resheading{Selected Conference Presentations (last 3 years)}
+%  \begin{description}
+%    \item {\bf Speaker} Geological Society of America Annual Meeting, "Taxon occurrence as a function of both biological traits and environmental context: the changing North American species pool," Denver, CO, Sept 2016
+%    \item {\bf Speaker} Geological Society of America Annual Meeting, "Taxon occurrence as a function of both biological traits and environmental context: the changing North American species pool," Denver, CO, Sept 2016
+%    \item {\bf Speaker} Evolution Meetings, "How macroecology affects macroevolution: the interplay between extinction intensity and trait-dependent extinction in brachiopods," Austin, TX, June 2016
+%    \item {\bf Speaker} Geological Society of America Annual Meeting, "How do biological traits affect brachiopod taxonomic survival? A hierarchical Bayesian approach," Baltimore, MD, Nov 2015
+%    \item {\bf Speaker} Evolution Meetings, "Death and taxa: time-invariant differences in mammal species duration," Guaruja, Brazil, June 2015
+%    \item {\bf Speaker} Geological Society of America Annual Meeting, "Gambling with Australian brachiopods," Vancouver, BC, Oct 2016
+%    \item {\bf Speaker} Evolution Meetings, "Cenozoic mammals and the biology of extinction," Raleigh, NC, June 2014
+%  \end{description}
+
+
+\end{document}
