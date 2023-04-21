@@ -1,0 +1,7 @@
+
+docs/
+.idea/
+.Rproj.user
+*.Rproj
+
+/.quarto/

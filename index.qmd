@@ -1,0 +1,43 @@
+---
+title: "Peter D Smits"
+about:
+  id: hero-heading
+  template: jolla
+  image: PeterSmits.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/psmits
+---
+
+
+:::{#hero-heading}
+
+Peter Smits is the Principal Applied Scientist at Truveta.
+
+
+## Education
+
+University of Chicago | Chicago, IL
+PhD in Evolutionary Biology | 2017
+
+Monash University | Melbourne, Victoria, Australia
+MSc in Biological Sciences | 2012
+
+University of Washington | Seattle, WA
+BS in Biology: Ecology and Evolution | 2010
+
+
+## Experience
+
+Principal Applied Scientist | Truveta | 2022 - Present
+
+Senior Applied Scientist | Truveta | 2021 - 2022
+
+Data Scientist II | Amazon (Advertising) | 2020 - 2021
+
+Postdoctoral Scholar | University of California -- Berkeley | 2017-2019
+
+Graduate Researcher | University of Chicago | 2012-2017
+
+:::
