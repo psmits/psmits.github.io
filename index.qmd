@@ -13,7 +13,7 @@ about:
 
 :::{#hero-heading}
 
-Peter Smits is the Principal Applied Scientist at Truveta.
+Peter Smits is a data scientist and amateur game designer
 
 
 ## Education
@@ -27,7 +27,7 @@ BS [Biology: Ecology and Evolution](https://www.biology.washington.edu/) | 2010 
 
 ## Experience
 
-Principal Applied Scientist | [Truveta](https://www.truveta.com/) | 2022 - Present
+Principal Applied Scientist | [Truveta](https://www.truveta.com/) | 2022 - 2023
 
 Senior Applied Scientist | [Truveta](https://www.truveta.com/) | 2021 - 2022
 
