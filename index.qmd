@@ -13,7 +13,7 @@ about:
 
 :::{#hero-heading}
 
-Peter Smits is a data scientist and amateur game designer
+Peter Smits is a data scientist and [amateur game designer](tsds/index.html).
 
 
 ## Education
@@ -26,6 +26,8 @@ BS [Biology: Ecology and Evolution](https://www.biology.washington.edu/) | 2010 
 
 
 ## Experience
+
+Contract Consultant | Independent | 2024 - Present
 
 Principal Applied Scientist | [Truveta](https://www.truveta.com/) | 2022 - 2023
 

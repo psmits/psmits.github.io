@@ -1,0 +1,78 @@
+---
+title: "Two Standard Deviations Studio"
+---
+
+
+
+## Scenarios for Warlock!
+
+### Throne of Bone: The Wight King's Tomb
+
+:::: {.grid}
+
+
+::: {.g-col-4}
+<img src="wight_king_tomb_cover.jpg" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://www.drivethrurpg.com/product/466754/Throne-of-Bone-The-Wight-Kings-Tomb', 'blank');"/>
+:::
+
+::: {.g-col-6}
+There once was a great and terrible Wight King name Balthier Kane who wielded a bloodthirsty magic axe. In life he led the people of Petrini down from the heathlands to wage war on the goblins and humans of the plains and the forest.
+
+The forest goblins and the humans of the plains banded together and fought Kane’s forces to a standstill. Through great sacrifice, they were able to defeat Balthier Kane and break his army. The survivors sealed Balthier Kane’s body along with those of his dark riders in a tomb filled with devious traps and cloaked behind great magical dweomers.
+
+Recently, the magic sealing Balthier’s tomb has failed. The Wight King is awakening and his bonds are failing. Do you seek to plunder the vaults of the Wight King? Do you seek to rebind the Wight King in his prison? Or do you seek the power of the Wight King for yourself?
+
+This is a location-based scenario describing the tomb of the evil Wight King, where he is imprisoned along with his undead lieutenants.
+
+This scenario is designed for 3-5 PCs in their first career or early in their second career. The tomb is a series of environmental puzzles combined with combat encounters where PCs will have to make risky decisions and press their luck in order to accomplish the task before them and find reward. Random tables are provided to generate details on the Wight King, his magical axe, his lieutenants, the PCs’ motivations, and other features of the scenario.
+
+This scenario is compatible with ["Warlock! Traitor's Edition" by Greg Saunders](https://www.drivethrurpg.com/product/383512/Warlock-Traitors-Edition). The scenario can easily be converted to many other roleplaying games.
+:::
+
+::: {.g-col-2}
+<img src="drivethrurpg-logos-idhur2MLoG.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://www.drivethrurpg.com/product/466754/Throne-of-Bone-The-Wight-Kings-Tomb', 'blank');"/>
+
+<img src="badge-color.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://two-stdev.itch.io/throne-of-bone-the-wight-kings-tomb', 'blank');"/>
+:::
+
+::::
+
+______________________________________________
+
+
+### Drum of Water
+
+:::: {.grid}
+
+::: {.g-col-4}
+<img src="cover_drum_of_water.jpg" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://www.drivethrurpg.com/product/455252/Drum-of-Water', 'blank');"/>
+:::
+
+::: {.g-col-6}
+A cleric hires the PCs to recover an oracle's lost writings. The location of the oracle's resting place is only known to an ancient sage who resides deep in the forest. This travel-focused scenario takes the players along a rugged coastline and into a dark forest in search of a lost shrine. Along their journey they will encounter many wondrous locations and make contact with an encroaching band of hobgoblins. But the PCs are not the only ones interested in what they might find. Danger lurks in hidden places.
+
+This scenario is compatible with ["Warlock! Traitor's Edition" by Greg Saunders](https://www.drivethrurpg.com/product/383512/Warlock-Traitors-Edition). The scenario can easily be converted to many other roleplaying games.
+:::
+
+::: {.g-col-2}
+<img src="drivethrurpg-logos-idhur2MLoG.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('
+https://www.drivethrurpg.com/product/455252/Drum-of-Water', 'blank');"/>
+
+<img src="badge-color.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://two-stdev.itch.io/drum-of-water', 'blank');"/>
+:::
+
+::::
+
+
+
+<!--
+:::: {.grid}
+::: {.g-col-4}
+:::
+::: {.g-col-6}
+:::
+::: {.g-col-2}
+:::
+::::
+-->
+

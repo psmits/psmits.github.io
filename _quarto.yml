@@ -6,7 +6,12 @@ website:
   title: "Peter D Smits"
   site-url: https://psmits.github.io/
   description: "This is Peter Smits' personal site."
+
   navbar:
+    pinned: true
+    left:
+      - text: Two Standard Deviations Studio
+        href: tsds/index.qmd
     right:
       - text: Home
         href: index.qmd
@@ -16,6 +21,3 @@ format:
   html:
     theme: yeti
     css: styles.css
-
-
-
